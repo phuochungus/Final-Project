@@ -2,18 +2,17 @@ create database TAHCoffee;
 
 use TAHCoffee;
 
-
 create table Unit
 (
-	Id int identity(1,1) primary key,
-	DisplayName nvarchar(max),
-)
+	Id int primary key auto_increment,
+	DisplayName nvarchar(10000)
+);
 
 create table Category
 (
-	Id int identity(1,1) primary key,
-	DisplayName nvarchar(max),
-)
+	Id int primary key auto_increment,
+	DisplayName nvarchar(10000)
+);
 
 create table Item
 (
@@ -33,7 +32,7 @@ create table Account
     PhoneNumber varchar(20) not null,
     Password varchar(1000) not null,
     AccountType varchar(10),
-    constraint CHK_AccountType check (AccountType in ('admin', 'staff')),
+    constraint CHK_AccountType check (AccountType in ('admin', 'staff'))
 );
 
 create table Promo
@@ -42,15 +41,15 @@ create table Promo
     DisplayName varchar(30),
     Script varchar(300),
     StartTime datetime,
-    EndTime datetime,
+    EndTime datetime
 );
 
 create table Bill
 (
-	IdNumber int Identity(1, 1) primary key,
+	IdNumber int primary key auto_increment,
     ExportTime datetime not null,
     CustomerId char(10), foreign key (CustomerId) references Account(Id),
-    PromoId varchar(20), foreign key (PromoId) references Promo(Id),
+    PromoId varchar(20), foreign key (PromoId) references Promo(Id)
 );
 
 create table BillInfor
@@ -60,10 +59,11 @@ create table BillInfor
     Quantity int not null,
     Price int not null,
     constraint CHK_Quantity check(Quantity>0),
-    primary key(IdNumber, ItemId),
+    primary key(IdNumber, ItemId)
 );
 
 alter table Account add ManagedBy char(10);
 alter table Account add foreign key(ManagedBy) references Account(Id);
 
 
+drop database TAHCoffee;
