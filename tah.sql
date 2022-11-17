@@ -64,6 +64,3 @@ create table BillInfor
 
 alter table Account add ManagedBy char(10);
 alter table Account add foreign key(ManagedBy) references Account(Id);
-
-
-drop database TAHCoffee;
