@@ -20,7 +20,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         DataContext="{StaticResource LoginVM}"
-        >
+        x:Name="window">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
         <Grid 
             Grid.Column="0"     
             Background="#FFDE9F">
-            <Image x:Name="logo" Source="/Assets/Image/4ah.png" Width="400" Height="400"/>
+            <Image x:Name="logo" Source="\Assets\Image\4nhHaoLogo@4x.png" Width="400" Height="400"/>
         </Grid>
         <Grid 
             Grid.Column="1">
@@ -67,6 +67,8 @@
             <!-- Login button -->
             <Button 
                 x:Name="btnLogin"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=window}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="148,328,148,90">
                 Login
