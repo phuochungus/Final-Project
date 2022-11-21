@@ -28,6 +28,7 @@
                 Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <!-- 4nh hao image -->
         <Grid 
             Grid.Column="0"     
             Background="#FFDE9F">
@@ -35,6 +36,7 @@
         </Grid>
         <Grid 
             Grid.Column="1">
+            <!-- title -->
             <TextBlock 
                 Width="auto"
                 Height="auto"
@@ -45,12 +47,15 @@
                 FontSize="44"
                 Text="Login"
                 FontFamily="{StaticResource InterExtraBold}"/>
-            <TextBox
+            <!--Email-->
+            <TextBox 
+                
                 x:Name="txtEmail"
                 materialDesign:HintAssist.Hint="Email"
                 materialDesign:HintAssist.HelperText="Enter your email here!" 
                 Margin="100,199,100,225"
                 Text="{Binding _email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- Password -->
             <PasswordBox 
                 x:Name="txtPassword"
                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
@@ -59,6 +64,7 @@
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 Margin="100,263,100,162"/>
+            <!-- Login button -->
             <Button 
                 x:Name="btnLogin"
                 Command="{Binding LoginCommand}"

@@ -1,4 +1,6 @@
-﻿using _4NH_HAO_Coffee_Shop;
+
+using _4NH_HAO_Coffee_Shop;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
