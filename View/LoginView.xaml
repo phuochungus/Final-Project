@@ -20,7 +20,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         DataContext="{StaticResource LoginVM}"
-        >
+        x:Name="window">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -61,6 +61,8 @@
                 Margin="100,263,100,162"/>
             <Button 
                 x:Name="btnLogin"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=window}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="148,328,148,90">
                 Login

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="_4NH_HAO_Coffee_Shop.UserControl_4nhHao.BasicControlBarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
+             mc:Ignorable="d" 
+             d:DesignHeight="665" d:DesignWidth="936"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+             Name="ucMainControlBar">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57.85"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid Background="#DD8823">
+
+
+            <StackPanel Margin="0 7 0 5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+
+                <Image Margin="2 2 2 2" Width="44" Source="\Assets\Image\4nhHaoLogo@4x.png"></Image>
+                
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                
+                <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="MaterialDesignFloatingActionLightButton">
+                    <Button.Background>
+                        <SolidColorBrush Opacity="0"/>
+                    </Button.Background>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Opacity="0"/>
+                    </Button.BorderBrush>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\LogOut@4x.png"></Image>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+
+</UserControl>

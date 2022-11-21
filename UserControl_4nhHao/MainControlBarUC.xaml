@@ -30,7 +30,7 @@
             <StackPanel Margin="0 7 0 5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
 
 
-                <Image Margin="2 2 2 2" Width="44" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Images\4nhHaoLogo@4x.png"></Image>
+                <Image Margin="2 2 2 2" Width="44" Source="\Assets\Image\4nhHaoLogo@4x.png"></Image>
                 <Button Width="44" Height="44" 
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
@@ -40,7 +40,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\Home@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -51,7 +51,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\ProductManagement@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\ProductManagement@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -62,7 +62,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\Order@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Order@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -73,7 +73,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2"  Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\History@4x.png"></Image>
+                    <Image Margin="2 2 2 2"  Source="\Assets\Icon\History@4x.png"></Image>
                 </Button>
 
             </StackPanel>
@@ -88,7 +88,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\Person@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Person@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -99,7 +99,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\Setting@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Setting@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -110,7 +110,7 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="D:\src Code\FinalLTTQProject\Testing\TouchMe\Icons\LogOut@4x.png"></Image>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\LogOut@4x.png"></Image>
                 </Button>
             </StackPanel>
 
