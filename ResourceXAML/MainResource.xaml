@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewmodel="clr-namespace:CoffeeShop.ViewModel"
+                    xmlns:viewmodel="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
                     >
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
+    <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
 </ResourceDictionary>

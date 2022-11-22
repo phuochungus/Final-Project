@@ -10,33 +10,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using MaterialDesignThemes.Wpf;
 
-namespace CoffeeShop.ViewModel
+namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    class LoginViewModel: BaseViewModel
+    public class LoginViewModel: BaseViewModel
     {
+        public bool IsLoggedIn { get; set; } = false;
         public ICommand LoginCommand { get; set; }
 
-        private string email { get; set; } = "";
-        private string password { get; set; } = "";
-        public string _email
-        {
-            get
-            {
-                return email;
-            }
-
-            set
-            {
-                email = value;
-                OnPropertyChanged();
-            }
-        }
-        public string _password
-        {
-            get { return password; } 
-            set { password = value; OnPropertyChanged(); }
-        }
         public LoginViewModel()
         {
             
@@ -49,6 +31,10 @@ namespace CoffeeShop.ViewModel
         //
         public void LoggedIn(Window p)
         {
+            if (p == null)
+                return;
+
+            IsLoggedIn = true;
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
             p.Close();
