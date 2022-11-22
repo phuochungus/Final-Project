@@ -64,4 +64,4 @@ create table BillInfor
 
 alter table Account add ManagedBy char(10);
 alter table Account add foreign key(ManagedBy) references Account(Id);
-alter table Account alter column ManagedBy char(10) NULL;
+alter table Account alter column ManagedBy char(10) NULL;;
