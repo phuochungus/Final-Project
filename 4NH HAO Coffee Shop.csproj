@@ -89,6 +89,9 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OrderedView.xaml.cs">
+      <DependentUpon>OrderedView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xaml.cs">
@@ -136,14 +139,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControl_4nhHao\BasicControlBarUC.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControl_4nhHao\GeneralControlBarUC.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControl_4nhHao\MainControlBarUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,15 +162,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\Image\4nhHaoLogo%402x.png" />
-    <Resource Include="Assets\Image\4nhHaoLogo%403x.png" />
-    <Resource Include="Assets\Image\4nhHaoLogo%404x.png" />
-    <Resource Include="Assets\Image\4nhHaoLogo.png" />
+    <Page Include="View\OrderedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icon\Avatar%402x.png" />
+    <Resource Include="Assets\Icon\Avatar%403x.png" />
+    <Resource Include="Assets\Icon\Avatar%404x.png" />
+    <Resource Include="Assets\Icon\Avatar.png" />
     <Resource Include="Assets\Icon\History%402x.png" />
     <Resource Include="Assets\Icon\History%403x.png" />
     <Resource Include="Assets\Icon\History%404x.png" />
@@ -176,6 +187,10 @@
     <Resource Include="Assets\Icon\LogOut%403x.png" />
     <Resource Include="Assets\Icon\LogOut%404x.png" />
     <Resource Include="Assets\Icon\LogOut.png" />
+    <Resource Include="Assets\Icon\Message%402x.png" />
+    <Resource Include="Assets\Icon\Message%403x.png" />
+    <Resource Include="Assets\Icon\Message%404x.png" />
+    <Resource Include="Assets\Icon\Message.png" />
     <Resource Include="Assets\Icon\Order%402x.png" />
     <Resource Include="Assets\Icon\Order%403x.png" />
     <Resource Include="Assets\Icon\Order%404x.png" />
@@ -188,16 +203,20 @@
     <Resource Include="Assets\Icon\ProductManagement%403x.png" />
     <Resource Include="Assets\Icon\ProductManagement%404x.png" />
     <Resource Include="Assets\Icon\ProductManagement.png" />
+    <Resource Include="Assets\Icon\Search%402x.png" />
+    <Resource Include="Assets\Icon\Search%403x.png" />
+    <Resource Include="Assets\Icon\Search%404x.png" />
+    <Resource Include="Assets\Icon\Search.png" />
     <Resource Include="Assets\Icon\Setting%402x.png" />
     <Resource Include="Assets\Icon\Setting%403x.png" />
     <Resource Include="Assets\Icon\Setting%404x.png" />
     <Resource Include="Assets\Icon\Setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icon\Search%402x.png" />
-    <Resource Include="Assets\Icon\Search%403x.png" />
-    <Resource Include="Assets\Icon\Search%404x.png" />
-    <Resource Include="Assets\Icon\Search.png" />
+    <Resource Include="Assets\Image\4nhHaoLogo%402x.png" />
+    <Resource Include="Assets\Image\4nhHaoLogo%403x.png" />
+    <Resource Include="Assets\Image\4nhHaoLogo%404x.png" />
+    <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icon\Message%402x.png" />
