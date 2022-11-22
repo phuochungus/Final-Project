@@ -1,9 +1,4 @@
-
 using _4NH_HAO_Coffee_Shop;
-<<<<<<< HEAD
-=======
-using MaterialDesignThemes.Wpf;
->>>>>>> 35d339705e58d364ced46247947ab0da16200c0a
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using MaterialDesignThemes.Wpf;
+using _4NH_HAO_Coffee_Shop.Model;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -26,9 +22,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public LoginViewModel()
         {
-            
+            var a = DataProvider.Ins.DB.Accounts.ToList();
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoggedIn(p); });
-
         }
 
         //
