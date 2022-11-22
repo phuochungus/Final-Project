@@ -224,12 +224,7 @@
     <Resource Include="Assets\Icon\Message%404x.png" />
     <Resource Include="Assets\Icon\Message.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\Avatar%402x.png" />
-    <Resource Include="Assets\Icon\Avatar%403x.png" />
-    <Resource Include="Assets\Icon\Avatar%404x.png" />
-    <Resource Include="Assets\Icon\Avatar.png" />
-  </ItemGroup>
+  
   <ItemGroup>
     <Resource Include="Assets\Icon\Add%402x.png" />
     <Resource Include="Assets\Icon\Add%403x.png" />
