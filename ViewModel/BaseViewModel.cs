@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace CoffeeShop.ViewModel
+namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    internal class BaseViewModel : Window, INotifyPropertyChanged
+    public class BaseViewModel : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

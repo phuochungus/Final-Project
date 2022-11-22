@@ -100,9 +100,53 @@
                     <Image Margin="10 0 10 0" Width="35" Source="\Assets\Icon\Message@4x.png" OpacityMask="Black"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Image Width="45" Source="\Assets\Icon\Avatar@4x.png"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" VerticalAlignment="Center">
+                                <TextBlock Text="Admin" FontSize="9" Foreground="#DDFFFFFF"/>
+                            </Grid>
+                            <Grid Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock Text="Adam Smasher" FontFamily="Bahnschrift" FontSize="9" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="2"></Grid>
+                <Grid Grid.Column="2">
+                    <Button Margin="10 0 10 0" Background="#FF927EB5" BorderBrush="#00673AB7">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <Image  Source="\Assets\Icon\Add@4x.png" Width="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text=" Add new menu" FontSize="9"/>
+                            </Grid>
+                        </Grid>
+                    </Button>                   
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
