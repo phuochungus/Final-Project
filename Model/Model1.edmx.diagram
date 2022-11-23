@@ -4,22 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c639c57410841828977e167d22c1e94" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="TAHCoffeeModel.Account" Width="1.5" PointX="9" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.Bill" Width="1.5" PointX="12" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.BillInfor" Width="1.5" PointX="8.125" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.Category" Width="1.5" PointX="2.625" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.Item" Width="1.5" PointX="5.375" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.Promo" Width="1.5" PointX="12.125" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.sysdiagram" Width="1.5" PointX="13" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAHCoffeeModel.Unit" Width="1.5" PointX="5.375" PointY="5.875" IsExpanded="true" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__Account__Managed__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__Bill__CustomerId__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__Bill__PromoId__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__BillInfor__IdNum__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__BillInfor__ItemI__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__Item__CategoryId__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="TAHCoffeeModel.FK__Item__UnitId__3A81B327" ManuallyRouted="false" />
+      <Diagram DiagramId="9e0bf08fde3d4ab8b1d29c85c63b1f98" Name="Diagram1" ZoomLevel="58">
+        <EntityTypeShape EntityType="TAHCoffeeModel.Account" Width="1.5" PointX="11.875" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.Bill" Width="1.5" PointX="11.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.BillInfor" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.Category" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.Item" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.Promo" Width="1.5" PointX="15.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAHCoffeeModel.Unit" Width="1.5" PointX="9.875" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__Account__Managed__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__Bill__CustomerId__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__Bill__PromoId__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__BillInfor__IdNum__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__BillInfor__ItemI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__Item__CategoryId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="TAHCoffeeModel.FK__Item__UnitId__3B75D760" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
