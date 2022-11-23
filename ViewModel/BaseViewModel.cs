@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public class BaseViewModel : Window, INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

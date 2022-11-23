@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CoffeeShop.View
+namespace _4NH_HAO_Coffee_Shop.View
 {
     /// <summary>
     /// Interaction logic for LoginView.xaml
