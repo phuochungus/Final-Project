@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _4NH_HAO_Coffee_Shop.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
