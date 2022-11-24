@@ -83,6 +83,8 @@
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainControlBarViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -218,13 +220,6 @@
     <Resource Include="Assets\Image\4nhHaoLogo%404x.png" />
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Icon\Message%402x.png" />
-    <Resource Include="Assets\Icon\Message%403x.png" />
-    <Resource Include="Assets\Icon\Message%404x.png" />
-    <Resource Include="Assets\Icon\Message.png" />
-  </ItemGroup>
-  
   <ItemGroup>
     <Resource Include="Assets\Icon\Add%402x.png" />
     <Resource Include="Assets\Icon\Add%403x.png" />

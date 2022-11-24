@@ -4,4 +4,6 @@
                     >
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
+    <viewmodel:MainViewModel x:Key="MainViewVM"/>
+    <viewmodel:HomeViewModel x:Key="HomeVM"/>
 </ResourceDictionary>

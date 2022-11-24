@@ -35,6 +35,57 @@
             <Grid Grid.Row="0">
                 <uc:GeneralControlBarUC></uc:GeneralControlBarUC>
             </Grid>
+
+
+
+
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" HorizontalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    Margin="20 20 20 20"
+                                    Orientation="Horizontal">
+
+                            <StackPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Width" Value="90"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="Margin" Value="5 0 5 0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            
+                            
+                            <Button></Button>
+                            <Button></Button>
+                            <Button></Button>
+                            <Button></Button>
+                            <Button></Button>
+                        </StackPanel>
+                        
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <materialDesign:Card Width="300">
+                        
+                    </materialDesign:Card>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

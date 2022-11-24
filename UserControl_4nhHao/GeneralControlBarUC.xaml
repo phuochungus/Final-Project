@@ -97,7 +97,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Image Margin="10 0 10 0" Width="35" Source="\Assets\Icon\Message@4x.png" OpacityMask="Black"/>
+                    <Button Width="44" Height="44"
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        ToolTip="MaterialDesignFloatingActionLightButton">
+                        <Button.Background>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.Background>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.BorderBrush>
+                        <Image Width="30" Source="\Assets\Icon\Message@4x.png" OpacityMask="Black"/>
+                    </Button>
+                    
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
