@@ -28,33 +28,21 @@
             <Border
                     Background="#C1FFBB" 
                     Margin="32,31,31,73"/>
-            <Grid  
-                    Height="57" 
-                    Margin="451,0,31,10" 
-                    VerticalAlignment="Bottom">
+            <Grid 
+                    Margin="451,0,31,10" Height="57" VerticalAlignment="Bottom">
                 <!-- 3 button s-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="1">
                     <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
                         Content="Served"
                         Foreground="Black"
                         Background="#FFF491"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                        />
-                </Grid>
-                <Grid Grid.Column="1">
-                    <Button
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="Modify"
-                        Foreground="Black"
-                        Background="#FFC3BA"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                         />
                 </Grid>

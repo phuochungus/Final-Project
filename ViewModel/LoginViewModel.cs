@@ -13,63 +13,55 @@ using System.Windows.Navigation;
 using MaterialDesignThemes.Wpf;
 using _4NH_HAO_Coffee_Shop.Model;
 using System.Net.Mail;
-using System.Data.Entity;
 using System.Security.Cryptography;
 using _4NH_HAO_Coffee_Shop.View;
+using System.Data.Entity;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
+        private Visibility _progressBar { get; set; }
+        private Visibility _loginButton { get; set; }
+        private Visibility _viewVisible = Visibility.Visible;
+        public Visibility ViewVisible
+        {
+            get => _viewVisible;
+            set { _viewVisible = value; OnPropertyChanged(); }
 
-        public bool IsLoggedIn { get; set; } = false;
-        private Visibility ProgressBar { get; set; }
-        private Visibility LoginButton { get; set; }
-        public Visibility _LoginButton
-        {
-            get => LoginButton;
-            set
-            {
-                LoginButton = value;
-                OnPropertyChanged();
-            }
         }
-        public Visibility _ProgressBar
+        public Visibility LoginButton
         {
-            get => ProgressBar;
-            set
-            {
-                ProgressBar = value;
-                OnPropertyChanged();
-            }
+            get => _loginButton;
+            set { _loginButton = value; OnPropertyChanged(); }
+        }
+        public Visibility ProgressBar
+        {
+            get => _progressBar;
+            set { _progressBar = value; OnPropertyChanged(); }
         }
 
-        private string Email { get; set; }
-        public string _Email
+        private string _email { get; set; }
+        public string Email
         {
-            get => Email;
-            set
-            {
-                Email = value;
-                OnPropertyChanged();
-            }
+            get => _email;
+            set { _email = value; OnPropertyChanged(); }
         }
-        private string Password { get; set; }
-        public string _Password
+        private string _password { get; set; }
+        public string Password
         {
-            get => Password;
-            set
-            {
-                Password = value;
-                OnPropertyChanged();
-            }
+            get => _password;
+            set { _password = value; OnPropertyChanged(); }
         }
+
+
+
 
         public LoginViewModel()
         {
-            _ProgressBar = Visibility.Hidden;
-            _LoginButton = Visibility.Visible;
+            ProgressBar = Visibility.Hidden;
+            LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
         }
 
@@ -77,21 +69,21 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             return true;
             /////-----
-            if (!isValidEmail(Email) || Password == null || Password == "") return false;
-            return true;
+            //if (!isValidEmail(_email) || _password == null || _password == "") return false;
+            //return true;
 
-            bool isValidEmail(string Email)
-            {
-                try
-                {
-                    MailAddress mail = new MailAddress(Email);
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
-            };
+            //bool isValidEmail(string Email)
+            //{
+            //    try
+            //    {
+            //        MailAddress mail = new MailAddress(Email);
+            //        return true;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return false;
+            //    }
+            //};
         }
         public string CreateMD5(string password)
         {
@@ -107,19 +99,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
-            BaseViewModel HomeWindow = new HomeViewModel();
-            p.Close();
-            return;
-            ////-------------
+            Email = "nguyenvana@gmail.com";
+            Password= "password";
             if (p == null) return;
-            _ProgressBar = Visibility.Visible;
-            _LoginButton = Visibility.Hidden;
+            ProgressBar = Visibility.Visible;
+            LoginButton = Visibility.Hidden;
+            
             try
             {
-                string EncryptedPassword = CreateMD5(_Password);
-                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == _Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
-                _ProgressBar = Visibility.Hidden;
-                _LoginButton = Visibility.Visible;
+                string EncryptedPassword = CreateMD5(Password);
+                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
+                ProgressBar = Visibility.Hidden;
+                LoginButton = Visibility.Visible;
                 if (Globals.CurrUser == null)
                 {
                     MessageBox.Show("Wrong email or password!");
@@ -127,7 +118,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 else
                 {
                     Globals.isAdmin = (Globals.CurrUser.AccountType == "admin");
-                    BaseViewModel HomeView = new HomeViewModel();
                     p.Close();
                 }
             }
