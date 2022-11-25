@@ -5,10 +5,6 @@
                     >
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
-<<<<<<< HEAD
-    <viewmodel:MainViewModel x:Key="MainViewVM"/>
-    <viewmodel:HomeViewModel x:Key="HomeVM"/>
-=======
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
@@ -22,7 +18,14 @@
     <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
         <view:LoginView/>
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
+        <view:YourProfileView/>
+    </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:HRViewModel}">
+        <view:HRView/>
+    </DataTemplate>
     <Style x:Key="Page_Style"
            TargetType="{x:Type UserControl}">
         <Setter Property="RenderTransform">
@@ -54,5 +57,4 @@
             </EventTrigger>
         </Style.Triggers>
     </Style>
->>>>>>> 30ec9d3de235d389b8702e98914695db698fde48
 </ResourceDictionary>

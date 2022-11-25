@@ -12,6 +12,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         public ICommand ShowHistoryViewCommand { get; set; }
         public ICommand ShowOrderedViewCommand { get; set; }
+        public ICommand ShowYourProfileViewCommand { get; set; }
         private object _currentView;
         public object CurrentView
         {
@@ -28,6 +29,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             CurrentView = new HistoryViewModel();
             ShowHistoryViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("his"); CurrentView = new HistoryViewModel(); });
             ShowOrderedViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("ord"); CurrentView = new OrderedViewModel(); });
+            ShowYourProfileViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("ypr"); CurrentView = new YourProfileViewModel(); });
         }
     }
 }

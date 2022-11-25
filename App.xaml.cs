@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace _4NH_HAO_Coffee_Shop
+namespace CoffeeShop
 {
     /// <summary>
     /// Interaction logic for App.xaml

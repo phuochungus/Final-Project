@@ -1,3 +1,71 @@
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe.config
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\4NH HAO Coffee Shop.pdb
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\BouncyCastle.Crypto.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\EntityFramework.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\EntityFramework.SqlServer.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Google.Protobuf.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Compression.LZ4.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Hash.xxHash.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MaterialDesignColors.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MySql.Data.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MySql.Data.EntityFramework.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Renci.SshNet.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Buffers.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Memory.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Numerics.Vectors.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Ubiety.Dns.Core.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Zstandard.Net.dll
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\EntityFramework.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\EntityFramework.SqlServer.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Google.Protobuf.pdb
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Google.Protobuf.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Compression.LZ4.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\K4os.Hash.xxHash.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MaterialDesignColors.pdb
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MySql.Data.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\MySql.Data.EntityFramework.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\Renci.SshNet.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Buffers.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Memory.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Numerics.Vectors.xml
+D:\CaffeTAH\Final-Project\Final-Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.AssemblyReference.cache
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.SuggestedBindingRedirects.cache
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\MainWindow.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\BasicControlBarUC.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\GeneralControlBarUC.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\MainControlBarUC.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\HistoryView.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\LoginView.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\OrderedView.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\App.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop_Content.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop_MarkupCompile.cache
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop_MarkupCompile.lref
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\App.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\MainWindow.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\ResourceXAML\MainResource.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\BasicControlBarUC.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\GeneralControlBarUC.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\UserControl_4nhHao\MainControlBarUC.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\HistoryView.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\LoginView.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\View\OrderedView.baml
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.g.resources
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\_4NH_HAO_Coffee_Shop.Properties.Resources.resources
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.GenerateResource.cache
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.CoreCompileInputs.cache
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.CopyComplete
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.exe
+D:\CaffeTAH\Final-Project\Final-Project\obj\Debug\4NH HAO Coffee Shop.pdb
 D:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe.config
 D:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe
 D:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.pdb
@@ -67,78 +135,6 @@ D:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.CopyComplete
 D:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.exe
 D:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.pdb
 D:\CaffeTAH\Final-Project\obj\Debug\View\HRView.g.cs
-D:\CaffeTAH\Final-Project\obj\Debug\View\HRView.baml
 D:\CaffeTAH\Final-Project\obj\Debug\View\YourProfileView.g.cs
+D:\CaffeTAH\Final-Project\obj\Debug\View\HRView.baml
 D:\CaffeTAH\Final-Project\obj\Debug\View\YourProfileView.baml
-C:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe.config
-C:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.exe
-C:\CaffeTAH\Final-Project\bin\Debug\4NH HAO Coffee Shop.pdb
-C:\CaffeTAH\Final-Project\bin\Debug\BouncyCastle.Crypto.dll
-C:\CaffeTAH\Final-Project\bin\Debug\EntityFramework.dll
-C:\CaffeTAH\Final-Project\bin\Debug\EntityFramework.SqlServer.dll
-C:\CaffeTAH\Final-Project\bin\Debug\Google.Protobuf.dll
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Compression.LZ4.dll
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Compression.LZ4.Streams.dll
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Hash.xxHash.dll
-C:\CaffeTAH\Final-Project\bin\Debug\MaterialDesignColors.dll
-C:\CaffeTAH\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\CaffeTAH\Final-Project\bin\Debug\MySql.Data.dll
-C:\CaffeTAH\Final-Project\bin\Debug\MySql.Data.EntityFramework.dll
-C:\CaffeTAH\Final-Project\bin\Debug\Renci.SshNet.dll
-C:\CaffeTAH\Final-Project\bin\Debug\System.Buffers.dll
-C:\CaffeTAH\Final-Project\bin\Debug\System.Memory.dll
-C:\CaffeTAH\Final-Project\bin\Debug\System.Numerics.Vectors.dll
-C:\CaffeTAH\Final-Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\CaffeTAH\Final-Project\bin\Debug\Ubiety.Dns.Core.dll
-C:\CaffeTAH\Final-Project\bin\Debug\Zstandard.Net.dll
-C:\CaffeTAH\Final-Project\bin\Debug\EntityFramework.xml
-C:\CaffeTAH\Final-Project\bin\Debug\EntityFramework.SqlServer.xml
-C:\CaffeTAH\Final-Project\bin\Debug\Google.Protobuf.pdb
-C:\CaffeTAH\Final-Project\bin\Debug\Google.Protobuf.xml
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Compression.LZ4.xml
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Compression.LZ4.Streams.xml
-C:\CaffeTAH\Final-Project\bin\Debug\K4os.Hash.xxHash.xml
-C:\CaffeTAH\Final-Project\bin\Debug\MaterialDesignColors.pdb
-C:\CaffeTAH\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.pdb
-C:\CaffeTAH\Final-Project\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\CaffeTAH\Final-Project\bin\Debug\MySql.Data.xml
-C:\CaffeTAH\Final-Project\bin\Debug\MySql.Data.EntityFramework.xml
-C:\CaffeTAH\Final-Project\bin\Debug\Renci.SshNet.xml
-C:\CaffeTAH\Final-Project\bin\Debug\System.Buffers.xml
-C:\CaffeTAH\Final-Project\bin\Debug\System.Memory.xml
-C:\CaffeTAH\Final-Project\bin\Debug\System.Numerics.Vectors.xml
-C:\CaffeTAH\Final-Project\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.AssemblyReference.cache
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.SuggestedBindingRedirects.cache
-C:\CaffeTAH\Final-Project\obj\Debug\MainWindow.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\BasicControlBarUC.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\GeneralControlBarUC.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\MainControlBarUC.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\View\HistoryView.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\View\HRView.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\View\LoginView.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\View\OrderedView.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\View\YourProfileView.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\App.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop_Content.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop_MarkupCompile.cache
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop_MarkupCompile.lref
-C:\CaffeTAH\Final-Project\obj\Debug\App.baml
-C:\CaffeTAH\Final-Project\obj\Debug\MainWindow.baml
-C:\CaffeTAH\Final-Project\obj\Debug\ResourceXAML\MainResource.baml
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\BasicControlBarUC.baml
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\GeneralControlBarUC.baml
-C:\CaffeTAH\Final-Project\obj\Debug\UserControl_4nhHao\MainControlBarUC.baml
-C:\CaffeTAH\Final-Project\obj\Debug\View\HistoryView.baml
-C:\CaffeTAH\Final-Project\obj\Debug\View\HRView.baml
-C:\CaffeTAH\Final-Project\obj\Debug\View\LoginView.baml
-C:\CaffeTAH\Final-Project\obj\Debug\View\OrderedView.baml
-C:\CaffeTAH\Final-Project\obj\Debug\View\YourProfileView.baml
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.g.resources
-C:\CaffeTAH\Final-Project\obj\Debug\_4NH_HAO_Coffee_Shop.Properties.Resources.resources
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.GenerateResource.cache
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.CoreCompileInputs.cache
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.csproj.CopyComplete
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.exe
-C:\CaffeTAH\Final-Project\obj\Debug\4NH HAO Coffee Shop.pdb

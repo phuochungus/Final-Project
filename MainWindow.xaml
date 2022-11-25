@@ -82,6 +82,8 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Command="{Binding ShowYourProfileViewCommand}"
+                    CommandParameter="{Binding ElementName=HomeWindow}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
