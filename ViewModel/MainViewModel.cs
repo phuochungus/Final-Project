@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-using _4NH_HAO_Coffee_Shop.ViewModel;
-
-namespace _4NH_HAO_Coffee_Shop.ViewModel
-{
-    public class MainViewModel : BaseViewModel
-    {
-
-=======
 using System.Windows;
 using System.Windows.Input;
 
@@ -38,6 +29,5 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ShowOrderedViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { CurrentView = new OrderedViewModel(); });
             ShowHomeViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { CurrentView = new HomeViewModel(); });
         }
->>>>>>> 8c423deabff0486af91476fcde10113b2732d8c9
     }
 }

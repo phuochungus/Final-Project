@@ -3,13 +3,6 @@
                     xmlns:viewmodel="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
                     xmlns:view="clr-namespace:_4NH_HAO_Coffee_Shop.View"
                     >
-<<<<<<< HEAD
-    <viewmodel:LoginViewModel x:Key="LoginVM"/>
-    <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
-    <viewmodel:HomeViewModel x:Key="HomeVM"/>
-    
-=======
->>>>>>> 8c423deabff0486af91476fcde10113b2732d8c9
 
         <viewmodel:LoginViewModel x:Key="LoginVM"/>
         <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
@@ -55,15 +48,6 @@
                                          To="0"
                                          Duration="0:0:0.4"
                                          DecelerationRatio="0.3" />
-<<<<<<< HEAD
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </Style.Triggers>
-    </Style>
-
-</ResourceDictionary>
-=======
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -71,4 +55,3 @@
         </Style>
     </ResourceDictionary>
 
->>>>>>> 8c423deabff0486af91476fcde10113b2732d8c9

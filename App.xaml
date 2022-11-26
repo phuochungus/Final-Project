@@ -3,13 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop"
-<<<<<<< HEAD
-
-             StartupUri="MainWindow.xaml">
-
-=======
              Startup="AppicationStart">
->>>>>>> 8c423deabff0486af91476fcde10113b2732d8c9
     <Application.Resources>
         <ResourceDictionary>
             <!-- Material design -->
