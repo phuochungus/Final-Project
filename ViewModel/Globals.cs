@@ -10,7 +10,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     static class Globals
     {
         public static Account CurrUser;
-        public static bool isLoggedIn;
         public static bool isAdmin;
         public static List<Item> Cart;
 
