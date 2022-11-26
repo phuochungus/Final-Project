@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static _4NH_HAO_Coffee_Shop.ViewModel.BaseViewModel;
 using System.Windows.Input;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
@@ -128,7 +127,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public ICommand AddCommand { get; set; }
         public ICommand ModifyCommand { get; set; }
-
         public ICommand DeleteCommand { get; set; }
         public HRViewModel()
         {
@@ -198,7 +196,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
                     string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy)) 
                         return false;
-                    var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy);
+                    var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy && x.AccountType == "admin");
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
                 }
                 else if (AccountType == "admin")
@@ -221,8 +219,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 account.PhoneNumber = PhoneNumber;
                 account.AccountType = AccountType;
                 if (AccountType == "staff") account.ManagedBy = ManagedBy;
+                else account.ManagedBy = null;
                 DataProvider.Ins.DB.SaveChanges();
-           });
+                Selecteditem.Id = Id;
+                Selecteditem.DisplayName = DisplayName;
+                Selecteditem.Email = Email;
+                Selecteditem.Password = Password;
+                Selecteditem.PhoneNumber = PhoneNumber;
+                Selecteditem.AccountType = AccountType;
+                Selecteditem.ManagedBy = ManagedBy;
+            });
 
             DeleteCommand = new RelayCommand<object>((p) => {
                 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _4NH_HAO_Coffee_Shop.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     internal class YourProfileViewModel : BaseViewModel
     {
         public ICommand ShowHRViewCommand { get; set; }
-        private object _currentView1;
-        public object CurrentView1
+        private object _currentView;
+        public object CurrentView
         {
-            get => _currentView1;
+            get => _currentView;
             set
             {
-                _currentView1 = value;
+                _currentView = value;
                 OnPropertyChanged();
             }
         }
-
         private string _DisplayName = "DisplayName";
         public string DisplayName
         {
@@ -59,6 +59,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
 
         private string _AccountType = "AccountType";
+        
         public string AccountType
         {
             get => _AccountType;
@@ -69,10 +70,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }
         }
+        
         public YourProfileViewModel()
         {
-            CurrentView1 = new HRViewModel();
-            ShowHRViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("hr"); CurrentView1 = new HRViewModel(); });
+            ShowHRViewCommand = new RelayCommand<object>((p) => { return true; }, p =>
+            {
+                HRView hr = new HRView();
+                hr.ShowDialog();
+
+            });
         }
     }
     

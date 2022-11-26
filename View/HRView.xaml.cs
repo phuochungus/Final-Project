@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _4NH_HAO_Coffee_Shop.View
@@ -18,13 +17,11 @@ namespace _4NH_HAO_Coffee_Shop.View
     /// <summary>
     /// Interaction logic for HRView.xaml
     /// </summary>
-    public partial class HRView : UserControl
+    public partial class HRView : Window
     {
         public HRView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

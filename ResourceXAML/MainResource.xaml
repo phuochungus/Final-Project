@@ -6,6 +6,7 @@
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
+    <viewmodel:HRViewModel x:Key="HRVM"/>
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
@@ -23,9 +24,7 @@
         <view:YourProfileView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewmodel:HRViewModel}">
-        <view:HRView/>
-    </DataTemplate>
+    
     <Style x:Key="Page_Style"
            TargetType="{x:Type UserControl}">
         <Setter Property="RenderTransform">

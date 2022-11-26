@@ -15,7 +15,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Style="{StaticResource Page_Style}">
+        Style="{StaticResource Page_Style}"
+             >
     <UserControl.DataContext>
         <vm:YourProfileViewModel/>
     </UserControl.DataContext>
@@ -62,8 +63,8 @@
             </Grid>
             <materialDesign:Card Grid.Row="2" Background="#FFF6FFE2">
                 <Button 
-                    Command="{Binding ShowHRViewCommand}" 
-                    CommandParameter = "{Binding ElementName = YourProfileView}" 
+                    Command="{Binding ShowHRViewCommand}"
+                    
                     Content="User information management" 
                     Margin="50,50,50,50" 
                     Height="70" Width="800"

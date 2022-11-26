@@ -269,8 +269,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HRView.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
