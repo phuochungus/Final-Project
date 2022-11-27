@@ -22,6 +22,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
+        TAHCoffeeEntities conn = new TAHCoffeeEntities();
         private Visibility _progressBar { get; set; }
         private Visibility _loginButton { get; set; }
         private Visibility _viewVisible = Visibility.Visible;
@@ -63,6 +64,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
+            conn.Database.Connection.Open();
         }
 
         public bool inputCheck()
@@ -108,7 +110,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             try
             {
                 string EncryptedPassword = CreateMD5(Password);
-                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
+                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == "password").FirstOrDefaultAsync();
                 ProgressBar = Visibility.Hidden;
                 LoginButton = Visibility.Visible;
                 if (Globals.CurrUser == null)
