@@ -21,8 +21,6 @@
              DataContext="{StaticResource HomeVM}">
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding ItemList}">
-            
-        </ItemsControl>
+
     </Grid>
 </UserControl>
