@@ -62,7 +62,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Background="AntiqueWhite">
-                    <Border Margin="10 10 10 10">
+                    <Border Margin="10 0 10 0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -70,15 +70,16 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
-                                <Image Source="\Assets\Icon\Search@4x.png"/>
+                                <Image Width="20" Source="\Assets\Icon\Search@4x.png"/>
                             </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Margin="5 0 5 0" 
+                            <Grid Grid.Column="1" >
+                                <TextBox Margin="5 5 5 5" 
+                                         
                                          Background="#003F1D1D" 
                                          BorderBrush="#00000000" 
                                          CaretBrush="#00673AB7" 
-                                         FontSize="12" 
-                                         FontFamily=".VnTime" 
+                                         FontSize="17" 
+                                         FontFamily="Times New Roman" 
                                          SelectionBrush="#00B39DDB" 
                                          SelectionTextBrush="Transparent"/>
                             </Grid>
@@ -97,7 +98,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Image Margin="10 0 10 0" Width="35" Source="\Assets\Icon\Message@4x.png" OpacityMask="Black"/>
+                    <Button Width="44" Height="44"
+                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                        ToolTip="MaterialDesignFloatingActionLightButton">
+                        <Button.Background>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.Background>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.BorderBrush>
+                        <Image Width="30" Source="\Assets\Icon\Message@4x.png" OpacityMask="Black"/>
+                    </Button>
+                    
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>

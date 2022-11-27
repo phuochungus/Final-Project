@@ -22,10 +22,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
+        TAHCoffeeEntities conn = new TAHCoffeeEntities();
         private Visibility _progressBar { get; set; }
         private Visibility _loginButton { get; set; }
         private Visibility _viewVisible = Visibility.Visible;
-        TAHCoffeeEntities conn = new TAHCoffeeEntities();
         public Visibility ViewVisible
         {
             get => _viewVisible;
@@ -65,6 +65,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
+            conn.Database.Connection.Close();
+            conn.Database.Connection.Open();
         }
 
         public bool inputCheck()

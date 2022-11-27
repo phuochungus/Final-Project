@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using _4NH_HAO_Coffee_Shop.ViewModel;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -14,6 +15,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowHomeViewCommand { get; set; }
         public ICommand ShowHistoryViewCommand { get; set; }
         public ICommand ShowOrderedViewCommand { get; set; }
+        
 
         public object CurrentView
         {
@@ -25,9 +27,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public MainViewModel()
         {
             _currentView = new HomeViewModel();
-            ShowHistoryViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { CurrentView = new HistoryViewModel(); });
-            ShowOrderedViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { CurrentView = new OrderedViewModel(); });
-            ShowHomeViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { CurrentView = new HomeViewModel(); });
+            ShowHistoryViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HistoryViewModel(); });
+            ShowOrderedViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new OrderedViewModel(); });
+            ShowHomeViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HomeViewModel(); });
         }
     }
 }
