@@ -11,7 +11,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         public static Account CurrUser;
         public static bool isAdmin;
-        public static List<Item> Cart;
+        //public static List<Item> Cart;
 
     }
 }
