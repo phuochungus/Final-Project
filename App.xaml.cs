@@ -25,8 +25,8 @@ namespace _4NH_HAO_Coffee_Shop
                 if (Globals.CurrUser != null) 
                 {
                     var MainView = new MainWindow();
-                    MainView.ShowDialog();
                     LoginView.Close();
+                    MainView.ShowDialog();
                 }
             };
         }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
+        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
@@ -17,34 +18,103 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Style="{StaticResource Page_Style}">
-    <UserControl.DataContext>
-        <vm:HistoryViewModel/>
-    </UserControl.DataContext>
+        Style="{StaticResource Page_Style}"
+        DataContext="{StaticResource HistoryVM}">
 
     <Grid>
-        <Border
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel 
+                Width="auto"
+                Orientation="Horizontal" Margin="36,9,-36,-8">
+                <DatePicker
+                    Width="120"
+                    Margin="10 0 0 0"
+                    SelectedDate="{Binding StartDate}"
+                    Style="{StaticResource MaterialDesignDatePicker}"
+                    materialDesign:HintAssist.HelperText="From"/>
+                <DatePicker 
+                        x:Name="FutureDatePicker"
+                        Width="120"
+                        Margin="10 0 0 0"
+                        materialDesign:CalendarAssist.IsHeaderVisible="False"
+                        materialDesign:HintAssist.Hint="Future Date"
+                        SelectedDate="{Binding EndDate}"
+                        utils:AttachedProperties.RegisterBlackoutDates="{Binding BlackoutDates}"
+                        materialDesign:HintAssist.HelperText="To">
+                </DatePicker>
+                <CheckBox
+                    Margin="100 0 0 0"
+                    Content="View all"
+                    Style="{StaticResource MaterialDesignDarkCheckBox}" 
+                    IsChecked="{Binding IsCheckedViewAll}"
+                    Command="{Binding executeViewAllCommand}"
+                    CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}" 
+                    />
+                <CheckBox
+                    Margin="50 0 0 0"
+                    Content="View today"
+                    Style="{StaticResource MaterialDesignDarkCheckBox}" 
+                    IsChecked="{Binding IsCheckedToday}"
+                    Command="{Binding executeViewTodayCommand}"
+                    CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border
                     Background="#C1FFBB" 
-                    Margin="32,31,31,73"/>
-        <Grid 
+                    Margin="32,23,31,73">
+                <ListView
+                    Style="{StaticResource MaterialDesignListView}"
+                    ItemsSource="{Binding HistoryList}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn
+                                DisplayMemberBinding="{Binding IdNumber}"
+                                Header="No" />
+                            <GridViewColumn
+                                DisplayMemberBinding="{Binding ExportTime}"
+                                Header="Date" />
+                            <GridViewColumn
+                                DisplayMemberBinding="{Binding CustomerId}"
+                                Header="Customer ID" />
+                            <GridViewColumn
+                                DisplayMemberBinding="{Binding PromoId}"
+                                Header="Promo Id" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+            <Grid 
                     Margin="451,0,31,10" Height="57" VerticalAlignment="Bottom">
-            <!-- 3 button s-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="2">
-                <Button
+                <!-- buttons-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="2">
+                    <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
                         Content="Export a report"
                         Foreground="Black"
                         Background="#FDCFAD"
-                        IsEnabled="{Binding ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
                         />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
+
 
 </UserControl>
