@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a70a4dec866f4ce7bfd28f45b920978d" Name="Diagram1">
+      <Diagram DiagramId="a70a4dec866f4ce7bfd28f45b920978d" Name="Diagram1" ZoomLevel="43">
         <EntityTypeShape EntityType="TAHCoffeeModel.Account" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TAHCoffeeModel.Bill" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TAHCoffeeModel.BillInfor" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />

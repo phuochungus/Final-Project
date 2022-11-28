@@ -22,7 +22,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
-        TAHCoffeeEntities conn = new TAHCoffeeEntities();
         private Visibility _progressBar { get; set; }
         private Visibility _loginButton { get; set; }
         private Visibility _viewVisible = Visibility.Visible;
@@ -57,16 +56,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
 
 
-
-
         public LoginViewModel()
         {
-            conn.Database.Connection.Open();
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
-            conn.Database.Connection.Close();
-            conn.Database.Connection.Open();
         }
 
         public bool inputCheck()
@@ -103,16 +97,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
-            Email = "nguyenvana@gmail.com";
-            Password= "password";
-            if (p == null) return;
-            ProgressBar = Visibility.Visible;
-            LoginButton = Visibility.Hidden;
-            
             try
             {
+                Email = "nguyenvana@gmail.com";
+                Password = "password";
+                if (p == null) return;
+                ProgressBar = Visibility.Visible;
+                LoginButton = Visibility.Hidden;
                 string EncryptedPassword = CreateMD5(Password);
-                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
+                using (var conn = new TAHCoffeeEntities())
+                {
+                    Globals.CurrUser = await conn.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync<Account>();
+                }
                 ProgressBar = Visibility.Hidden;
                 LoginButton = Visibility.Visible;
                 if (Globals.CurrUser == null)
@@ -121,7 +117,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
                 else
                 {
-                    Globals.isAdmin = (Globals.CurrUser.AccountType == "admin");
+                    Globals.isAdmin = (Globals.CurrUser.AccountType == "admin"); ;
                     p.Hide();
                 }
             }
