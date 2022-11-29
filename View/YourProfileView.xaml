@@ -54,11 +54,12 @@
                 <Grid Width="300" Grid.Column="1">
                     <Ellipse Height="150" Width="150" Margin="50,10,50,150">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="\Assets\Image\avatar.png" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="{Binding ImageSource}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <Button Margin="60,150,60,100" Content="Choose a photo" Background="#FFB01B0F"></Button>
-                    <TextBlock Margin="95,220,75,80" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="PNG,JPEG format"  />
+                    
+                    <Button Command="{Binding AvatarCommand}" Margin="60,160,60,100" Content="Choose a photo" Background="#FFB01B0F" Click="Button_Click"></Button>
+                    <TextBlock Margin="95,230,75,80" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="PNG,JPEG format"  />
                 </Grid>
             </Grid>
             <materialDesign:Card Grid.Row="2" Background="#FFF6FFE2">

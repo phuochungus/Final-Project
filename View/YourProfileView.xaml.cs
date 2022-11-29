@@ -24,5 +24,10 @@ namespace _4NH_HAO_Coffee_Shop.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
