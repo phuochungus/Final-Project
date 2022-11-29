@@ -27,7 +27,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
-        private string _ImageSource = @"\Assets\Image\avatar.png";
+        private string _ImageSource = Globals.source;
         public string ImageSource
         {
             get => _ImageSource;
@@ -103,9 +103,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     ImageSource = open.FileName;
+                    Globals.source = ImageSource;
                 }
 
             });
+            
         }
     }
     
