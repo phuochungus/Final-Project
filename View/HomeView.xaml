@@ -53,9 +53,9 @@
                                     Width="90" 
                                     Height="30" 
                                     Margin="5 0 5 0"
-                                    Command="{Binding CategoryChangeCommand, Source={StaticResource HomeVM}}"
+                                    Command="{Binding CategoryChangeCommand, Source={StaticResource HomeVM}, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding DisplayName}"
-                                    CommandParameter="{Binding ElementName=proButton}"/>
+                                    CommandParameter="{Binding Id}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -68,7 +68,41 @@
                     <ColumnDefinition Width="165*"/>
                 </Grid.ColumnDefinitions>
                 <materialDesign:Card Margin="10,10,10,10" Grid.ColumnSpan="2">
+                    
+                    
+                    
+                    <ItemsControl ItemsSource="{Binding categorizedItemList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="2"
+                                             Background="#FFFFF1E1"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             Margin="10 10 10 10"
+                                             />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card Width="200"
+                                                     Height="300"
+                                                     Margin="20 20 20 20"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Background="Azure">
+                                    <Grid Width="150"
+                                          Height="250"
+                                          Background="Khaki">
+                                        
+                                    </Grid>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                    
+                    
                 </materialDesign:Card>
             </Grid>
         </Grid>

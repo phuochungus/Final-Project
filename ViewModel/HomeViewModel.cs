@@ -16,27 +16,47 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        private ObservableCollection<Category> _CategoryList;
-        public ObservableCollection<Category> CategoryList { get => _CategoryList; set { _CategoryList = value; OnPropertyChanged(); } }
+        private ObservableCollection<Category> _categoryList;
+        public ObservableCollection<Category> CategoryList { get => _categoryList; set { _categoryList = value; OnPropertyChanged(); } }
 
-        private Category _GetCategory;
-        public Category GetCategory { get => _GetCategory; set { _GetCategory = value; OnPropertyChanged(); } }
+        private Category _getCategory;
+        public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
 
         public ICommand CategoryChangeCommand { get; set; }
 
+        private ObservableCollection<Item> _categorizedItemList;
+        public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList= value; OnPropertyChanged(); } }
+
+        private int _currentCategory;
+        public int currentCategory { get => _currentCategory; 
+            set { 
+                if (value != currentCategory)
+                {
+                    _currentCategory = value;
+                    OnPropertyChanged();
+                }
+            } }
 
 
+       
 
         public HomeViewModel()
         {
-            CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
-           
-            
+            //
+            int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
+            //
 
-            CategoryChangeCommand = new RelayCommand<Button>((p) => { return true; }, (p) => {
-                string gay = (string)p.Content;
-                MessageBox.Show(gay);
+            CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
+            
+            CategoryChangeCommand = new RelayCommand<object>((p) => { 
+                return true;
+            }, (p) => {
+                ChosenCategoryID = (int)p;
+                categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
             });
+
+
+
 
             
         }
