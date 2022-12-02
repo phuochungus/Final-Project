@@ -18,7 +18,7 @@
         Background="#F6FFE2"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Style="{StaticResource Page_Style}"
-              DataContext="{StaticResource HomeVM}">
+        DataContext="{StaticResource HomeVM}">
 
 
     <Grid>

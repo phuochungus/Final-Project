@@ -7,6 +7,8 @@
         <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
         <viewmodel:MainViewModel x:Key="MainVM"/>
         <viewmodel:HomeViewModel x:Key="HomeVM"/>
+        <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
+
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
             <view:HistoryView/>
