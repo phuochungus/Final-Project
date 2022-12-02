@@ -1,4 +1,4 @@
-﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -179,10 +179,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public HistoryViewModel()
         {
+
+            ControlsEnabled = "False";
+            
             ExecuteViewCalendarRange();
             executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewToday(); });
             executeViewAllCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewAllQuery(); });
             executeViewCalendarRange = new RelayCommand<string>((p) => { return true; }, (p) => { ExecuteViewCalendarRange(); });
+
         }
     }
 }
