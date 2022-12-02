@@ -39,7 +39,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _DisplayName = "DisplayName";
+        private string _DisplayName = Globals.CurrUser.DisplayName ;
         public string DisplayName
         {
             get => _DisplayName;
@@ -51,7 +51,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
          
-        private string _Email = "Email";
+        private string _Email = Globals.CurrUser.Email ;
         public string Email
         {
             get => _Email;
@@ -63,7 +63,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _PhoneNumber = "PhoneNumber";
+        private string _PhoneNumber = Globals.CurrUser.PhoneNumber  ;
         public string PhoneNumber
         {
             get => _PhoneNumber;
@@ -75,7 +75,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _AccountType = "AccountType";
+        private string _AccountType = Globals.CurrUser.AccountType ;
         
         public string AccountType
         {
@@ -90,7 +90,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         
         public YourProfileViewModel()
         {
-            ShowHRViewCommand = new RelayCommand<object>((p) => { return true; }, p =>
+            ShowHRViewCommand = new RelayCommand<object>((p) => 
+            { 
+                if (AccountType == "admin") return true;
+                else return false;
+            }, p =>
             {
                 HRView hr = new HRView();
                 hr.ShowDialog();

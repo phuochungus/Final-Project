@@ -23,9 +23,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        
         public HomeViewModel() 
         {
+            
             CurrentView = new HistoryViewModel();
             ShowHistoryViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("his"); CurrentView = new HistoryViewModel(); });
             ShowOrderedViewCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Console.WriteLine("ord"); CurrentView = new OrderedViewModel(); });

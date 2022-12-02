@@ -13,5 +13,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public static bool isLoggedIn;
         public static bool isAdmin;
         public static string source  = @"\Assets\Image\avatar.png";
+        
     }
 }
