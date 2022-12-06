@@ -82,7 +82,6 @@
                                              />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card Width="200"
@@ -117,14 +116,6 @@
                             <UniformGrid Columns="2"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
-                    <ItemsControl>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <materialDesign:Card Width="50" Height="50"></materialDesign:Card>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
                 </ItemsControl>
             </materialDesign:Card>
         </Grid>
