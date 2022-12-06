@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{815A9469-608D-4FD7-A19D-31A0E6726B2D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>_4NH_HAO_Coffee_Shop</RootNamespace>
     <AssemblyName>4NH HAO Coffee Shop</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -162,6 +162,7 @@
     <Compile Include="UserControl_4nhHao\MainControlBarUC.xaml.cs">
       <DependentUpon>MainControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\AttachedProperties.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\GeneralControlBarViewModel.cs" />
     <Compile Include="ViewModel\Globals.cs" />

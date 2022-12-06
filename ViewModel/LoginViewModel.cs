@@ -22,7 +22,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
-        TAHCoffeeEntities conn = new TAHCoffeeEntities();
         private Visibility _progressBar { get; set; }
         private Visibility _loginButton { get; set; }
         private Visibility _viewVisible = Visibility.Visible;
@@ -57,14 +56,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
 
 
-
-
         public LoginViewModel()
         {
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
-            conn.Database.Connection.Open();
         }
 
         public bool inputCheck()
@@ -119,8 +115,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
                 else
                 {
-                    Globals.isAdmin = (Globals.CurrUser.AccountType == "admin");
-                    p.Close();
+                    Globals.isAdmin = (Globals.CurrUser.AccountType == "admin"); ;
+                    p.Hide();
                 }
             }
             catch (Exception e)
