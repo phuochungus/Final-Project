@@ -81,6 +81,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
@@ -125,6 +126,7 @@
     <Compile Include="Model\BillInfor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -163,6 +165,7 @@
       <DependentUpon>MainControlBarUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AttachedProperties.cs" />
+    <Compile Include="Utils\MultiBindingConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\GeneralControlBarViewModel.cs" />
     <Compile Include="ViewModel\Globals.cs" />
@@ -187,6 +190,9 @@
     </Compile>
     <Compile Include="View\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
