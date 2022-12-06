@@ -15,6 +15,7 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="AccountType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar(max)" Nullable="false" />
           <Property Name="ManagedBy" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="Bill">
@@ -52,6 +53,7 @@
           <Property Name="UnitId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Promo">
           <Key>
@@ -70,7 +72,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DisplayName" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__Account__Managed__38996AB5">
+        <Association Name="FK__Account__Managed__300424B4">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Account1" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -82,7 +84,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__CustomerId__31EC6D26">
+        <Association Name="FK__Bill__CustomerId__30F848ED">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,7 +96,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__PromoId__32E0915F">
+        <Association Name="FK__Bill__PromoId__31EC6D26">
           <End Role="Promo" Type="Self.Promo" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__IdNum__35BCFE0A">
+        <Association Name="FK__BillInfor__IdNum__32E0915F">
           <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__ItemI__36B12243">
+        <Association Name="FK__BillInfor__ItemI__33D4B598">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__CategoryId__29572725">
+        <Association Name="FK__Item__CategoryId__34C8D9D1">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__UnitId__286302EC">
+        <Association Name="FK__Item__UnitId__35BCFE0A">
           <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -162,31 +164,31 @@
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Account__Managed__38996AB5" Association="Self.FK__Account__Managed__38996AB5">
+          <AssociationSet Name="FK__Account__Managed__300424B4" Association="Self.FK__Account__Managed__300424B4">
             <End Role="Account" EntitySet="Account" />
             <End Role="Account1" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__CustomerId__31EC6D26" Association="Self.FK__Bill__CustomerId__31EC6D26">
+          <AssociationSet Name="FK__Bill__CustomerId__30F848ED" Association="Self.FK__Bill__CustomerId__30F848ED">
             <End Role="Account" EntitySet="Account" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__PromoId__32E0915F" Association="Self.FK__Bill__PromoId__32E0915F">
+          <AssociationSet Name="FK__Bill__PromoId__31EC6D26" Association="Self.FK__Bill__PromoId__31EC6D26">
             <End Role="Promo" EntitySet="Promo" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__IdNum__35BCFE0A" Association="Self.FK__BillInfor__IdNum__35BCFE0A">
+          <AssociationSet Name="FK__BillInfor__IdNum__32E0915F" Association="Self.FK__BillInfor__IdNum__32E0915F">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillInfor" EntitySet="BillInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__ItemI__36B12243" Association="Self.FK__BillInfor__ItemI__36B12243">
+          <AssociationSet Name="FK__BillInfor__ItemI__33D4B598" Association="Self.FK__BillInfor__ItemI__33D4B598">
             <End Role="Item" EntitySet="Item" />
             <End Role="BillInfor" EntitySet="BillInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__CategoryId__29572725" Association="Self.FK__Item__CategoryId__29572725">
+          <AssociationSet Name="FK__Item__CategoryId__34C8D9D1" Association="Self.FK__Item__CategoryId__34C8D9D1">
             <End Role="Category" EntitySet="Category" />
             <End Role="Item" EntitySet="Item" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__UnitId__286302EC" Association="Self.FK__Item__UnitId__286302EC">
+          <AssociationSet Name="FK__Item__UnitId__35BCFE0A" Association="Self.FK__Item__UnitId__35BCFE0A">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="Item" EntitySet="Item" />
           </AssociationSet>
@@ -206,10 +208,11 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AccountType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ManagedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Account1" Relationship="Self.FK__Account__Managed__38996AB5" FromRole="Account" ToRole="Account1" />
-          <NavigationProperty Name="Account2" Relationship="Self.FK__Account__Managed__38996AB5" FromRole="Account1" ToRole="Account" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__CustomerId__31EC6D26" FromRole="Account" ToRole="Bill" />
+          <NavigationProperty Name="Account1" Relationship="Self.FK__Account__Managed__300424B4" FromRole="Account" ToRole="Account1" />
+          <NavigationProperty Name="Account2" Relationship="Self.FK__Account__Managed__300424B4" FromRole="Account1" ToRole="Account" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__CustomerId__30F848ED" FromRole="Account" ToRole="Bill" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -219,9 +222,9 @@
           <Property Name="ExportTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CustomerId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="PromoId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Bill__CustomerId__31EC6D26" FromRole="Bill" ToRole="Account" />
-          <NavigationProperty Name="Promo" Relationship="Self.FK__Bill__PromoId__32E0915F" FromRole="Bill" ToRole="Promo" />
-          <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__IdNum__35BCFE0A" FromRole="Bill" ToRole="BillInfor" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Bill__CustomerId__30F848ED" FromRole="Bill" ToRole="Account" />
+          <NavigationProperty Name="Promo" Relationship="Self.FK__Bill__PromoId__31EC6D26" FromRole="Bill" ToRole="Promo" />
+          <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__IdNum__32E0915F" FromRole="Bill" ToRole="BillInfor" />
         </EntityType>
         <EntityType Name="BillInfor">
           <Key>
@@ -232,8 +235,8 @@
           <Property Name="ItemId" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__BillInfor__IdNum__35BCFE0A" FromRole="BillInfor" ToRole="Bill" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__BillInfor__ItemI__36B12243" FromRole="BillInfor" ToRole="Item" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK__BillInfor__IdNum__32E0915F" FromRole="BillInfor" ToRole="Bill" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__BillInfor__ItemI__33D4B598" FromRole="BillInfor" ToRole="Item" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -241,7 +244,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Items" Relationship="Self.FK__Item__CategoryId__29572725" FromRole="Category" ToRole="Item" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__Item__CategoryId__34C8D9D1" FromRole="Category" ToRole="Item" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -252,9 +255,10 @@
           <Property Name="UnitId" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__ItemI__36B12243" FromRole="Item" ToRole="BillInfor" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Item__CategoryId__29572725" FromRole="Item" ToRole="Category" />
-          <NavigationProperty Name="Unit" Relationship="Self.FK__Item__UnitId__286302EC" FromRole="Item" ToRole="Unit" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__ItemI__33D4B598" FromRole="Item" ToRole="BillInfor" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Item__CategoryId__34C8D9D1" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK__Item__UnitId__35BCFE0A" FromRole="Item" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Promo">
           <Key>
@@ -265,7 +269,7 @@
           <Property Name="Script" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__PromoId__32E0915F" FromRole="Promo" ToRole="Bill" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__PromoId__31EC6D26" FromRole="Promo" ToRole="Bill" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -273,9 +277,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Items" Relationship="Self.FK__Item__UnitId__286302EC" FromRole="Unit" ToRole="Item" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__Item__UnitId__35BCFE0A" FromRole="Unit" ToRole="Item" />
         </EntityType>
-        <Association Name="FK__Account__Managed__38996AB5">
+        <Association Name="FK__Account__Managed__300424B4">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Account1" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__CustomerId__31EC6D26">
+        <Association Name="FK__Bill__CustomerId__30F848ED">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -299,7 +303,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__PromoId__32E0915F">
+        <Association Name="FK__Bill__PromoId__31EC6D26">
           <End Role="Promo" Type="Self.Promo" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -311,7 +315,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__IdNum__35BCFE0A">
+        <Association Name="FK__BillInfor__IdNum__32E0915F">
           <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -323,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__ItemI__36B12243">
+        <Association Name="FK__BillInfor__ItemI__33D4B598">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,7 +339,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__CategoryId__29572725">
+        <Association Name="FK__Item__CategoryId__34C8D9D1">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -347,7 +351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__UnitId__286302EC">
+        <Association Name="FK__Item__UnitId__35BCFE0A">
           <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -367,31 +371,31 @@
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Promoes" EntityType="Self.Promo" />
           <EntitySet Name="Units" EntityType="Self.Unit" />
-          <AssociationSet Name="FK__Account__Managed__38996AB5" Association="Self.FK__Account__Managed__38996AB5">
+          <AssociationSet Name="FK__Account__Managed__300424B4" Association="Self.FK__Account__Managed__300424B4">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Account1" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__CustomerId__31EC6D26" Association="Self.FK__Bill__CustomerId__31EC6D26">
+          <AssociationSet Name="FK__Bill__CustomerId__30F848ED" Association="Self.FK__Bill__CustomerId__30F848ED">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__PromoId__32E0915F" Association="Self.FK__Bill__PromoId__32E0915F">
+          <AssociationSet Name="FK__Bill__PromoId__31EC6D26" Association="Self.FK__Bill__PromoId__31EC6D26">
             <End Role="Promo" EntitySet="Promoes" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__IdNum__35BCFE0A" Association="Self.FK__BillInfor__IdNum__35BCFE0A">
+          <AssociationSet Name="FK__BillInfor__IdNum__32E0915F" Association="Self.FK__BillInfor__IdNum__32E0915F">
             <End Role="Bill" EntitySet="Bills" />
             <End Role="BillInfor" EntitySet="BillInfors" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__ItemI__36B12243" Association="Self.FK__BillInfor__ItemI__36B12243">
+          <AssociationSet Name="FK__BillInfor__ItemI__33D4B598" Association="Self.FK__BillInfor__ItemI__33D4B598">
             <End Role="Item" EntitySet="Items" />
             <End Role="BillInfor" EntitySet="BillInfors" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__CategoryId__29572725" Association="Self.FK__Item__CategoryId__29572725">
+          <AssociationSet Name="FK__Item__CategoryId__34C8D9D1" Association="Self.FK__Item__CategoryId__34C8D9D1">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__UnitId__286302EC" Association="Self.FK__Item__UnitId__286302EC">
+          <AssociationSet Name="FK__Item__UnitId__35BCFE0A" Association="Self.FK__Item__UnitId__35BCFE0A">
             <End Role="Unit" EntitySet="Units" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
@@ -411,6 +415,7 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
                 <ScalarProperty Name="ManagedBy" ColumnName="ManagedBy" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -451,6 +456,7 @@
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

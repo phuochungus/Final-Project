@@ -8,6 +8,7 @@
         d:DesignHeight="665" d:DesignWidth="936"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,7 +18,17 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainVM}"
-        >
+        WindowStyle="None"
+        ResizeMode="NoResize">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}"
+                                       CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -37,7 +48,7 @@
                         <Button.BorderBrush>
                             <SolidColorBrush Opacity="0"/>
                         </Button.BorderBrush>
-                        <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"></Image>
+                        <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"/>
                     </Button>
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -90,9 +101,11 @@
                         </Button.BorderBrush>
                         <Image Margin="2 2 2 2" Source="\Assets\Icon\Person@4x.png"></Image>
                     </Button>
-                    <Button Width="44" Height="44"
-                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton">
+                    <Button Width="44" 
+                            Height="44"
+                            Command="{Binding ShowSettingViewCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            ToolTip="MaterialDesignFloatingActionLightButton">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
                         </Button.Background>

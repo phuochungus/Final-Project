@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public class OrderedViewModel : BaseViewModel
+    public class SettingViewModel : BaseViewModel
     {
-
+        public SettingViewModel() 
+        { 
+        
+        }
     }
 }

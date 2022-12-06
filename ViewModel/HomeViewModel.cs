@@ -14,6 +14,11 @@ using System.Runtime.CompilerServices;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
+    public struct BillCard
+    {
+        string displayName;
+        int totalPrice;
+    }
     public class HomeViewModel : BaseViewModel
     {
         private ObservableCollection<Category> _categoryList;
@@ -22,10 +27,19 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         private Category _getCategory;
         public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
 
+
+
         public ICommand CategoryChangeCommand { get; set; }
+        public ICommand AddToBillCommand { get; set; }
+
 
         private ObservableCollection<Item> _categorizedItemList;
         public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList= value; OnPropertyChanged(); } }
+
+
+       
+
+
 
         private int _currentCategory;
         public int currentCategory { get => _currentCategory; 
