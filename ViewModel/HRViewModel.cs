@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    internal class HRViewModel : BaseViewModel
+    public class HRViewModel : BaseViewModel
     {
         private ObservableCollection<Account> _List;
         public ObservableCollection<Account> List
@@ -136,9 +136,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (Idlist == null || Idlist.Count() != 0) return false;
                 if (AccountType == "staff")
                 {
-                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) || 
+                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber)  || string.IsNullOrEmpty(ManagedBy)) 
+                    string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy))
                         return false;
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy);
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
@@ -147,11 +147,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || !string.IsNullOrEmpty(ManagedBy)) 
+                    string.IsNullOrEmpty(PhoneNumber) || !string.IsNullOrEmpty(ManagedBy))
                         return false;
-                    
+
                 }
-                else  return false;
+                else return false;
                 return true;
             },
             (p) => {
@@ -194,7 +194,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy)) 
+                    string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy))
                         return false;
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy && x.AccountType == "admin");
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
@@ -210,8 +210,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 return true;
             },
             (p) => {
-               var account = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Selecteditem.Id).SingleOrDefault();
-               
+                var account = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Selecteditem.Id).SingleOrDefault();
+
                 account.Id = Id;
                 account.DisplayName = DisplayName;
                 account.Email = Email;
@@ -231,8 +231,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
-                
-                
+
+
                 if (AccountType == "staff")
                 {
                     if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||

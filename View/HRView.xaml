@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         mc:Ignorable="d"
-        Title="HRView" Height="665" Width="936"
+         Title="HRView" Height="665" Width="936"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         DataContext="{StaticResource HRVM}">
     <Grid>

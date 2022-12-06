@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace _4NH_HAO_Coffee_Shop.View
 {
     /// <summary>
-    /// Interaction logic for YourProfileView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class YourProfileView : UserControl
+    public partial class HomeView : UserControl
     {
-        public YourProfileView()
+        public HomeView()
         {
             InitializeComponent();
         }

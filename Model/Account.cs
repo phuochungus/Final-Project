@@ -21,8 +21,9 @@ namespace _4NH_HAO_Coffee_Shop.Model
             this.Account1 = new HashSet<Account>();
             this.Bills = new HashSet<Bill>();
         }
+
         private string _Id;
-        public string Id { get => _Id; set { _Id = value; OnPropertyChanged(); }  }
+        public string Id { get => _Id; set { _Id = value; OnPropertyChanged(); } }
 
         private string _Displayname;
         public string DisplayName { get => _Displayname; set { _Displayname = value; OnPropertyChanged(); } }
@@ -38,9 +39,13 @@ namespace _4NH_HAO_Coffee_Shop.Model
 
         private string _AccountType;
         public string AccountType { get => _AccountType; set { _AccountType = value; OnPropertyChanged(); } }
+        private string _ImageURL { get; set; }
+        public string ImageURL { get => _ImageURL; set { _ImageURL = value; OnPropertyChanged(); } }
 
         private string _ManageBy;
         public string ManagedBy { get => _ManageBy; set { _ManageBy = value; OnPropertyChanged(); } }
+
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account1 { get; set; }

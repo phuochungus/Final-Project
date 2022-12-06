@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    internal class YourProfileViewModel : BaseViewModel
+    public class YourProfileViewModel : BaseViewModel
     {
         public ICommand ShowHRViewCommand { get; set; }
 
@@ -27,7 +26,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
-        private string _ImageSource = Globals.source;
+        private string _ImageSource;
         public string ImageSource
         {
             get => _ImageSource;
@@ -39,7 +38,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _DisplayName = Globals.CurrUser.DisplayName ;
+        private string _DisplayName;
         public string DisplayName
         {
             get => _DisplayName;
@@ -50,8 +49,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }
         }
-         
-        private string _Email = Globals.CurrUser.Email ;
+
+        private string _Email;
         public string Email
         {
             get => _Email;
@@ -63,7 +62,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _PhoneNumber = Globals.CurrUser.PhoneNumber  ;
+        private string _PhoneNumber;
         public string PhoneNumber
         {
             get => _PhoneNumber;
@@ -75,8 +74,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private string _AccountType = Globals.CurrUser.AccountType ;
-        
+        private string _AccountType;
+
         public string AccountType
         {
             get => _AccountType;
@@ -87,11 +86,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }
         }
-        
+
         public YourProfileViewModel()
         {
-            ShowHRViewCommand = new RelayCommand<object>((p) => 
-            { 
+            _DisplayName = Globals.CurrUser.DisplayName;
+            _Email = Globals.CurrUser.Email;
+            _PhoneNumber = Globals.CurrUser.PhoneNumber;
+            _AccountType = Globals.CurrUser.AccountType;
+            _ImageSource = Globals.CurrUser.ImageURL;
+            ShowHRViewCommand = new RelayCommand<object>((p) =>
+            {
                 if (AccountType == "admin") return true;
                 else return false;
             }, p =>
@@ -107,12 +111,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     ImageSource = open.FileName;
-                    Globals.source = ImageSource;
+
                 }
 
             });
-            
         }
     }
-    
 }

@@ -25,6 +25,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public int UnitId { get; set; }
         public int CategoryId { get; set; }
         public int Price { get; set; }
+        public string ImageURL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }

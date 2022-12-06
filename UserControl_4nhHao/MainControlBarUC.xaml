@@ -15,7 +15,7 @@
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
              
-             
+             DataContext="{StaticResource MainControlBarVM}"
              Name="ucMainControlBar">
 
     <Grid>
@@ -105,6 +105,7 @@
                 </Button>
                 <Button
                     Command="{Binding ExitCommand}"
+                    CommandParameter="{Binding ElementName=ucMainControlBar}"
                     Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">

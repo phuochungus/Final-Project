@@ -21,6 +21,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 _ins = value;
             }
         }
+        
         public TAHCoffeeEntities DB { get; set; }
         
         public DataProvider()

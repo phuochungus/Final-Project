@@ -2,16 +2,24 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
                     xmlns:view="clr-namespace:_4NH_HAO_Coffee_Shop.View"
+                    xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
                     >
+
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
+    <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
+    <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
     <viewmodel:HRViewModel x:Key="HRVM"/>
+    <utils:MultiBindingConverter x:Key="MultiBindingConverter"/>
+    
+    
+
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type viewmodel:OrderedViewModel}">
         <view:OrderedView/>
     </DataTemplate>
@@ -19,12 +27,18 @@
     <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
         <view:LoginView/>
     </DataTemplate>
-    
+
+    <!--<DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+        <view:HomeView/>
+    </DataTemplate>-->
     <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
         <view:YourProfileView/>
     </DataTemplate>
 
-    
+        <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+        <view:test/>
+    </DataTemplate>
+
     <Style x:Key="Page_Style"
            TargetType="{x:Type UserControl}">
         <Setter Property="RenderTransform">
@@ -57,3 +71,4 @@
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
+

@@ -15,6 +15,7 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="AccountType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar(max)" Nullable="false" />
           <Property Name="ManagedBy" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="Bill">
@@ -52,6 +53,7 @@
           <Property Name="UnitId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Promo">
           <Key>
@@ -206,6 +208,7 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AccountType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ManagedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Account1" Relationship="Self.FK__Account__Managed__4BAC3F29" FromRole="Account" ToRole="Account1" />
           <NavigationProperty Name="Account2" Relationship="Self.FK__Account__Managed__4BAC3F29" FromRole="Account1" ToRole="Account" />
@@ -252,6 +255,7 @@
           <Property Name="UnitId" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__ItemI__49C3F6B7" FromRole="Item" ToRole="BillInfor" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Item__CategoryId__3C69FB99" FromRole="Item" ToRole="Category" />
           <NavigationProperty Name="Unit" Relationship="Self.FK__Item__UnitId__3B75D760" FromRole="Item" ToRole="Unit" />
@@ -411,6 +415,7 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
                 <ScalarProperty Name="ManagedBy" ColumnName="ManagedBy" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -451,6 +456,7 @@
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
