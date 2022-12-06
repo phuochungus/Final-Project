@@ -13,8 +13,6 @@
     <utils:MultiBindingConverter x:Key="MultiBindingConverter"/>
     
     
-
-
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
     </DataTemplate>
@@ -27,13 +25,13 @@
         <view:LoginView/>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
-        <view:HomeView/>
-    </DataTemplate>-->
-
     <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
-        <view:test/>
+        <view:HomeView/>
     </DataTemplate>
+
+    <!--<DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+        <view:test/>
+    </DataTemplate>-->
 
     <Style x:Key="Page_Style"
            TargetType="{x:Type UserControl}">
