@@ -97,18 +97,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
+            Email = "nguyenvana@gmail.com";
+            Password= "password";
+            if (p == null) return;
+            ProgressBar = Visibility.Visible;
+            LoginButton = Visibility.Hidden;
+            
             try
             {
-                Email = "nguyenvana@gmail.com";
-                Password = "password";
-                if (p == null) return;
-                ProgressBar = Visibility.Visible;
-                LoginButton = Visibility.Hidden;
                 string EncryptedPassword = CreateMD5(Password);
-                using (var conn = new TAHCoffeeEntities())
-                {
-                    Globals.CurrUser = await conn.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync<Account>();
-                }
+                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
                 ProgressBar = Visibility.Hidden;
                 LoginButton = Visibility.Visible;
                 if (Globals.CurrUser == null)
