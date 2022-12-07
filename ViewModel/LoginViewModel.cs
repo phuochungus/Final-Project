@@ -99,8 +99,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             try
             {
-                Email = "nguyenvana@gmail.com";
-                Password = "password";
+                /*Email = "nguyenvana@gmail.com";
+                Password = "password";*/
                 if (p == null) return;
                 ProgressBar = Visibility.Visible;
                 LoginButton = Visibility.Hidden;

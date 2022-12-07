@@ -81,7 +81,8 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton">
+                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    Command="{Binding ShowYourProfiledViewCommand}">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
                         </Button.Background>
