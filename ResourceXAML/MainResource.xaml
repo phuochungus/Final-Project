@@ -10,6 +10,7 @@
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
     <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
+    <viewmodel:HRViewModel x:Key="HRVM"/>
     <utils:MultiBindingConverter x:Key="MultiBindingConverter"/>
     
     
@@ -30,8 +31,11 @@
     <!--<DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
         <view:HomeView/>
     </DataTemplate>-->
+    <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
+        <view:YourProfileView/>
+    </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+        <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
         <view:test/>
     </DataTemplate>
 

@@ -15,6 +15,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowHomeViewCommand { get; set; }
         public ICommand ShowHistoryViewCommand { get; set; }
         public ICommand ShowOrderedViewCommand { get; set; }
+        public ICommand ShowYourProfiledViewCommand { get; set; }
         public ICommand ShowSettingViewCommand { get; set; }
         
 
@@ -31,6 +32,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ShowHistoryViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HistoryViewModel(); });
             ShowOrderedViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new OrderedViewModel(); });
             ShowHomeViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HomeViewModel(); });
+            ShowYourProfiledViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new YourProfileViewModel(); });
             ShowSettingViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new SettingViewModel(); });
             
         }
