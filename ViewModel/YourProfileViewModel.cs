@@ -1,4 +1,5 @@
-﻿using _4NH_HAO_Coffee_Shop.View;
+﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.View;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -86,13 +87,17 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }
         }
-
-        public YourProfileViewModel()
+        public void update()
         {
             _DisplayName = Globals.CurrUser.DisplayName;
             _Email = Globals.CurrUser.Email;
             _PhoneNumber = Globals.CurrUser.PhoneNumber;
             _AccountType = Globals.CurrUser.AccountType;
+        }
+
+        public YourProfileViewModel()
+        {
+            update();
             _ImageSource = Globals.CurrUser.ImageURL;
             ShowHRViewCommand = new RelayCommand<object>((p) =>
             {
@@ -102,7 +107,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             {
                 HRView hr = new HRView();
                 hr.ShowDialog();
-
+                
             });
             AvatarCommand = new RelayCommand<object>((p) => { return true; }, p =>
             {
@@ -111,10 +116,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     ImageSource = open.FileName;
-
+                    var account = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Globals.CurrUser.Id).SingleOrDefault();
+                    Globals.CurrUser.ImageURL = ImageSource;
+                    account.ImageURL = ImageSource;
+                    DataProvider.Ins.DB.SaveChanges();
                 }
-
+                
             });
+            
         }
     }
 }
