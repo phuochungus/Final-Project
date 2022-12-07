@@ -18,7 +18,92 @@
         Background="#F6FFE2"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Style="{StaticResource Page_Style}"
-        DataContext="{StaticResource HomeVM}">
+        DataContext="{StaticResource HomeVM}"
+        >
+    <UserControl.Resources>
+        <Style x:Key="RoundedTextBox" TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+        <vm:Globals x:Key="Globals"/>
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="8">
+                            <Ellipse
+                    Name="r1"
+                    Stroke="Black"
+                    StrokeDashArray="2 2"
+                    StrokeThickness="1"/>
+                            <Border
+                    Name="border"
+                    Width="{TemplateBinding ActualWidth}"
+                    Height="{TemplateBinding ActualHeight}"
+                    BorderThickness="1"
+                    CornerRadius="2"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CircleButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+            <Setter Property="Background" Value="#FF6DB4EF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#00000000"/>
+                                        <GradientStop Offset="0.88" Color="#00000000"/>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Margin="10" x:Name="highlightCircle" >
+                                <Ellipse.Fill >
+                                    <LinearGradientBrush >
+                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
+                                            <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                            <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                            <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="content" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="0.5" X="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
 
     <Grid>
@@ -68,7 +153,7 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
-                
+
                 <Grid Grid.Column="1">
                     <Button Width="90" 
                             Height="30" 
@@ -113,7 +198,7 @@
                                             <Grid Grid.Row="0">
                                                 <Image Source="{Binding ImageURL}"/>
                                             </Grid>
-                                            
+
                                             <Grid Grid.Row="1">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition></RowDefinition>
@@ -121,30 +206,35 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Grid Grid.Row="0">
-                                                    <StackPanel>
-                                                        <TextBlock Text="{Binding DisplayName}"/>
-                                                        <TextBlock Text="{Binding Price}"/>
-                                                    </StackPanel>
+                                                    <Label 
+                                                            FontFamily="{StaticResource WorkSansRegular}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            FontSize="17"
+                                                            ToolTip="{Binding DisplayName}"
+                                                            Content="{Binding DisplayName}"/>
                                                 </Grid>
-                                                
+
                                                 <Grid Grid.Row="1">
                                                     <Button Command="{Binding AddToBillCommand, Source={StaticResource HomeVM}}"
-                                                    CommandParameter="{Binding Id}">
-
+                                                    CommandParameter="{Binding }">
+                                                        <Button.Content>
+                                                            <TextBlock Text="{Binding Price}"></TextBlock>
+                                                        </Button.Content>
                                                     </Button>
                                                 </Grid>
                                             </Grid>
 
-                                            
+
                                         </Grid>
                                     </materialDesign:Card>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                    
-                    
-                    
+
+
+
                 </materialDesign:Card>
             </Grid>
         </Grid>
@@ -153,10 +243,79 @@
         <Grid Grid.Column="1">
             <materialDesign:Card Width="300"
                                  Margin="10 10 10 10">
-                <ItemsControl >
-                    
-                    
-                </ItemsControl>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label  Content="Bill"/>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.ProductList}}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="300">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <Image Source="{Binding Path=Key.ImageURL}"/>
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <StackPanel>
+                                                    <Label
+                                                        FontFamily="{StaticResource InterRegular}"
+                                                        Content="{Binding Path=Key.DisplayName}"
+                                                        ToolTip="{Binding Path=Content, RelativeSource={RelativeSource self}}"/>
+                                                    <Label Content="{Binding Path=Key.Price}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button 
+                                                            Style="{StaticResource CircleButton}" 
+                                                            Width="20" 
+                                                            Height="20" 
+                                                            Background="Transparent"
+                                                            BorderThickness="0">
+                                                        <materialDesign:PackIcon Kind="ArrowUpBoldCircleOutline" />
+                                                    </Button>
+                                                    <TextBox Style="{StaticResource RoundedTextBox}"
+                                                             BorderThickness="1"
+                                                             BorderBrush="Black"
+                                                             HorizontalContentAlignment="Center"
+                                                             Width="40"
+                                                             Height="20"
+                                                             Text="{Binding Path=Value}"/>
+
+
+                                                    <Button Style="{StaticResource CircleButton}" 
+                                                            Width="20" 
+                                                            Height="20" 
+                                                            Background="Transparent"
+                                                            BorderThickness="0">
+                                                        <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" />
+                                                    </Button>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+
+                </Grid>
+
             </materialDesign:Card>
         </Grid>
     </Grid>

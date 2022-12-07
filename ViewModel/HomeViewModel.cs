@@ -17,32 +17,14 @@ using System.Windows.Media;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public struct BillCard
-    {
-        string displayName;
-        int totalPrice;
-    }
     public class HomeViewModel : BaseViewModel
     {
         private ObservableCollection<Category> _categoryList;
         public ObservableCollection<Category> CategoryList { get => _categoryList; set { _categoryList = value; OnPropertyChanged(); } }
-
         private Category _getCategory;
         public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
-
-
-
-        public ICommand CategoryChangeCommand { get; set; }
-        public ICommand AddToBillCommand { get; set; }
-
-
         private ObservableCollection<Item> _categorizedItemList;
         public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
-
-
-       
-
-
 
         private int _currentCategory;
         public int currentCategory
@@ -58,6 +40,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
+        public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
         public ICommand UpdateQuantityCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
@@ -70,12 +53,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             //
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
                                       //
-
-            //
-            categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.DisplayName=="Cafe đen").ToList());
-
-            //
-            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => { Globals.Insert(p as Item); });
+            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => {Globals.Insert(p as Item); });
             UpdateQuantityCommand = new RelayCommand<object>(p => true, p =>
             {
                 var values = (object[])p;
@@ -98,6 +76,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Globals.Insert(item);
             });
             CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
+            categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(cond => cond.Category.DisplayName == "Drink").ToList());
 
             CategoryChangeCommand = new RelayCommand<object>((p) =>
             {

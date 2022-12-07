@@ -25,8 +25,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (w != null)
                 {
                     w.DragMove();
-                    IntPtr handle = (new WindowInteropHelper(w)).Handle;
-                    HwndSource.FromHwnd(handle).AddHook(WindowProc);
+
                 }
             });
         }
