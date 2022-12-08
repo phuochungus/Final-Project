@@ -7,7 +7,9 @@ using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -34,8 +36,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
-        private Cart _currBill { get; set; } = new Cart();
-        public Cart CurrBill
+        private Order _currBill { get; set; } = new Order();
+        public Order CurrBill
         {
             get => _currBill;
             set
@@ -47,11 +49,23 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             }
         }
+        private OrderList orderQueue { get; set; } = new OrderList();
+        public OrderList OrderQueue
+        {
+            get => orderQueue;
+            set
+            {
+                if (orderQueue == value) return;
+                orderQueue = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         private Globals() { }
 
         private static Globals _instance;
+
         public static Globals Instance
         {
             get { return _instance ?? (_instance = new Globals()); }
@@ -98,7 +112,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     CurrBill.Total -= item.Price;
                     CurrBill.ProductList[i].Value--;
-                    if (CurrBill.ProductList[i].Value == 0) CurrBill.ProductList.RemoveAt(i);
                     Instance.OnPropertyChanged(nameof(CurrBill));
                     return true;
                 }

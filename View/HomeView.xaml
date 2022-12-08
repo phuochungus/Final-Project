@@ -126,30 +126,25 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <ScrollViewer HorizontalScrollBarVisibility="auto">
-                        <ItemsControl ItemsSource="{Binding CategoryList}"
-                              Margin="10 0 10 0"
-                              Width="auto"
-                              Height="70">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" 
-                                        HorizontalAlignment="Left"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="proButton"
-                                    Width="90" 
-                                    Height="30" 
-                                    Margin="5 0 5 0"
-                                    Command="{Binding CategoryChangeCommand, Source={StaticResource HomeVM}, UpdateSourceTrigger=PropertyChanged}"
-                                    Content="{Binding DisplayName}"
-                                    CommandParameter="{Binding Id}"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                    <ScrollViewer VerticalScrollBarVisibility="auto">
+                        <materialDesign:Card Margin="0" VerticalAlignment="Center">
+                            <ListBox ItemsSource="{Binding CategoryList}"
+                                     x:Name="RadioButtonGroupChoiceChip"
+                                     HorizontalContentAlignment="Left"
+                                     SelectionMode="Single"
+                                     Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding CategoryChangeCommand}"  CommandParameter="{Binding ElementName=RadioButtonGroupChoiceChip, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding DisplayName}"></Label>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </materialDesign:Card>
                     </ScrollViewer>
                 </Grid>
 
@@ -157,7 +152,8 @@
                     <Button Width="90" 
                             Height="30" 
                             Margin="5 0 5 0"
-                            Content="All"/>
+                            Content="All"
+                            Command="{Binding ViewAll}"/>
                 </Grid>
             </Grid>
 
@@ -303,7 +299,7 @@
                                                              HorizontalContentAlignment="Center"
                                                              Width="40"
                                                              Height="20"
-                                                             Text="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                             Text="{Binding Path=Value}">
                                                     </TextBox>
 
                                                     <Button Style="{StaticResource CircleButton}" 

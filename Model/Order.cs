@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-    public class Cart : BaseViewModel
+    public class Order : BaseViewModel
     {
         private int total { get; set; } = 0;
         public int Total
@@ -53,24 +53,30 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 }
             }
         }
-
-
-        public Cart()
+        public void Clear()
+        {
+            total = 0;
+            productList.Clear();
+            id = 0;
+        }
+        public Order()
         {
             ProductList = new FullyObservableCollection<Product>();
-            ProductList.CollectionChanged += (s, a) =>
+            ProductList.CollectionChanged += (s, e) => handeProductListChanged(s, e);
+            ProductList.ItemPropertyChanged += (s, e) => handeProductListChanged(s, e);
+        }
+        private void  handeProductListChanged(object sender, EventArgs e)
+        {
+            
+            foreach(var product in (sender as FullyObservableCollection<Product>).ToList() )
             {
-                Console.WriteLine(a.Action);
-            };
-            ProductList.ItemPropertyChanged += (s, a) =>
-            {   
-                foreach(var product in (s as List<Product>))
-                {
-                    Total += (product.Value - product.PreValue) * product.Key.Price;
-                    if (product.Value == 0) ProductList.Remove(product);
-                }
-                Console.WriteLine(1);
-            };
+                if(product.Value==0) { productList.Remove(product); }
+            }
+            Total = 0;
+            foreach(var product in ProductList)
+            {
+                Total += product.Key.Price * product.Value;
+            }
         }
     }
 }

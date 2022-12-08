@@ -57,8 +57,17 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
+
+        private void handleCheckoutCommand(object p)
+        {
+            Globals.Instance.OrderQueue.Add(Globals.Instance.CurrBill);
+            Globals.Instance.CurrBill.Clear();
+        }
         public ICommand CheckoutCommand { get; set; }
+
         public ICommand IncreaseQuantityCommand { get; set; }
+        public ICommand ViewAll { get; set; }
+
 
 
         public HomeViewModel()
@@ -66,29 +75,21 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             //
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
-                                      //
-            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => { Globals.Instance.Insert(p as Item); });
-            DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p =>
-            {
-                Globals.Instance.Delete((p as Product).Key);
-            });
-            IncreaseQuantityCommand = new RelayCommand<object>((p) => true, p =>
-            {
-                Globals.Instance.Insert((p as Product).Key);
-            });
+
+            //
+            CheckoutCommand = new RelayCommand<object>(p => true, p => handleCheckoutCommand(p)); 
+            ViewAll = new RelayCommand<object>(p => true, p => categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList()));
+            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => Globals.Instance.Insert(p as Item));
+            DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Delete((p as Product).Key));
+            IncreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Insert((p as Product).Key));
             CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
             categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(cond => cond.Category.DisplayName == "Drink").ToList());
-
-            CategoryChangeCommand = new RelayCommand<object>((p) =>
+            CategoryChangeCommand = new RelayCommand<Category>((p) => true, (p) =>
             {
-                return true;
-            }, (p) =>
-            {
-                ChosenCategoryID = (int)p;
+                ChosenCategoryID = p.Id;
                 categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
             });
 
         }
-
     }
 }
