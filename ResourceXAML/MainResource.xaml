@@ -10,7 +10,9 @@
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
     <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
-    <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+    <viewmodel:HRViewModel x:Key="HRVM"/>
+    
+        <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
 
 
 
@@ -28,12 +30,14 @@
 
     <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
         <view:HomeView/>
+        </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
+        <view:YourProfileView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
         <view:SettingView/>
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
         <UserControl:GeneralControlBarUC/>
     </DataTemplate>
