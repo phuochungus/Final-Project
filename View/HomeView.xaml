@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
@@ -28,8 +29,6 @@
                 </Style>
             </Style.Resources>
         </Style>
-        
-        <vm:Globals x:Key="Globals"/>
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -247,13 +246,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Label  Content="Bill"/>
+                        <Label  Content="Bill"
+                                FontFamily="{StaticResource InterRegular}"
+                                FontSize="30"
+                                Margin="20 0 0 0"/>
                     </Grid>
                     <Grid Grid.Row="1" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.ProductList}}">
+                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.ProductList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
@@ -286,23 +289,31 @@
                                                             Width="20" 
                                                             Height="20" 
                                                             Background="Transparent"
-                                                            BorderThickness="0">
+                                                            BorderThickness="0"
+                                                            Command="{Binding Source={StaticResource HomeVM}, Path=IncreaseQuantityCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            >
                                                         <materialDesign:PackIcon Kind="ArrowUpBoldCircleOutline" />
                                                     </Button>
-                                                    <TextBox Style="{StaticResource RoundedTextBox}"
+                                                    <TextBox 
+                                                             x:Name="QuantityTextBox"
+                                                             Style="{StaticResource RoundedTextBox}"
                                                              BorderThickness="1"
                                                              BorderBrush="Black"
                                                              HorizontalContentAlignment="Center"
                                                              Width="40"
                                                              Height="20"
-                                                             Text="{Binding Path=Value}"/>
-
+                                                             Text="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    </TextBox>
 
                                                     <Button Style="{StaticResource CircleButton}" 
                                                             Width="20" 
                                                             Height="20" 
                                                             Background="Transparent"
-                                                            BorderThickness="0">
+                                                            BorderThickness="0"
+                                                            Command="{Binding Source={StaticResource HomeVM}, Path=DecreaseQuantityCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            >
                                                         <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" />
                                                     </Button>
                                                 </StackPanel>
@@ -312,6 +323,28 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </ScrollViewer>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Total(VND): "
+                                       Margin="20 0 0 0"/>
+                                <Label Content="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.Total}"/>
+                            </StackPanel>
+                            <Grid>
+                                <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    Height="30"
+                                    Width="110"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Right"
+                                    Margin="10"
+                                    Foreground="#FFFFFF"
+                                    Background="#6139FF"
+                                    Content="CHECKOUT"
+                                    Command="{Binding CheckoutCommand}"
+                                    />
+                            </Grid>
+                        </StackPanel>
                     </Grid>
 
                 </Grid>

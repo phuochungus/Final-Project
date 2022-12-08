@@ -106,16 +106,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             try
             {
                 string EncryptedPassword = CreateMD5(Password);
-                Globals.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
+                Globals.Instance.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
                 ProgressBar = Visibility.Hidden;
                 LoginButton = Visibility.Visible;
-                if (Globals.CurrUser == null)
+                if (Globals.Instance.CurrUser == null)
                 {
                     MessageBox.Show("Wrong email or password!");
                 }
                 else
                 {
-                    Globals.isAdmin = (Globals.CurrUser.AccountType == "admin"); ;
+                    Globals.Instance.isAdmin = (Globals.Instance.CurrUser.AccountType == "admin"); ;
                     p.Hide();
                 }
             }

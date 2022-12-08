@@ -22,7 +22,7 @@ namespace _4NH_HAO_Coffee_Shop
             LoginView.Show();
             LoginView.IsVisibleChanged += (s, ev) =>
             {
-                if (Globals.CurrUser != null) 
+                if (Globals.Instance.CurrUser != null) 
                 {
                     var MainView = new MainWindow();
                     LoginView.Close();

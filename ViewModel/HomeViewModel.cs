@@ -1,7 +1,9 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
 using Caliburn.Micro;
+using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -25,14 +27,26 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
         private ObservableCollection<Item> _categorizedItemList;
         public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
-
+        private int totalPrice = 0;
+        public int TotalPrice
+        {
+            get => totalPrice;
+            set
+            {
+                if (totalPrice != value)
+                {
+                    totalPrice = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         private int _currentCategory;
         public int currentCategory
         {
             get => _currentCategory;
             set
             {
-                if (value != currentCategory)
+                if (value != _currentCategory)
                 {
                     _currentCategory = value;
                     OnPropertyChanged();
@@ -42,8 +56,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
-        public ICommand UpdateQuantityCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
+        public ICommand CheckoutCommand { get; set; }
         public ICommand IncreaseQuantityCommand { get; set; }
 
 
@@ -53,27 +67,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             //
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
                                       //
-            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => {Globals.Insert(p as Item); });
-            UpdateQuantityCommand = new RelayCommand<object>(p => true, p =>
-            {
-                var values = (object[])p;
-                var item = values[0] as Item;
-                var quantity = (int)values[1];
-                Globals.Update(item, quantity);    
-            });
+            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => { Globals.Instance.Insert(p as Item); });
             DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p =>
             {
-                var values = (object[])p;
-                var item = values[0] as Item;
-                var quantity = (int)values[1];
-                Globals.Delete(item);
+                Globals.Instance.Delete((p as Product).Key);
             });
             IncreaseQuantityCommand = new RelayCommand<object>((p) => true, p =>
             {
-                var values = (object[])p;
-                var item = values[0] as Item;
-                var quantity = (int)values[1];
-                Globals.Insert(item);
+                Globals.Instance.Insert((p as Product).Key);
             });
             CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
             categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(cond => cond.Category.DisplayName == "Drink").ToList());
@@ -88,5 +89,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
         }
+
     }
 }
