@@ -89,11 +89,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public YourProfileViewModel()
         {
-            _DisplayName = Globals.CurrUser.DisplayName;
-            _Email = Globals.CurrUser.Email;
-            _PhoneNumber = Globals.CurrUser.PhoneNumber;
-            _AccountType = Globals.CurrUser.AccountType;
-            _ImageSource = Globals.CurrUser.ImageURL;
+            _DisplayName = Globals.Instance.CurrUser.DisplayName;
+            _Email = Globals.Instance.CurrUser.Email;
+            _PhoneNumber = Globals.Instance.CurrUser.PhoneNumber;
+            _AccountType = Globals.Instance.CurrUser.AccountType;
+            _ImageSource = Globals.Instance.CurrUser.ImageURL;
             ShowHRViewCommand = new RelayCommand<object>((p) =>
             {
                 if (AccountType == "admin") return true;

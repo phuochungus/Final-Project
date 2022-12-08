@@ -1,4 +1,4 @@
-﻿<UserControl  x:Class="_4NH_HAO_Coffee_Shop.View.test"
+﻿<!--<UserControl  x:Class="_4NH_HAO_Coffee_Shop.View.test"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,7 +20,87 @@
         Style="{StaticResource Page_Style}"
         DataContext="{StaticResource HomeVM}">
     <UserControl.Resources>
+        <Style x:Key="RoundedTextBox" TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="30" />
+                </Style>
+            </Style.Resources>
+        </Style>
         <vm:Globals x:Key="Globals"/>
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="8">
+                            <Ellipse
+                    Name="r1"
+                    Stroke="Black"
+                    StrokeDashArray="2 2"
+                    StrokeThickness="0"/>
+                            <Border
+                    Name="border"
+                    Width="{TemplateBinding ActualWidth}"
+                    Height="{TemplateBinding ActualHeight}"
+                    BorderThickness="0"
+                    CornerRadius="0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CircleButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#00000000"/>
+                                        <GradientStop Offset="0.88" Color="#00000000"/>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Margin="10" x:Name="highlightCircle" >
+                                <Ellipse.Fill >
+                                    <LinearGradientBrush >
+                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
+                                            <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                            <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                            <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="content" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="0.5" X="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -29,14 +109,14 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!--category buttons +  product list correspond to the button-->
+        --><!--category buttons +  product list correspond to the button--><!--
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <!--button-->
+            --><!--button--><!--
             <Grid Grid.Row="0" Height="70">
                 <ItemsControl ItemsSource="{Binding CategoryList}"
                               Margin="10 0 10 0"
@@ -63,7 +143,7 @@
                 </ItemsControl>
             </Grid>
 
-            <!--list-->
+            --><!--list--><!--
             <Grid Grid.Row="1">
                 <materialDesign:Card Margin="10,10,10,10" Grid.ColumnSpan="2">
                     <Grid>
@@ -86,52 +166,10 @@
                                           Width="170"
                                           Height="260"
                                           Background="GhostWhite">
+                                    <TextBox Height="50">
+                                        aasdf
+                                    </TextBox>
 
-                                    <ItemsControl ItemsSource="{Binding categorizedItemList}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <UniformGrid Columns="2"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Image 
-                                                    Grid.Row="0" 
-                                                    Name="myImage"
-                                                    Source="{Binding ImageURL}"
-                                                       Width="150"
-                                                       Height="150"
-                                                    VerticalAlignment="Center"
-                                                    HorizontalAlignment="Center"/>
-                                                    <TextBlock
-                                                        HorizontalAlignment="Center"
-                                                        Text="{Binding DisplayName}"
-                                                        TextWrapping="Wrap"
-                                                        TextAlignment="Center"
-                                                        Grid.Row="1"
-                                                        Margin="10"/>
-                                                    <Grid Grid.Row="2">
-                                                        <Button
-                                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                                            materialDesign:ButtonAssist.CornerRadius="25"          
-                                                            Width="140"
-                                                            Command="{Binding Source={StaticResource HomeVM}, Path=AddToBillCommand}"
-                                                            CommandParameter="{Binding}">
-                                                            <TextBlock Text="Buy"/>
-                                                        </Button>
-
-                                                    </Grid>
-                                                </Grid>
-
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
                                 </Grid>
                             </materialDesign:Card>
                         </UniformGrid>
@@ -146,7 +184,7 @@
             </Grid>
         </Grid>
 
-        <!--add to menu-->
+        --><!--add to menu--><!--
         <Grid Grid.Column="1">
             <materialDesign:Card Width="300"
                                  Margin="10 10 10 10">
@@ -168,4 +206,4 @@
     </Grid>
 
 
-</UserControl>
+</UserControl>-->

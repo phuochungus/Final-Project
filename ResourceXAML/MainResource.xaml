@@ -3,7 +3,7 @@
                     xmlns:viewmodel="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
                     xmlns:view="clr-namespace:_4NH_HAO_Coffee_Shop.View"
                     xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
-                    >
+                    xmlns:UserControl="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao">
 
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
@@ -11,9 +11,9 @@
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
     <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
     <viewmodel:HRViewModel x:Key="HRVM"/>
-    <utils:MultiBindingConverter x:Key="MultiBindingConverter"/>
     
-    
+        <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+
 
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
@@ -28,15 +28,18 @@
         <view:LoginView/>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+    <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
         <view:HomeView/>
-    </DataTemplate>-->
+        </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
         <view:YourProfileView/>
     </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
-        <view:test/>
+    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
+        <view:SettingView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
+        <UserControl:GeneralControlBarUC/>
     </DataTemplate>
 
     <Style x:Key="Page_Style"
