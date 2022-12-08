@@ -10,7 +10,6 @@
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
     <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
-    <utils:MultiBindingConverter x:Key="MultiBindingConverter"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
 
 

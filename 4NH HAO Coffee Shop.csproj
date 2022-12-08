@@ -169,7 +169,6 @@
       <DependentUpon>MainControlBarUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AttachedProperties.cs" />
-    <Compile Include="Utils\MultiBindingConverter.cs" />
     <Compile Include="Utils\FullyObservableCollection.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\GeneralControlBarViewModel.cs" />

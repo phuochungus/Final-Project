@@ -55,9 +55,9 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
         public void Clear()
         {
-            total = 0;
+            Total = 0;
             productList.Clear();
-            id = 0;
+            Id = 0;
         }
         public Order()
         {
