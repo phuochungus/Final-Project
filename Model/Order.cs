@@ -59,6 +59,10 @@ namespace _4NH_HAO_Coffee_Shop.Model
             productList.Clear();
             Id = 0;
         }
+        public bool isEmpty()
+        {
+            return productList.Count == 0;
+        }
         public Order()
         {
             ProductList = new FullyObservableCollection<Product>();

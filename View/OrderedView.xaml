@@ -32,7 +32,7 @@
                               Margin="20,20,20,20">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal"/>
+                            <WrapPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -51,8 +51,8 @@
                                         </Grid.RowDefinitions>
                                         <Image
                                             Source="{Binding ProductList[0].Key.ImageURL}"
-                                            Height="100"
-                                            Width="100"
+                                            Height="200"
+                                            Width="200"
                                             Stretch="UniformToFill" />
                                         <Grid
                                             Grid.Row="1"
