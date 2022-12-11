@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-    public class Order : BaseViewModel
+    public class Order : BaseViewModel, ICloneable
     {
         private int total { get; set; } = 0;
         public int Total
@@ -65,18 +65,36 @@ namespace _4NH_HAO_Coffee_Shop.Model
             ProductList.CollectionChanged += (s, e) => handeProductListChanged(s, e);
             ProductList.ItemPropertyChanged += (s, e) => handeProductListChanged(s, e);
         }
-        private void  handeProductListChanged(object sender, EventArgs e)
+
+        public Order(Order obj)
         {
-            
-            foreach(var product in (sender as FullyObservableCollection<Product>).ToList() )
+            this.Total = obj.Total;
+            this.Id = obj.Id;
+        }
+        private void handeProductListChanged(object sender, EventArgs e)
+        {
+            foreach (var product in (sender as FullyObservableCollection<Product>).ToList())
             {
-                if(product.Value==0) { productList.Remove(product); }
+                if (product.Value == 0) { productList.Remove(product); }
             }
             Total = 0;
-            foreach(var product in ProductList)
+            foreach (var product in ProductList)
             {
                 Total += product.Key.Price * product.Value;
             }
+        }
+
+        public object Clone()
+        {
+            Order clone = new Order();
+            clone.total = total;
+            clone.id = id;
+            foreach (var item in ProductList)
+            {
+                Product clonedItem = (Product)item.Clone();
+                clone.ProductList.Add(clonedItem);
+            }
+            return clone;
         }
     }
 }

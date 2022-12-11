@@ -68,13 +68,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand IncreaseQuantityCommand { get; set; }
         public ICommand ViewAll { get; set; }
 
-
-
         public HomeViewModel()
         {
 
             //
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
+
+            //
+
+
 
             //
             CheckoutCommand = new RelayCommand<object>(p => true, p => handleCheckoutCommand(p)); 
