@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-    public class Product : BaseViewModel
+    public class Product : BaseViewModel,ICloneable
     {
-        public int PreValue { get; set; }
         private Item key { get; set; }
         public Item Key
         {
@@ -30,11 +29,15 @@ namespace _4NH_HAO_Coffee_Shop.Model
             set
             {
                 if (this.value == value) return;
-                PreValue = this.value;
                 this.value = value;
                 OnPropertyChanged(nameof(Value));
             }
         }
         unsafe public Product(Item item, int value) { Key = item; Value = value; }
+
+        public object Clone()
+        {
+            return new Product(Key, Value);
+        }
     }
 }

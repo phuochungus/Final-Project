@@ -28,7 +28,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
         public void Add(Order order)
         {
-            list.Add(order);
+            list.Add((Order)order.Clone());
             OnPropertyChanged(nameof(list));
         }
         public OrderList()

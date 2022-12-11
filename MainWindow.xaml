@@ -19,7 +19,7 @@
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainVM}"
         WindowStyle="None"
-        ResizeMode="NoResize">
+        ResizeMode="CanResize">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">

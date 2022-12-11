@@ -11,8 +11,8 @@
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
     <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
     <viewmodel:HRViewModel x:Key="HRVM"/>
-    
-        <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+    <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
+    <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
 
 
 

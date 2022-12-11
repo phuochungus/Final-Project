@@ -27,36 +27,84 @@
         <Grid>
             <Border
                     Background="#C1FFBB" 
-                    Margin="32,31,31,73"/>
-            <Grid 
-                    Margin="451,0,31,10" Height="57" VerticalAlignment="Bottom">
-                <!-- 3 button s-->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="1">
-                    <Button
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="Served"
-                        Foreground="Black"
-                        Background="#FFF491"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                        />
-                </Grid>
-                <Grid Grid.Column="2">
-                    <Button
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="Abort"
-                        Foreground="Black"
-                        Background="#FDCFAD"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" 
-                        />
-                </Grid>
-            </Grid>
+                    Margin="32,32,32,32">
+                <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="20,20,20,20">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <materialDesign:Card Margin="5 5 5 5">
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="Auto" />
+                                            <RowDefinition
+                                                Height="Auto" />
+                                            <RowDefinition
+                                                Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Image
+                                            Source="{Binding ProductList[0].Key.ImageURL}"
+                                            Height="100"
+                                            Width="100"
+                                            Stretch="UniformToFill" />
+                                        <Grid
+                                            Grid.Row="1"
+                                            Margin="8 24 8 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" FontWeight="Bold" Text="Bill: "/>
+                                            <DataGrid 
+                                                Grid.Row="1"
+                                                ScrollViewer.CanContentScroll="true"
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                                ItemsSource="{Binding ProductList}"
+                                                IsEnabled="True"
+                                                AutoGenerateColumns="False"
+                                                CanUserResizeRows="False"
+                                                CanUserResizeColumns="False">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Key.DisplayName}"/>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Value}"/>
+                                                </DataGrid.Columns>
+
+                                            </DataGrid>
+                                        </Grid>
+                                        <StackPanel
+                                            HorizontalAlignment="Right"
+                                            Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="8">
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                Width="30"
+                                                Padding="2 0 2 0"
+                                                Command="{Binding Source={StaticResource OrderedVM}, Path=handleServingFinish}"
+                                                CommandParameter="{Binding}"
+                                                materialDesign:RippleAssist.IsCentered="True">
+                                                <Image Source="pack://application:,,,/Assets/Icon/ReceiptTextCheck.ico"></Image>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+
+                </ItemsControl>
+            </Border>
+
+
+
         </Grid>
     </Grid>
 </UserControl>
