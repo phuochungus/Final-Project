@@ -358,6 +358,7 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\ReceiptTextCheck.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -372,8 +373,7 @@
     <Resource Include="Assets\Icon\Add%403x.png" />
     <Resource Include="Assets\Icon\Add%404x.png" />
     <Resource Include="Assets\Icon\Add.png" />
-    <Content Include="doc\tah%28sql server%29.sql" />
-    <Content Include="doc\tah.sql" />
+    <Content Include="doc\TAH.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

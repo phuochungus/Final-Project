@@ -79,7 +79,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
 
             //
-            CheckoutCommand = new RelayCommand<object>(p => true, p => handleCheckoutCommand(p)); 
+            CheckoutCommand = new RelayCommand<object>(p => !Globals.Instance.CurrBill.isEmpty(), p => handleCheckoutCommand(p));
             ViewAll = new RelayCommand<object>(p => true, p => categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList()));
             AddToBillCommand = new RelayCommand<object>((p) => true, (p) => Globals.Instance.Insert(p as Item));
             DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Delete((p as Product).Key));
