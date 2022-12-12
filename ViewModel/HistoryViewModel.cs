@@ -40,6 +40,19 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         private DateTime _startDate = DateTime.Now;
         private DateTime _endDate = DateTime.Today.AddDays(1);
+        private CalendarBlackoutDatesCollection _blackoutDates;
+        public CalendarBlackoutDatesCollection BlackoutDates
+        {
+            get => _blackoutDates;
+            set
+            {
+                if (_blackoutDates != value)
+                {
+                    _blackoutDates = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public DateTime EndDate
         {
             get => _endDate;
@@ -62,21 +75,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     _startDate = value;
                     DatePicker t = new DatePicker();
+
                     t.BlackoutDates.Add(new CalendarDateRange(new DateTime(), _startDate));
                     BlackoutDates = t.BlackoutDates;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private CalendarBlackoutDatesCollection _blackoutDates;
-        public CalendarBlackoutDatesCollection BlackoutDates
-        {
-            get => _blackoutDates;
-            set
-            {
-                if (_blackoutDates != value)
-                {
-                    _blackoutDates = value;
                     OnPropertyChanged();
                 }
             }
@@ -120,7 +121,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
                                     else CustomerId 
-                                end as CustomerId   
+                                end as CustomerId, Total   
                                 from Bill";
 
                 HistoryList = new ObservableCollection<Bill>(conn.Bills.SqlQuery(queryString).ToList());
@@ -136,11 +137,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
                                     else CustomerId 
-                                end as CustomerId   
+                                end as CustomerId, Total
                                 from Bill
-                                where ExportTime = @today";
-
-                HistoryList = new ObservableCollection<Bill>(conn.Bills.SqlQuery(queryString, new SqlParameter("@today", DateTime.Today.ToShortDateString())).ToList());
+                                where  day(ExportTime) = @day and MONTH(ExportTime) = @month and YEAR(ExportTime) = @year";
+                HistoryList = new ObservableCollection<Bill>(
+                    conn.Bills.SqlQuery(queryString,
+                                        new SqlParameter("@day", DateTime.Today.Day),
+                                        new SqlParameter("@month", DateTime.Today.Month),
+                                        new SqlParameter("@year", DateTime.Today.Year))
+                                .ToList());
             }
         }
         public void ExecuteViewCalendarRange()
@@ -155,7 +160,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
                                     else CustomerId 
-                                end as CustomerId   
+                                end as CustomerId, Total  
                                 from Bill
                                 where ExportTime between @start and @end";
 
@@ -176,17 +181,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand executeViewAllCommand { get; set; }
         public ICommand executeViewTodayCommand { get; set; }
         public ICommand executeViewCalendarRange { get; set; }
+        public ICommand DatePicker_SelectedDateChanged { get; set; }
 
         public HistoryViewModel()
         {
 
             ControlsEnabled = "False";
-            
+
             ExecuteViewCalendarRange();
             executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewToday(); });
             executeViewAllCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewAllQuery(); });
             executeViewCalendarRange = new RelayCommand<string>((p) => { return true; }, (p) => { ExecuteViewCalendarRange(); });
-
+            DatePicker_SelectedDateChanged = new RelayCommand<object>(p => true, p => { IsCheckedToday = IsCheckedViewAll = false; });
         }
     }
 }

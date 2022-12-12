@@ -11,7 +11,9 @@ namespace _4NH_HAO_Coffee_Shop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Bill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +21,13 @@ namespace _4NH_HAO_Coffee_Shop.Model
         {
             this.BillInfors = new HashSet<BillInfor>();
         }
-    
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdNumber { get; set; }
         public System.DateTime ExportTime { get; set; }
         public string CustomerId { get; set; }
         public string PromoId { get; set; }
+        public int Total { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Promo Promo { get; set; }

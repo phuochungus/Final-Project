@@ -129,8 +129,6 @@
     <Compile Include="Model\BillInfor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\OrderList.cs" />
-    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -152,6 +150,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\OrderList.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\Promo.cs">
@@ -358,7 +358,6 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icon\ReceiptTextCheck.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -369,6 +368,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Assets\Icon\ReceiptTextCheck.ico" />
     <Resource Include="Assets\Icon\Add%402x.png" />
     <Resource Include="Assets\Icon\Add%403x.png" />
     <Resource Include="Assets\Icon\Add%404x.png" />

@@ -26,6 +26,7 @@
           <Property Name="ExportTime" Type="datetime" Nullable="false" />
           <Property Name="CustomerId" Type="char" MaxLength="10" />
           <Property Name="PromoId" Type="varchar" MaxLength="20" />
+          <Property Name="Total" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BillInfor">
           <Key>
@@ -222,6 +223,7 @@
           <Property Name="ExportTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CustomerId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="PromoId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FK__Bill__CustomerId__44FF419A" FromRole="Bill" ToRole="Account" />
           <NavigationProperty Name="Promo" Relationship="Self.FK__Bill__PromoId__45F365D3" FromRole="Bill" ToRole="Promo" />
           <NavigationProperty Name="BillInfors" Relationship="Self.FK__BillInfor__IdNum__48CFD27E" FromRole="Bill" ToRole="BillInfor" />
@@ -427,6 +429,7 @@
                 <ScalarProperty Name="ExportTime" ColumnName="ExportTime" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

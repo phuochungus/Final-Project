@@ -61,7 +61,11 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" FontWeight="Bold" Text="Bill: "/>
+                                            <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="Bill: #"/>
+                                                <TextBlock FontWeight="Bold" Text="{Binding Id}"/>
+                                            </StackPanel>
+                            
                                             <DataGrid 
                                                 Grid.Row="1"
                                                 ScrollViewer.CanContentScroll="true"
