@@ -73,7 +73,8 @@
                     <Button Width="90" 
                             Height="30" 
                             Margin="5 0 5 0"
-                            Content="All"/>
+                            Content="All"
+                            Command="{Binding ListAllItems, Source={StaticResource HomeVM}}"/>
                 </Grid>
             </Grid>
 

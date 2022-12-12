@@ -65,42 +65,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public bool inputCheck()
         {
+
             return true;
-            /////-----
-            //if (!isValidEmail(_email) || _password == null || _password == "") return false;
-            //return true;
-
-            //bool isValidEmail(string Email)
-            //{
-            //    try
-            //    {
-            //        MailAddress mail = new MailAddress(Email);
-            //        return true;
-            //    }
-            //    catch (Exception)
-            //    {
-            //        return false;
-            //    }
-            //};
         }
-        public string CreateMD5(string password)
-        {
-            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
-            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
-
-            string encoded = BitConverter.ToString(hash)
-               .Replace("-", string.Empty)
-               .ToLower();
-            return encoded;
-        }
+        
 
 
         public async void handleLoginButtonPress(Window p)
         {
             try
             {
-                /*Email = "nguyenvana@gmail.com";
-                Password = "password";*/
+                Email = "nguyenvana@gmail.com";
+                Password = "password";
                 if (p == null) return;
                 ProgressBar = Visibility.Visible;
                 LoginButton = Visibility.Hidden;
@@ -123,6 +99,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+
+        public string CreateMD5(string password)
+        {
+            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
+
+            string encoded = BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
+            return encoded;
         }
     }
 }

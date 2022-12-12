@@ -32,16 +32,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
 
 
-        public ICommand CategoryChangeCommand { get; set; }
-        public ICommand AddToBillCommand { get; set; }
-
+        
 
         private ObservableCollection<Item> _categorizedItemList;
         public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
-
-
-       
-
 
 
         private int _currentCategory;
@@ -58,6 +52,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
+
+        public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
         public ICommand UpdateQuantityCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }

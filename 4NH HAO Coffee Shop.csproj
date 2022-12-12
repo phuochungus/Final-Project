@@ -197,9 +197,6 @@
     <Compile Include="View\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\test.xaml.cs">
-      <DependentUpon>test.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\YourProfileView.xaml.cs">
       <DependentUpon>YourProfileView.xaml</DependentUpon>
     </Compile>
@@ -288,10 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
