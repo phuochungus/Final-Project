@@ -78,9 +78,11 @@
                     Background="#C1FFBB" 
                     Margin="32,23,31,73">
                 <DataGrid
-                    ItemsSource="{Binding HistoryList}"
+                    ItemsSource="{Binding HistoryList, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource MaterialDesignDataGrid}"
-                    AutoGenerateColumns="False">
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="No" Binding="{Binding IdNumber}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding ExportTime}"></DataGridTextColumn>

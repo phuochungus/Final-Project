@@ -107,7 +107,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public ICommand IncreaseQuantityCommand { get; set; }
         public ICommand ViewAll { get; set; }
-
+        public ICommand ClearBillCommand { get; set; }
         public HomeViewModel()
         {
 
@@ -124,6 +124,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 ChosenCategoryID = p.Id;
                 categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
             });
+            ClearBillCommand = new RelayCommand<object>(p=>true, p=> { Globals.Instance.CurrBill.Clear(); });  
 
         }
     }
