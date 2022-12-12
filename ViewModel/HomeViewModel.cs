@@ -58,7 +58,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
 
         public ICommand CategoryChangeCommand { get; set; }
-        public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
 

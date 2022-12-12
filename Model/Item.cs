@@ -19,7 +19,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         {
             this.BillInfors = new HashSet<BillInfor>();
         }
-
+    
         public string Id { get; set; }
         public string DisplayName { get; set; }
         public int UnitId { get; set; }

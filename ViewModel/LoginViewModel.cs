@@ -67,8 +67,24 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
 
             return true;
+            /////-----
+            //if (!isValidEmail(_email) || _password == null || _password == "") return false;
+            //return true;
+
+            //bool isValidEmail(string Email)
+            //{
+            //    try
+            //    {
+            //        MailAddress mail = new MailAddress(Email);
+            //        return true;
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return false;
+            //    }
+            //};
         }
-        
+
 
 
         public async void handleLoginButtonPress(Window p)
