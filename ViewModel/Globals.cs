@@ -80,7 +80,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     CurrBill.Total += (quantity - CurrBill.ProductList[i].Value);
                     CurrBill.ProductList[i].Value = quantity;
                     if (quantity == 0) CurrBill.ProductList.RemoveAt(i);
-                    Console.WriteLine(item.DisplayName, quantity);
                     Instance.OnPropertyChanged();
                     return true;
                 }

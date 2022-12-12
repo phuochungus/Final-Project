@@ -113,7 +113,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public void ExecuteViewAllQuery()
         {
-            //Console.WriteLine("execute view all");
             using (var conn = new TAHCoffeeEntities())
             {
                 string queryString = @"
@@ -129,7 +128,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public void ExecuteViewToday()
         {
-            //Console.WriteLine("execute view today");
             using (var conn = new TAHCoffeeEntities())
             {
                 string queryString = @"
@@ -150,7 +148,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public void ExecuteViewCalendarRange()
         {
-            //Console.WriteLine("execute view range");
             try
             {
                 using (var conn = new TAHCoffeeEntities())

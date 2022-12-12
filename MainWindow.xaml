@@ -40,7 +40,7 @@
                     <Image Margin="2 2 2 2" Width="44" Source="\Assets\Image\4nhHaoLogo@4x.png"></Image>
                     <Button Width="44" Height="44" 
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    ToolTip="Home"
                     Command="{Binding ShowHomeViewCommand}">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
@@ -52,7 +52,7 @@
                     </Button>
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton">
+                    ToolTip="Data management">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
                         </Button.Background>
@@ -63,7 +63,7 @@
                     </Button>
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    ToolTip="Order"
                     Command="{Binding ShowOrderedViewCommand}">
 
                         <Button.Background>
@@ -76,7 +76,7 @@
                     </Button>
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    ToolTip="Report"
                     Command="{Binding ShowHistoryViewCommand}">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
@@ -92,7 +92,7 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton"
+                    ToolTip="Personal Information"
                     Command="{Binding ShowYourProfiledViewCommand}">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
@@ -106,7 +106,7 @@
                             Height="44"
                             Command="{Binding ShowSettingViewCommand}"
                             Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="MaterialDesignFloatingActionLightButton">
+                            ToolTip="Settibg">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
                         </Button.Background>
@@ -119,7 +119,7 @@
                     Command="{Binding ExitCommand}"
                     Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="MaterialDesignFloatingActionLightButton">
+                    ToolTip="Exit">
                         <Button.Background>
                             <SolidColorBrush Opacity="0"/>
                         </Button.Background>

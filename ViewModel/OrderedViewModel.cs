@@ -16,7 +16,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             {
                 Globals.Instance.OrderQueue.List.Remove(p as Order);
             });
-            Console.WriteLine(Globals.Instance.OrderQueue.List.Count());
         }
     }
 }

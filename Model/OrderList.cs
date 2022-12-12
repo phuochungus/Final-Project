@@ -34,11 +34,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public OrderList()
         {
             List = new ObservableCollection<Order>();
-            List.CollectionChanged += (s, e) =>
-            {
-                Console.WriteLine(list.Count);
-                Console.WriteLine("order enqueded");
-            };
+
         }
 
     }
