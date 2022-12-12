@@ -97,8 +97,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
-            //Email = "nguyenvana@gmail.com";
-            //Password= "password";
+            Email = "nguyenvana@gmail.com";
+            Password= "password";
             if (p == null) return;
             ProgressBar = Visibility.Visible;
             LoginButton = Visibility.Hidden;
