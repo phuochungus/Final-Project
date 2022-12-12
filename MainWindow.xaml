@@ -19,10 +19,14 @@
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainVM}"
         WindowStyle="None"
-        ResizeMode="NoResize"
-        >
+        ResizeMode="CanResize">
 
-    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}"
+                                       CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
 
     <Grid>

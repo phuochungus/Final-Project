@@ -15,7 +15,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public  class GeneralControlBarViewModel : BaseViewModel
     {
         public ICommand DragMoveWindowCommand { get; set; }
-        public ICommand MaximizeWindowCommand { get; set; }
         public GeneralControlBarViewModel() 
         {
             DragMoveWindowCommand = new RelayCommand<UserControl>((p) => {
@@ -26,24 +25,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (w != null)
                 {
                     w.DragMove();
+
                 }
             });
-
-            MaximizeWindowCommand = new RelayCommand<UserControl>((p) => {
-                return true;
-            }, (p) => {
-                FrameworkElement window = GetWindowParent(p);
-                Window w = window as Window;
-                if (w != null)
-                {
-                    if (w.WindowState != WindowState.Maximized)
-                        w.WindowState = WindowState.Maximized;
-                    else if(w.WindowState != WindowState.Normal)
-                        w.WindowState = WindowState.Normal;
-                }
-            });
-
-            
         }
 
 

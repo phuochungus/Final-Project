@@ -24,7 +24,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public System.DateTime ExportTime { get; set; }
         public string CustomerId { get; set; }
         public string PromoId { get; set; }
-        public int Total { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Promo Promo { get; set; }
