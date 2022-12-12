@@ -17,16 +17,22 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
              Name="ucGeneralControlBar"
              DataContext="{StaticResource GCBVM}">
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}"
-                                    CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
+                                       CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
         </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <i:InvokeCommandAction Command="{Binding MaximizeWindowCommand}"
+                                       CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
+        </i:EventTrigger>
+
     </i:Interaction.Triggers>
 
 
-        
+
 
 
     <Grid>

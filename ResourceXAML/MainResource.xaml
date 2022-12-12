@@ -16,6 +16,13 @@
 
 
 
+
+    <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
+        <UserControl:GeneralControlBarUC/>
+    </DataTemplate>
+    
+
+
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
     </DataTemplate>
@@ -30,44 +37,37 @@
 
     <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
         <view:HomeView/>
-        </DataTemplate>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
         <view:YourProfileView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
-        <view:SettingView/>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
-        <UserControl:GeneralControlBarUC/>
-    </DataTemplate>
-
     <Style x:Key="Page_Style"
-           TargetType="{x:Type UserControl}">
+               TargetType="{x:Type UserControl}">
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TranslateTransform X="0"
-                                    Y="50" />
+                                        Y="50" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="Visibility"
-                     Value="Collapsed">
+                         Value="Collapsed">
                 <Setter Property="Opacity"
-                        Value="0" />
+                            Value="0" />
             </Trigger>
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                         Duration="0:0:1"
-                                         From="0"
-                                         To="1" />
+                                             Duration="0:0:1"
+                                             From="0"
+                                             To="1" />
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                         From="50"
-                                         To="0"
-                                         Duration="0:0:0.4"
-                                         DecelerationRatio="0.3" />
+                                             From="50"
+                                             To="0"
+                                             Duration="0:0:0.4"
+                                             DecelerationRatio="0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

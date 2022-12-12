@@ -27,6 +27,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
         private ObservableCollection<Item> _categorizedItemList;
         public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
+
+
         private int totalPrice = 0;
         public int TotalPrice
         {
@@ -53,6 +55,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             }
         }
+
 
         public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }

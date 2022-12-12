@@ -65,6 +65,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public bool inputCheck()
         {
+
             return true;
             /////-----
             //if (!isValidEmail(_email) || _password == null || _password == "") return false;
@@ -83,28 +84,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             //    }
             //};
         }
-        public string CreateMD5(string password)
-        {
-            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
-            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
 
-            string encoded = BitConverter.ToString(hash)
-               .Replace("-", string.Empty)
-               .ToLower();
-            return encoded;
-        }
 
 
         public async void handleLoginButtonPress(Window p)
         {
-            Email = "nguyenvana@gmail.com";
-            Password= "password";
-            if (p == null) return;
-            ProgressBar = Visibility.Visible;
-            LoginButton = Visibility.Hidden;
-            
             try
             {
+                Email = "nguyenvana@gmail.com";
+                Password = "password";
+                if (p == null) return;
+                ProgressBar = Visibility.Visible;
+                LoginButton = Visibility.Hidden;
                 string EncryptedPassword = CreateMD5(Password);
                 Globals.Instance.CurrUser = await DataProvider.Ins.DB.Accounts.Where(x => x.Email == Email && x.Password == EncryptedPassword).FirstOrDefaultAsync();
                 ProgressBar = Visibility.Hidden;
@@ -124,6 +115,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+
+        public string CreateMD5(string password)
+        {
+            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
+
+            string encoded = BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
+            return encoded;
         }
     }
 }
