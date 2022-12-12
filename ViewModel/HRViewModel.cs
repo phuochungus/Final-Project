@@ -130,7 +130,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand DeleteCommand { get; set; }
         public HRViewModel()
         {
-            
             List = new ObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
@@ -168,7 +167,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
                         ManagedBy = ManagedBy,
-                        ImageURL = @"https://lh4.googleusercontent.com/jdfuWvKHDQA4KE3tt4QBMKw8iQWyr-yvvC_RIbMQwZyEYyRFNkL4sZzKZwexMu6W2es=w2400",
 
                     };
                 }
@@ -182,8 +180,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         Password = Password,
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
-                        ImageURL = @"https://lh4.googleusercontent.com/jdfuWvKHDQA4KE3tt4QBMKw8iQWyr-yvvC_RIbMQwZyEYyRFNkL4sZzKZwexMu6W2es=w2400",
-                };
+                    };
                 };
                 DataProvider.Ins.DB.Accounts.Add(account);
                 DataProvider.Ins.DB.SaveChanges();
@@ -192,7 +189,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             ModifyCommand = new RelayCommand<object>((p) => {
                 if (string.IsNullOrEmpty(Id)) return false;
-                if (Selecteditem == null || Id != Selecteditem.Id ) return false;
+                if (Selecteditem == null) return false;
+                if (Id != Selecteditem.Id) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
@@ -224,14 +222,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (AccountType == "staff") account.ManagedBy = ManagedBy;
                 else account.ManagedBy = null;
                 DataProvider.Ins.DB.SaveChanges();
-                Selecteditem.Id = Globals.CurrUser.Id = Id;
-                Selecteditem.DisplayName = Globals.CurrUser.DisplayName = DisplayName;
-                Selecteditem.Email = Globals.CurrUser.Email = Email;
-                Selecteditem.Password = Globals.CurrUser.Password = Password;
-                Selecteditem.PhoneNumber = Globals.CurrUser.PhoneNumber = PhoneNumber;
-                Selecteditem.AccountType = Globals.CurrUser.AccountType = AccountType;
-                Selecteditem.ManagedBy = Globals.CurrUser.ManagedBy = ManagedBy;
-                
+                Selecteditem.Id = Id;
+                Selecteditem.DisplayName = DisplayName;
+                Selecteditem.Email = Email;
+                Selecteditem.Password = Password;
+                Selecteditem.PhoneNumber = PhoneNumber;
+                Selecteditem.AccountType = AccountType;
+                Selecteditem.ManagedBy = ManagedBy;
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
@@ -246,13 +243,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
                 else if (AccountType == "admin")
                 {
-                    var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.ManagedBy == Id);
-                    if (Idlist == null || Idlist.Count() != 0) return false;
                     if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
                     Password != Selecteditem.Password || PhoneNumber != Selecteditem.PhoneNumber || AccountType != Selecteditem.AccountType ||
                     ManagedBy != Selecteditem.ManagedBy)
                         return false;
-                    return true;
+                    var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.ManagedBy == Id);
+                    if (Idlist == null || Idlist.Count() != 0) return false;
+
                 }
                 else return false;
                 return true;
