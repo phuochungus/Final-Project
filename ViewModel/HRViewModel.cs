@@ -189,6 +189,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             ModifyCommand = new RelayCommand<object>((p) => {
                 if (string.IsNullOrEmpty(Id)) return false;
+                if (Selecteditem == null) return false;
                 if (Id != Selecteditem.Id) return false;
                 if (AccountType == "staff")
                 {
@@ -231,8 +232,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
-
-
+                if (Selecteditem == null) return false;
                 if (AccountType == "staff")
                 {
                     if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
