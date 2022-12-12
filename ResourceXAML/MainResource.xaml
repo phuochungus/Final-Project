@@ -2,8 +2,46 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
                     xmlns:view="clr-namespace:_4NH_HAO_Coffee_Shop.View"
+                    xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
+                    xmlns:UserControl="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao">
+
+    <viewmodel:LoginViewModel x:Key="LoginVM"/>
+    <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
+    <viewmodel:MainViewModel x:Key="MainVM"/>
+    <viewmodel:HomeViewModel x:Key="HomeVM"/>
+    <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
+    <viewmodel:HRViewModel x:Key="HRVM"/>
+    <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
+    <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+
+
+
+    <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
+        <view:HistoryView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:OrderedViewModel}">
+        <view:OrderedView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
+        <view:LoginView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:HomeViewModel}">
+        <view:HomeView/>
+        </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
+        <view:YourProfileView/>
+    </DataTemplate>
                     xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils">
 
+    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
+        <view:SettingView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
+        <UserControl:GeneralControlBarUC/>
+    </DataTemplate>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
     <viewmodel:MainViewModel x:Key="MainVM"/>
