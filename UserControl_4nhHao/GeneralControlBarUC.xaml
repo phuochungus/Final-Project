@@ -23,6 +23,11 @@
             <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}"
                                     CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
         </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}"
+                                    CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
 

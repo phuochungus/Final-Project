@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TAHCoffeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TAHCoffeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,7 +73,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DisplayName" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__Account__Managed__4BAC3F29">
+        <Association Name="FK__Account__Managed__30F848ED">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Account1" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +85,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__CustomerId__44FF419A">
+        <Association Name="FK__Bill__CustomerId__31EC6D26">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +97,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__PromoId__45F365D3">
+        <Association Name="FK__Bill__PromoId__32E0915F">
           <End Role="Promo" Type="Self.Promo" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,7 +109,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__IdNum__48CFD27E">
+        <Association Name="FK__BillInfor__IdNum__33D4B598">
           <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillInfor__ItemI__49C3F6B7">
+        <Association Name="FK__BillInfor__ItemI__34C8D9D1">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="BillInfor" Type="Self.BillInfor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__CategoryId__3C69FB99">
+        <Association Name="FK__Item__CategoryId__35BCFE0A">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +145,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Item__UnitId__3B75D760">
+        <Association Name="FK__Item__UnitId__36B12243">
           <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
           <ReferentialConstraint>
@@ -165,37 +165,36 @@
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Account__Managed__4BAC3F29" Association="Self.FK__Account__Managed__4BAC3F29">
+          <AssociationSet Name="FK__Account__Managed__30F848ED" Association="Self.FK__Account__Managed__30F848ED">
             <End Role="Account" EntitySet="Account" />
             <End Role="Account1" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__CustomerId__44FF419A" Association="Self.FK__Bill__CustomerId__44FF419A">
+          <AssociationSet Name="FK__Bill__CustomerId__31EC6D26" Association="Self.FK__Bill__CustomerId__31EC6D26">
             <End Role="Account" EntitySet="Account" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__PromoId__45F365D3" Association="Self.FK__Bill__PromoId__45F365D3">
+          <AssociationSet Name="FK__Bill__PromoId__32E0915F" Association="Self.FK__Bill__PromoId__32E0915F">
             <End Role="Promo" EntitySet="Promo" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__IdNum__48CFD27E" Association="Self.FK__BillInfor__IdNum__48CFD27E">
+          <AssociationSet Name="FK__BillInfor__IdNum__33D4B598" Association="Self.FK__BillInfor__IdNum__33D4B598">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillInfor" EntitySet="BillInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillInfor__ItemI__49C3F6B7" Association="Self.FK__BillInfor__ItemI__49C3F6B7">
+          <AssociationSet Name="FK__BillInfor__ItemI__34C8D9D1" Association="Self.FK__BillInfor__ItemI__34C8D9D1">
             <End Role="Item" EntitySet="Item" />
             <End Role="BillInfor" EntitySet="BillInfor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__CategoryId__3C69FB99" Association="Self.FK__Item__CategoryId__3C69FB99">
+          <AssociationSet Name="FK__Item__CategoryId__35BCFE0A" Association="Self.FK__Item__CategoryId__35BCFE0A">
             <End Role="Category" EntitySet="Category" />
             <End Role="Item" EntitySet="Item" />
           </AssociationSet>
-          <AssociationSet Name="FK__Item__UnitId__3B75D760" Association="Self.FK__Item__UnitId__3B75D760">
+          <AssociationSet Name="FK__Item__UnitId__36B12243" Association="Self.FK__Item__UnitId__36B12243">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="Item" EntitySet="Item" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TAHCoffeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
