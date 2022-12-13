@@ -38,6 +38,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                     element.BlackoutDates.Clear();
                     foreach (var dateRange in bindings)
                     {
+                        element.SelectedDate = dateRange.End.AddDays(1);
                         element.BlackoutDates.Add(dateRange);
                     }
                 }

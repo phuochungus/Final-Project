@@ -1,21 +1,9 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
-using Caliburn.Micro;
-using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using System.Windows.Controls;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.Windows.Media.Imaging;
-using static System.Net.WebRequestMethods;
-using System.Windows.Media;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -58,8 +46,48 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand AddToBillCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
 
+
+        private void handleInsertIntoDB()
+        {
+            try
+            {
+                using (var context = new TAHCoffeeEntities())
+                {
+                    var bill = new Bill()
+                    {
+                        Total = Globals.Instance.CurrBill.Total,
+                        ExportTime = DateTime.Now
+                    };
+                    context.Bills.Add(bill);
+                    context.SaveChanges();
+                    int id = Globals.Instance.CurrBill.Id = bill.IdNumber;
+
+
+                    List<BillInfor> billInfors = new List<BillInfor>();
+                    foreach (var product in Globals.Instance.CurrBill.ProductList)
+                    {
+                        billInfors.Add(new BillInfor()
+                        {
+                            IdNumber = id,
+                            ItemId = product.Key.Id,
+                            Quantity = product.Value,
+                            Price = product.Value * product.Key.Price
+
+                        });
+                    }
+                    context.BillInfors.AddRange(billInfors);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         private void handleCheckoutCommand(object p)
         {
+            handleInsertIntoDB();
             Globals.Instance.OrderQueue.Add(Globals.Instance.CurrBill);
             Globals.Instance.CurrBill.Clear();
         }
@@ -67,18 +95,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public ICommand IncreaseQuantityCommand { get; set; }
         public ICommand ViewAll { get; set; }
-
+        public ICommand ClearBillCommand { get; set; }
         public HomeViewModel()
         {
 
-            //
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
-
-            //
-
-
-
-            //
             CheckoutCommand = new RelayCommand<object>(p => !Globals.Instance.CurrBill.isEmpty(), p => handleCheckoutCommand(p));
             ViewAll = new RelayCommand<object>(p => true, p => categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList()));
             AddToBillCommand = new RelayCommand<object>((p) => true, (p) => Globals.Instance.Insert(p as Item));
@@ -91,6 +112,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 ChosenCategoryID = p.Id;
                 categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
             });
+            ClearBillCommand = new RelayCommand<object>(p=>true, p=> { Globals.Instance.CurrBill.Clear(); });  
 
         }
     }
