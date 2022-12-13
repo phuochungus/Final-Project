@@ -1,21 +1,9 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
-using Caliburn.Micro;
-using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using System.Windows.Controls;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.Windows.Media.Imaging;
-using static System.Net.WebRequestMethods;
-using System.Windows.Media;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {

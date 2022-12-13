@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿
 using System.Windows.Input;
-using _4NH_HAO_Coffee_Shop.ViewModel;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -26,6 +20,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             {
                 if (_currentView != value)
                 {
+                    
                     _currentView = value;
                     OnPropertyChanged();
                 }

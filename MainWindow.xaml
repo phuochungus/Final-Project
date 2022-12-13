@@ -8,7 +8,7 @@
         d:DesignHeight="665" d:DesignWidth="936"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"

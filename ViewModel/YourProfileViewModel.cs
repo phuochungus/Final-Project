@@ -1,10 +1,4 @@
 ﻿using _4NH_HAO_Coffee_Shop.View;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;

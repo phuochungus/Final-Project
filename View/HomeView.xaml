@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
@@ -133,6 +133,7 @@
                                      HorizontalContentAlignment="Left"
                                      SelectionMode="Single"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
+
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding CategoryChangeCommand}"  CommandParameter="{Binding ElementName=RadioButtonGroupChoiceChip, Path=SelectedItem}"/>
