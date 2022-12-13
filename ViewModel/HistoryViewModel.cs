@@ -223,8 +223,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     excel.Dispose();
                     System.Windows.MessageBox.Show("Export successful");
                 }
-
-               
             }
             catch (Exception e)
             {
@@ -235,19 +233,31 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public void VisibleTrigger()
         {
             Console.WriteLine("event fired");
+            executeQuery();
         }
+        public delegate void ExecuteDelegate();
+        ExecuteDelegate executeQuery;
 
         public HistoryViewModel()
         {
 
             ControlsEnabled = "False";
             ExecuteViewCalendarRange();
-            executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewToday(); });
-            executeViewAllCommand = new RelayCommand<bool>((p) => { return true; }, (p) => { if (p) ExecuteViewAllQuery(); });
-            executeViewCalendarRange = new RelayCommand<string>((p) => { return true; }, (p) => { ExecuteViewCalendarRange(); });
+            executeQuery = ExecuteViewCalendarRange;
+            executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>
+            {
+                ExecuteViewToday(); executeQuery = ExecuteViewToday;
+            });
+            executeViewAllCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>
+            {
+                ExecuteViewAllQuery(); executeQuery = ExecuteViewAllQuery;
+            });
+            executeViewCalendarRange = new RelayCommand<string>((p) => { return true; }, (p) =>
+            {
+                ExecuteViewCalendarRange(); executeQuery = ExecuteViewCalendarRange;
+            });
             DatePicker_SelectedDateChanged = new RelayCommand<object>(p => true, p => { IsCheckedToday = IsCheckedViewAll = false; });
             ExportCommand = new RelayCommand<object>(p => true, p => { ExportToExcel(); });
         }
-
     }
 }
