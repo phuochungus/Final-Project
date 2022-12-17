@@ -85,6 +85,18 @@
                             <SolidColorBrush Opacity="0"/>
                         </Button.BorderBrush>
                         <Image Margin="2 2 2 2"  Source="\Assets\Icon\History@4x.png"></Image>
+                    </Button>                    
+                    <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="Dashboard"
+                    Command="{Binding ShowDashBoardViewCommand}">
+                        <Button.Background>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.Background>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.BorderBrush>
+                        <materialDesign:PackIcon Width="38" Height="38" Margin="2 2 2 2" Kind="ViewDashboard" />
                     </Button>
 
                 </StackPanel>
