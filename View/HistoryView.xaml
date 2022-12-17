@@ -27,7 +27,7 @@
         >
     <i:Interaction.Triggers>
         <ei:PropertyChangedTrigger Binding="{Binding IsVisible, ElementName=HV}">
-            <ei:CallMethodAction  MethodName="VisibleTrigger" TargetObject="{Binding}"/>
+            <ei:InvokeCommandAction  Command="{Binding VisibleTriggerCommand}" PassEventArgsToCommand="True"/>
         </ei:PropertyChangedTrigger>
     </i:Interaction.Triggers>
 

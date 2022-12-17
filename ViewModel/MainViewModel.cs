@@ -21,7 +21,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             {
                 if (_currentView != value)
                 {
-                    
+                    if(value is HistoryViewModel)
+                    {
+                        HistoryViewModel.keepMonitor = true;
+                    }
+                    else
+                    {
+                        HistoryViewModel.keepMonitor = false;
+                    }
                     _currentView = value;
                     OnPropertyChanged();
                 }
