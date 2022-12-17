@@ -229,6 +229,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 System.Windows.MessageBox.Show("Export unsuccessful");
             }
         }
@@ -237,8 +238,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             //TODO: add behavior upon visible
             //Console.WriteLine("event fired");
             //executeQuery();
-            System.Windows.Controls.Image t = new System.Windows.Controls.Image();
-            BitmapImage b1;
             //t.Source = b1;
         }
         public delegate void ExecuteDelegate();
