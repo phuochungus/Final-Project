@@ -13,11 +13,16 @@
     <viewmodel:HRViewModel x:Key="HRVM"/>
     <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+    <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
 
 
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
+        <view:DashBoardView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type viewmodel:OrderedViewModel}">

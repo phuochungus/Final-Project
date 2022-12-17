@@ -11,6 +11,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowOrderedViewCommand { get; set; }
         public ICommand ShowYourProfiledViewCommand { get; set; }
         public ICommand ShowSettingViewCommand { get; set; }
+        public ICommand ShowDashBoardViewCommand { get; set; }
         
 
         public object CurrentView
@@ -36,6 +37,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ShowHomeViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HomeViewModel(); });
             ShowSettingViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new SettingViewModel(); });
             ShowYourProfiledViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new YourProfileViewModel(); });
+            ShowDashBoardViewCommand = new RelayCommand<object>(p => true, p => { CurrentView = new DashBoardViewModel(); });
         }
     }
 }
