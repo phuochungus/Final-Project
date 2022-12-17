@@ -60,7 +60,7 @@
                         materialDesign:CalendarAssist.IsHeaderVisible="False"
                         materialDesign:HintAssist.Hint="Future Date"
                         SelectedDate="{Binding EndDate}"
-                        utils:AttachedProperties.RegisterBlackoutDates="{Binding BlackoutDates}"
+                        utils:BlackoutDatesExtention.RegisterBlackoutDates="{Binding BlackoutDates}"
                         materialDesign:HintAssist.HelperText="To">
                 </DatePicker>
                 <CheckBox

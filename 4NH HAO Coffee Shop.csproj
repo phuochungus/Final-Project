@@ -215,6 +215,7 @@
       <DependentUpon>MainControlBarUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AttachedProperties.cs" />
+    <Compile Include="Utils\TableOfImage.cs" />
     <Compile Include="Utils\FullyObservableCollection.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
@@ -411,6 +412,7 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Image\Drink.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
