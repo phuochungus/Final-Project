@@ -9,20 +9,32 @@
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
+    using _4NH_HAO_Coffee_Shop.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class Unit
+    public partial class Unit : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
         {
             this.Items = new HashSet<Item>();
         }
-    
         public int Id { get; set; }
-        public string DisplayName { get; set; }
-    
+        private string _DisplayName;
+        public string DisplayName
+        {
+            get
+            {
+                return _DisplayName;
+            }
+            set
+            {
+                _DisplayName = value;
+                OnPropertyChanged();
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
     }

@@ -79,46 +79,8 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Margin="185,26,35,107">
+        <Grid Margin="185,26,35,26">
             <ContentControl Content="{Binding CurrentList}"/>
-        </Grid>
-        <Grid Margin="185,0,35,26" VerticalAlignment="Bottom" Height="57">
-            <Border Background="#FFFFE2A9" CornerRadius="30,30,30,30"/>
-            <Grid Margin="300,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Margin="0,0,10,0">
-                    <Button x:Name="AddButton"
-                        materialDesign:ButtonAssist.CornerRadius="25"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000">
-                        <TextBlock Text="Add" />
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="1" Margin="0,0,10,0">
-                    <Button x:Name="EditButton"
-                        materialDesign:ButtonAssist.CornerRadius="25"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000">
-                        <TextBlock Text="Edit" />
-                    </Button>
-                </Grid>
-                <Grid Grid.Column="2" Margin="0,0,10,0">
-                    <Button x:Name="DeleteButton"
-                        materialDesign:ButtonAssist.CornerRadius="25"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000">
-                        <TextBlock Text="Delete" />
-                    </Button>
-                </Grid>
-            </Grid>
-
         </Grid>
     </Grid>
 </UserControl>

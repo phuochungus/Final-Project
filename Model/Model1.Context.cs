@@ -31,6 +31,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Promo> Promoes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
     }
 }

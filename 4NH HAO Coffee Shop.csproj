@@ -129,6 +129,9 @@
     <Compile Include="Model\Promo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Unit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -333,13 +336,6 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icon\icon_barchart.png" />
-    <Resource Include="Assets\Icon\icon_burger.png" />
-    <Resource Include="Assets\Icon\icon_buymeacoffee.png" />
-    <Resource Include="Assets\Icon\icon_percentoutline.png" />
-    <Resource Include="Assets\Icon\icon_storage.png" />
-    <Content Include="doc\tah%28sql server%29.sql" />
-    <Content Include="doc\tah.sql" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -350,6 +346,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Assets\Icon\icon_barchart.png" />
+    <Resource Include="Assets\Icon\icon_burger.png" />
+    <Resource Include="Assets\Icon\icon_buymeacoffee.png" />
+    <Resource Include="Assets\Icon\icon_percentoutline.png" />
+    <Resource Include="Assets\Icon\icon_storage.png" />
+    <Content Include="doc\tah%28sql server%29.sql" />
+    <Content Include="doc\tah.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

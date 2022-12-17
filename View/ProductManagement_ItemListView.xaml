@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
              xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="474.2" d:DesignWidth="658.15"
+             d:DesignHeight="555.2" d:DesignWidth="658.15"
              xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -21,14 +21,118 @@
     <UserControl.DataContext>
         <vm:ItemListViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid Background="#FFF6FFE2">
-        <Border Background="#FFFFE2A9" CornerRadius="50,50,50,50"/>
-        <Grid Background="#FFF3C186" Margin="40,35,40,0" VerticalAlignment="Top" Height="91">
-            <ListView VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,0,0,25">
+            <Border Background="#FFFFE2A9" CornerRadius="50,50,50,50" Margin="0,1,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row ="0" Background="#FFF3C186" Margin="40,35,40,0" VerticalAlignment="Top" Height="91">
+                        <materialDesign:Card Background="#FFF3C186" Foreground="#DDFF0F0F">
+                            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="33" Margin="10,0,5,0"/>
+                                <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="DisplayName" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="152" Margin="0,0,5,0"/>
+                                <TextBox Text="{Binding UnitId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="UnitId" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="76" Margin="0,0,5,0"/>
+                                <TextBox Text="{Binding CategoryId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="CategoryId" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="116" Margin="0,0,5,0"/>
+                                <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Price" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="40" Margin="0,0,5,0" />
+                                <TextBox Text="{Binding ImageURL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="ImageURL" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="108" Margin="0,0,10,0" />
+                            </WrapPanel>
+                        </materialDesign:Card>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="40,28,40,45" Background="#FFF3C186">
+                        <ListView Name="List" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,-17,0">
+                            <ListView.View >
+                                <GridView >
+                                    <GridViewColumn Width="{Binding ElementName=ImageURL, Path=ActualWidth}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding ImageURL}" Width="50" Height="50" VerticalAlignment="Center" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Id" Width="{Binding ElementName=Id, Path=ActualWidth}" DisplayMemberBinding="{Binding Id}">
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ElementName=DisplayName, Path=ActualWidth}" Header="DisplayName" DisplayMemberBinding="{Binding DisplayName}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <GridViewColumnHeader Tag="DisplayName" VerticalAlignment="Center" HorizontalAlignment="Center"></GridViewColumnHeader>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ElementName=UnitId, Path=ActualWidth}" Header="UnitId" DisplayMemberBinding="{Binding UnitId}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <GridViewColumnHeader Tag="UnitId" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridViewColumnHeader>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ElementName=CategoryId, Path=ActualWidth}" Header="CategoryId" DisplayMemberBinding="{Binding CategoryId}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <GridViewColumnHeader Tag="CategoryId" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridViewColumnHeader>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ElementName=Price, Path=ActualWidth}" Header="Price" DisplayMemberBinding="{Binding Price}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <GridViewColumnHeader Tag="Price" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridViewColumnHeader>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
-        <Grid Margin="40,166,40,29" Background="#FFF3C186">
-            <ListView VerticalAlignment="Bottom" />
+        <Grid Grid.Row="1" VerticalAlignment="Center" Height="63">
+            <Border Background="#FFFFE2A9" CornerRadius="30,30,30,30"/>
+            <Grid Margin="300,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,10,0">
+                    <Button x:Name="AddButton"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000"
+                        Command="{Binding AddCommand}">
+                        <TextBlock Text="Add" />
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,0,10,0">
+                    <Button x:Name="EditButton"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000"
+                        Command="{Binding EditCommand}">
+                        <TextBlock Text="Edit" />
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2" Margin="0,0,10,0">
+                    <Button x:Name="DeleteButton"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FFF3C186" BorderBrush="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="109" Foreground="#DD000000"
+                        Command="{Binding DeleteCommand}">
+                        <TextBlock Text="Delete" />
+                    </Button>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
