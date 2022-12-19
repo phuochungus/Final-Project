@@ -9,11 +9,14 @@ using System.Windows.Input;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     internal class HistoryViewModel : BaseViewModel
     {
+        private Timer ReloadTm = new Timer();
         private ObservableCollection<Bill> _historyList;
         public ObservableCollection<Bill> HistoryList
         {
@@ -179,7 +182,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand executeViewCalendarRange { get; set; }
         public ICommand DatePicker_SelectedDateChanged { get; set; }
         public ICommand ExportCommand { get; set; }
-
+        public ICommand VisibleTriggerCommand { get; set; }
         private void ExportToExcel()
         {
 
@@ -229,21 +232,28 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 System.Windows.MessageBox.Show("Export unsuccessful");
             }
         }
-
-        public void VisibleTrigger()
+        public void VisibleTrigger(object p)
         {
-            Console.WriteLine("event fired");
-            executeQuery();
+            //TODO: add behavior upon visible
+            //Console.WriteLine("event fired");
+            //executeQuery();
+            System.Windows.Controls.Image t = new System.Windows.Controls.Image();
+            BitmapImage b1;
+            //t.Source = b1;
         }
         public delegate void ExecuteDelegate();
         ExecuteDelegate executeQuery;
-
+        public static bool keepMonitor = true;
         public HistoryViewModel()
         {
-
+            ReloadTm.Interval = 1000;
+            ReloadTm.Tick += ReloadTm_Tick;
             ControlsEnabled = "False";
             ExecuteViewCalendarRange();
             executeQuery = ExecuteViewCalendarRange;
+            ReloadTm.Start();
+            VisibleTriggerCommand = new RelayCommand<object>(p => true, p => { VisibleTrigger(p); });
+
             executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>
             {
                 ExecuteViewToday(); executeQuery = ExecuteViewToday;
@@ -258,6 +268,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
             DatePicker_SelectedDateChanged = new RelayCommand<object>(p => true, p => { IsCheckedToday = IsCheckedViewAll = false; });
             ExportCommand = new RelayCommand<object>(p => true, p => { ExportToExcel(); });
+        }
+
+        private void ReloadTm_Tick(object sender, EventArgs e)
+        {
+            if (keepMonitor)
+            {
+                executeQuery();
+                Console.WriteLine("monitor");
+            }
         }
     }
 }

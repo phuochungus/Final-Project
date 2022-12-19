@@ -98,7 +98,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ClearBillCommand { get; set; }
         public HomeViewModel()
         {
-
             int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
             CheckoutCommand = new RelayCommand<object>(p => !Globals.Instance.CurrBill.isEmpty(), p => handleCheckoutCommand(p));
             ViewAll = new RelayCommand<object>(p => true, p => categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList()));
@@ -113,7 +112,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
             });
             ClearBillCommand = new RelayCommand<object>(p=>true, p=> { Globals.Instance.CurrBill.Clear(); });  
-
         }
     }
 }

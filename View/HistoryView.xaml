@@ -27,7 +27,7 @@
         >
     <i:Interaction.Triggers>
         <ei:PropertyChangedTrigger Binding="{Binding IsVisible, ElementName=HV}">
-            <ei:CallMethodAction  MethodName="VisibleTrigger" TargetObject="{Binding}"/>
+            <ei:InvokeCommandAction  Command="{Binding VisibleTriggerCommand}" PassEventArgsToCommand="True"/>
         </ei:PropertyChangedTrigger>
     </i:Interaction.Triggers>
 
@@ -60,7 +60,7 @@
                         materialDesign:CalendarAssist.IsHeaderVisible="False"
                         materialDesign:HintAssist.Hint="Future Date"
                         SelectedDate="{Binding EndDate}"
-                        utils:AttachedProperties.RegisterBlackoutDates="{Binding BlackoutDates}"
+                        utils:BlackoutDatesExtention.RegisterBlackoutDates="{Binding BlackoutDates}"
                         materialDesign:HintAssist.HelperText="To">
                 </DatePicker>
                 <CheckBox

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
@@ -188,7 +189,7 @@
 
                                             <Grid Grid.Row="0">
                                                 <Image 
-                                                    Source="{Binding ImageURL}"
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageURL}"
                                                     Stretch="UniformToFill"
                                                     />
                                             </Grid>

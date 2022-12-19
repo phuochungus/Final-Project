@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace _4NH_HAO_Coffee_Shop.Utils
 {
-    class AttachedProperties : DependencyObject
+    class BlackoutDatesExtention : DependencyObject
     {
-
         #region RegisterBlackoutDates
-
-        // Adds a collection of command bindings to a date picker's existing BlackoutDates collection, since the collections are immutable and can't be bound to otherwise.
-        //
         // Usage: <DatePicker hacks:AttachedProperties.RegisterBlackoutDates="{Binding BlackoutDates}" >
-
-        public static DependencyProperty RegisterBlackoutDatesProperty = DependencyProperty.RegisterAttached("RegisterBlackoutDates", typeof(System.Windows.Controls.CalendarBlackoutDatesCollection), typeof(AttachedProperties), new PropertyMetadata(null, OnRegisterCommandBindingChanged));
-
+        public static DependencyProperty RegisterBlackoutDatesProperty = DependencyProperty.RegisterAttached("RegisterBlackoutDates", typeof(System.Windows.Controls.CalendarBlackoutDatesCollection), typeof(BlackoutDatesExtention), new PropertyMetadata(null, OnRegisterCommandBindingChanged));
         public static void SetRegisterBlackoutDates(UIElement element, System.Windows.Controls.CalendarBlackoutDatesCollection value)
         {
             if (element != null)
@@ -44,7 +34,33 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 }
             }
         }
-
         #endregion
     }
+    class AlterSourceExtention : DependencyObject
+    {
+        public static DependencyProperty RegisterAlterSourceProperty = DependencyProperty.RegisterAttached("RegisterAlterSource", typeof(string), typeof(AlterSourceExtention), new PropertyMetadata(null, OnRegisterCommandBindingChanged));
+        public static void SetRegisterAlterSource(UIElement element, string value)
+        {
+            if (element != null)
+                element.SetValue(RegisterAlterSourceProperty, value);
+        }
+        public static string GetRegisterAlterSource(UIElement element)
+        {
+            return (element != null ? (string)element.GetValue(RegisterAlterSourceProperty) : null);
+
+        }
+        private static void OnRegisterCommandBindingChanged(DependencyObject seeder, DependencyPropertyChangedEventArgs e)
+        {
+            Image element = seeder as Image;
+            if(element!=null)
+            {
+                string binding = e.NewValue as string;
+                if (binding != null)
+                {
+                    element.Source = TableOfImage.Instance.GetBitmapImage(binding);
+                }
+            }
+        }
+    }
+
 }
