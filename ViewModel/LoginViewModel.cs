@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using _4NH_HAO_Coffee_Shop.View;
 using System.Data.Entity;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {

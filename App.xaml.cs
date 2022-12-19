@@ -4,6 +4,7 @@ using System.Windows;
 using _4NH_HAO_Coffee_Shop.ViewModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop
 {

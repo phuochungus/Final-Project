@@ -6,7 +6,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Input;
 using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Utils;
 using LiveChartsCore;
+using LiveChartsCore.Kernel.Events;
+using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
@@ -16,7 +19,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class DashBoardViewModel : BaseViewModel
     {
-        public ISeries[] Series { get; set; } =
+
+        public ISeries[] cartesianChartSeries { get; set; } =
         {
             new LineSeries<long>
             {
@@ -49,7 +53,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
             }
         };
-        private void GetData()
+        public PieSeries<Pie> pieChartSeries { get; set; }
+
+        ObservableCollection<Pie> data = new ObservableCollection<Pie>() { new Pie("1", 4), new Pie("2", 4), new Pie("3", 1) };
+
+        private void fetchAndTranformDataWholeYear()
         {
             using (var conn = new TAHCoffeeEntities())
             {
@@ -59,20 +67,58 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     temp[obj.Month - 1] = obj.Revenue.GetValueOrDefault();
                 }
-                Series[0].Values = temp;
+                cartesianChartSeries[0].Values = temp;
             };
         }
-        public ICommand handlMouseDownEventCommand { get; set; }
-        void handlMouseDownEvent(object e)
+        private void fetchAndTranformDataWholeMonth()
         {
-            Console.Write(e);
+
         }
+
+        public void handlCartesianChartMouseDownEvent(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
+        {
+            Console.WriteLine(chart);
+            Console.WriteLine(point);
+            int SelectedMonth = (int)point.SecondaryValue + 1;
+
+        }
+
+        //public ISeries[] Series { get; set; }
+        //   = new ISeries[]
+        //   {
+        //        new PieSeries<double> { Values = new double[] { 2 } },
+        //        new PieSeries<double> { Values = new double[] { 4 } },
+        //        new PieSeries<double> { Values = new double[] { 1 } },
+        //        new PieSeries<double> { Values = new double[] { 4 } },
+        //        new PieSeries<double> { Values = new double[] { 3 } }
+        //   };
+
+        public ISeries[] citiesSeries { get; set; } =
+        {
+            new PieSeries<int>
+            {
+                Values = new ObservableCollection<int>{1},
+                Name ="pie 1"
+                
+            },
+            new PieSeries<int>
+            {
+                Values = new ObservableCollection<int>{2},
+                Name="pie 2"
+            }
+        };
 
 
         public DashBoardViewModel()
         {
-            GetData();
-            handlMouseDownEventCommand = new RelayCommand<object>(p => true, p => handlMouseDownEvent(p));
+
+            fetchAndTranformDataWholeYear();
+        }
+
+        public class City
+        {
+            public string Name { get; set; }
+            public int Population { get; set; }
         }
     }
 }

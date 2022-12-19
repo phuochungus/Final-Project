@@ -29,7 +29,7 @@
             <Border
                     Background="#C1FFBB" 
                     Margin="32,32,32,32">
-                <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
+                <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
                               Margin="20,20,20,20">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

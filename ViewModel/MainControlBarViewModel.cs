@@ -15,7 +15,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowDashBoardViewCommand { get; set; }
         public ICommand ExitCommand { get; set; }
 
-
         public object CurrentView
         {
             get => _currentView;
@@ -39,7 +38,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public MainControlBarViewModel()
         {
-            
+
             _currentView = new HomeViewModel();
             ShowHistoryViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HistoryViewModel(); });
             ShowOrderedViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new OrderedViewModel(); });
@@ -48,8 +47,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ShowYourProfiledViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new YourProfileViewModel(); });
             ShowDashBoardViewCommand = new RelayCommand<object>(p => true, p => { CurrentView = new DashBoardViewModel(); });
 
-
-            ExitCommand = new RelayCommand<UserControl>((p) => { return true; }, (p) => {
+            ExitCommand = new RelayCommand<UserControl>((p) => { return true; }, (p) =>
+            {
                 FrameworkElement window = GetWindowParent(p);
                 Window w = window as Window;
                 if (w != null)
@@ -58,12 +57,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             });
         }
-
-
-
-        //
-        //
-        //
 
         public FrameworkElement GetWindowParent(UserControl p)
         {

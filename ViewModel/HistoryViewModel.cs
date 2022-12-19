@@ -175,7 +175,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Console.WriteLine(ex.ToString());
                 throw;
             }
-
         }
         public ICommand executeViewAllCommand { get; set; }
         public ICommand executeViewTodayCommand { get; set; }
@@ -185,7 +184,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand VisibleTriggerCommand { get; set; }
         private void ExportToExcel()
         {
-
             try
             {
                 string filePath = "";
@@ -201,7 +199,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     workSheet.Row(1).Height = 20;
                     workSheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     workSheet.Row(1).Style.Font.Bold = true;
-
                     workSheet.Cells[1, 1].Value = "No";
                     workSheet.Cells[1, 2].Value = "Date";
                     workSheet.Cells[1, 3].Value = "Customer ID";

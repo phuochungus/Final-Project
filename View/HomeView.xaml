@@ -249,7 +249,7 @@
                     </Grid>
                     <Grid Grid.Row="1" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.ProductList}">
+                            <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.ProductList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
@@ -327,7 +327,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Total(VND): "
                                        Margin="20 0 0 0"/>
-                                <Label Content="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.Total}"/>
+                                <Label Content="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.Total}"/>
                             </StackPanel>
                             <Grid>
                                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}"

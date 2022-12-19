@@ -1,6 +1,7 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.ViewModel;
 
-namespace _4NH_HAO_Coffee_Shop.ViewModel
+namespace _4NH_HAO_Coffee_Shop.Utils
 {
     public class Globals : BaseViewModel
     {

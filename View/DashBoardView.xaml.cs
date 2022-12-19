@@ -1,4 +1,5 @@
-﻿using LiveChartsCore.SkiaSharpView.WPF;
+﻿using _4NH_HAO_Coffee_Shop.ViewModel;
+using LiveChartsCore.SkiaSharpView.WPF;
 using System;
 using System.Windows.Controls;
 
@@ -11,11 +12,10 @@ namespace _4NH_HAO_Coffee_Shop.View
     {
         public DashBoardView()
         {
-            InitializeComponent();   
+            InitializeComponent();
         }
 
         private void cartesianChart_ChartPointPointerDown(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
-        {
-        }
+            => ((DashBoardViewModel)DataContext).handlCartesianChartMouseDownEvent(chart, point);
     }
 }

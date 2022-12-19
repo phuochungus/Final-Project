@@ -30,17 +30,24 @@
         <lvc:CartesianChart 
             x:Name="cartesianChart" 
             Grid.Row="0" 
-            Series="{Binding Path=Series}" 
+            Series="{Binding Path=cartesianChartSeries}" 
             XAxes="{Binding X}" 
             YAxes="{Binding Y}"
             Margin="10 10 10 10"
             TooltipFindingStrategy="CompareOnlyX"
             AnimationsSpeed="00:00:00.100" ChartPointPointerDown="cartesianChart_ChartPointPointerDown"
-            />
-        <i:Interaction.Triggers>
-            <ei:EventTrigger EventName="ChartPointPointerDown">
-                <ei:InvokeCommandAction Command="{Binding handlMouseDownEventCommand}" PassEventArgsToCommand="True"/>
-            </ei:EventTrigger>
-        </i:Interaction.Triggers>
+            >
+        </lvc:CartesianChart>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <lvc:PieChart 
+                x:Name="pieChart" 
+                Series="{Binding citiesSeries}"
+                AnimationsSpeed="00:00:00.100"
+                />
+        </Grid>
     </Grid>
 </UserControl>
