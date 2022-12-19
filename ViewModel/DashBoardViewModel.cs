@@ -4,29 +4,34 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Windows.Input;
 using _4NH_HAO_Coffee_Shop.Model;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 using static OfficeOpenXml.ExcelErrorValue;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public class City
-    {
-        public string Name { get; set; }
-        public double Population { get; set; }
-        public double Density { get; set; }
-    }
     public class DashBoardViewModel : BaseViewModel
     {
         public ISeries[] Series { get; set; } =
         {
             new LineSeries<long>
             {
-                Values = new long[] { 7000000000, 2, 7, 2, 7, 2 },
-                Fill = null,
-                GeometrySize = 0,
-                LineSmoothness = 1
+                Values = new ObservableCollection<long>{0},
+                Fill = new SolidColorPaint(SKColors.CornflowerBlue),
+                Stroke = null,
+                GeometryFill = null,
+                GeometryStroke = null,
+                TooltipLabelFormatter =
+                    (chartPoint) => $"{chartPoint.PrimaryValue.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN"))}",
+                Mapping = (month, point) =>
+                {
+                    point.PrimaryValue=(double)month;
+                    point.SecondaryValue=point.Context.Index;
+                }
             }
 
         };
@@ -42,23 +47,32 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             new Axis
             {
                 Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
-
             }
         };
-
-
-        public DashBoardViewModel()
+        private void GetData()
         {
             using (var conn = new TAHCoffeeEntities())
             {
                 var result = conn.MonthlyRevenues.ToList();
-                long[] temp = new long[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-                foreach(var obj in result)
+                ObservableCollection<long> temp = new ObservableCollection<long> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                foreach (var obj in result)
                 {
                     temp[obj.Month - 1] = obj.Revenue.GetValueOrDefault();
                 }
                 Series[0].Values = temp;
-            }; 
+            };
+        }
+        public ICommand handlMouseDownEventCommand { get; set; }
+        void handlMouseDownEvent(object e)
+        {
+            Console.Write(e);
+        }
+
+
+        public DashBoardViewModel()
+        {
+            GetData();
+            handlMouseDownEventCommand = new RelayCommand<object>(p => true, p => handlMouseDownEvent(p));
         }
     }
 }

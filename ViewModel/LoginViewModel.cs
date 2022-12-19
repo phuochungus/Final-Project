@@ -61,7 +61,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
-            LoadedCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { MessageBox.Show("Concac"); });
         }
 
         public bool inputCheck()
@@ -116,7 +115,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Console.WriteLine(e.Message);
             }
         }
-
 
         public string CreateMD5(string password)
         {

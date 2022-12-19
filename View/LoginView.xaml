@@ -22,13 +22,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         x:Name="window">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCommand, Source={StaticResource LoginVM}}"
-                                    CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    
+
     <Window.DataContext>
         <vm:LoginViewModel/>
     </Window.DataContext>

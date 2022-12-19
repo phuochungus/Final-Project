@@ -10,6 +10,8 @@
         d:Width="878.15"  
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -25,6 +27,20 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Grid.Row="0" x:Name="cartesianChart" Series="{Binding Path=Series}" XAxes="{Binding X}" YAxes="{Binding Y}"/>
+        <lvc:CartesianChart 
+            x:Name="cartesianChart" 
+            Grid.Row="0" 
+            Series="{Binding Path=Series}" 
+            XAxes="{Binding X}" 
+            YAxes="{Binding Y}"
+            Margin="10 10 10 10"
+            TooltipFindingStrategy="CompareOnlyX"
+            AnimationsSpeed="00:00:00.100" ChartPointPointerDown="cartesianChart_ChartPointPointerDown"
+            />
+        <i:Interaction.Triggers>
+            <ei:EventTrigger EventName="ChartPointPointerDown">
+                <ei:InvokeCommandAction Command="{Binding handlMouseDownEventCommand}" PassEventArgsToCommand="True"/>
+            </ei:EventTrigger>
+        </i:Interaction.Triggers>
     </Grid>
 </UserControl>
