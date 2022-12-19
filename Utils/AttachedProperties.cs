@@ -52,7 +52,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
         private static void OnRegisterCommandBindingChanged(DependencyObject seeder, DependencyPropertyChangedEventArgs e)
         {
             Image element = seeder as Image;
-            if (element != null)
+            if(element!=null)
             {
                 string binding = e.NewValue as string;
                 if (binding != null)

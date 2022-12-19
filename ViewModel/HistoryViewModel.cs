@@ -237,7 +237,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             //TODO: add behavior upon visible
             //Console.WriteLine("event fired");
-            //executeQuery();
+            executeQuery();
             //t.Source = b1;
         }
         public delegate void ExecuteDelegate();

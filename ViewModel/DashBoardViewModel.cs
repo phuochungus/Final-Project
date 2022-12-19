@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _4NH_HAO_Coffee_Shop.Model;
+using System.Globalization;
+using System.Security.Cryptography;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 
@@ -18,19 +15,37 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     }
     public class DashBoardViewModel : BaseViewModel
     {
-        public City[] cities = new City[]
+        public ISeries[] Series { get; set; } =
+        {
+            new LineSeries<double>
             {
-            new City { Name = "Tokyo", Population = 10, Density = 5 },
-            new City { Name = "Cape Town", Population = 9, Density = 6 },
-            new City { Name = "New York", Population = 8, Density = 7 }
-            };
+                Values = new double[] { 7000000000, 2, 7, 2, 7, 2 },
+                Fill = null,
+                GeometrySize = 0,
+                LineSmoothness = 1
+            }
 
-        public ObservableCollection<ISeries> myChartControlSeries { get; set; }
+        };
+        public List<Axis> X { get; set; } = new List<Axis>
+        {
+            new Axis
+            {
+                Labels= new List<string> {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" }
+            }
+        };
+
+        public List<Axis> Y { get; set; } = new List<Axis>
+        {
+            new Axis
+            {
+                Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
+
+            }
+        };
+
 
         public DashBoardViewModel()
         {
-            myChartControlSeries = new ObservableCollection<ISeries>
-            { new LineSeries<City> { Values = cities } };
         }
     }
 }

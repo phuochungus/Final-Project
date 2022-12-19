@@ -21,8 +21,10 @@
         DataContext="{StaticResource DashBoardVM}"
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF">
     <Grid>
-        <lvc:CartesianChart x:Name="myChart" Series="{Binding Path=myChartControlSeries}">
-            
-        </lvc:CartesianChart>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <lvc:CartesianChart Grid.Row="0" x:Name="cartesianChart" Series="{Binding Path=Series}" XAxes="{Binding X}" YAxes="{Binding Y}"/>
     </Grid>
 </UserControl>

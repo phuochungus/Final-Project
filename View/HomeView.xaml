@@ -272,7 +272,7 @@
                                                     Width="70"
                                                     Height="70"
                                                     Stretch="UniformToFill"
-                                                    Source="{Binding Path=Key.ImageURL}"/>
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Key.ImageURL}"/>
                                             </Grid>
                                             <Grid Grid.Column="1">
                                                 <StackPanel>

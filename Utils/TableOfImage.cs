@@ -13,9 +13,9 @@ namespace _4NH_HAO_Coffee_Shop.Utils
 {
     internal class TableOfImage
     {
-        private Dictionary<string,BitmapImage> dict =new Dictionary<string,BitmapImage>();
-        public BitmapImage GetBitmapImage(string URL) 
-        { 
+        private Dictionary<string, BitmapImage> dict = new Dictionary<string, BitmapImage>();
+        public BitmapImage GetBitmapImage(string URL)
+        {
             if (dict.ContainsKey(URL)) return dict[URL];
             else
             {
@@ -27,10 +27,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 return image;
             }
         }
-
-
-
-        private TableOfImage() { } 
+        private TableOfImage() { }
         private static TableOfImage _instance;
         public static TableOfImage Instance
         {

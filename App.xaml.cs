@@ -20,12 +20,7 @@ namespace _4NH_HAO_Coffee_Shop
                 config
                 .AddSkiaSharp()
                 .AddDefaultMappers()
-                .AddLightTheme()
-                .HasMap<City>((city, point) =>
-                {
-                    point.PrimaryValue = (float)city.Population;
-                    point.SecondaryValue = point.Context.Index;
-                });
+                .AddLightTheme();
             });
         }
         protected void AppicationStart(object sender, EventArgs e)
