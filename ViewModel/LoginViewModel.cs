@@ -61,7 +61,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
-            LoadedCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { MessageBox.Show("Concac"); });
         }
 
         public bool inputCheck()
@@ -90,8 +89,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
-            try
-            {
                 Email = "nguyenvana@gmail.com";
                 Password = "password";
                 if (p == null) return;
@@ -110,11 +107,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     Globals.Instance.isAdmin = (Globals.Instance.CurrUser.AccountType == "admin"); ;
                     p.Hide();
                 }
-            }
-            catch 
-            {
-                MessageBox.Show("My Ass is On Fire");
-            }
         }
 
 

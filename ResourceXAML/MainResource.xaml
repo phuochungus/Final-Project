@@ -21,6 +21,10 @@
         <view:HistoryView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewmodel:MainControlBarViewModel}">
+        <UserControl:MainControlBarUC/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
         <view:DashBoardView/>
     </DataTemplate>

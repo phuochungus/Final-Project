@@ -105,7 +105,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Delete((p as Product).Key));
             IncreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Insert((p as Product).Key));
             CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
-            categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(cond => cond.Category.DisplayName == "Drink").ToList());
+            categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList());
             CategoryChangeCommand = new RelayCommand<Category>((p) => true, (p) =>
             {
                 ChosenCategoryID = p.Id;

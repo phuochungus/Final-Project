@@ -20,8 +20,7 @@
         Background="#F6FFE2"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Style="{StaticResource Page_Style}"
-        DataContext="{StaticResource HomeVM}"
-        >
+        DataContext="{StaticResource HomeVM}">
     <UserControl.Resources>
         <Style x:Key="RoundedTextBox" TargetType="{x:Type TextBox}">
             <Style.Resources>
@@ -167,8 +166,7 @@
                         <ItemsControl ItemsSource="{Binding categorizedItemList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                    </WrapPanel>
+                                    <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
@@ -190,8 +188,7 @@
                                             <Grid Grid.Row="0">
                                                 <Image 
                                                     utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageURL}"
-                                                    Stretch="UniformToFill"
-                                                    />
+                                                    Stretch="UniformToFill"/>
                                             </Grid>
 
                                             <Grid Grid.Row="1">
@@ -341,7 +338,7 @@
                                     Margin="10"
                                     Foreground="#FFFFFF"
                                     Background="OrangeRed"
-                                    Content="CHECKOUT"
+                                    Content="Clear"
                                     Command="{Binding ClearBillCommand}"
                                     />
                                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -352,7 +349,7 @@
                                     Margin="10"
                                     Foreground="#FFFFFF"
                                     Background="#6139FF"
-                                    Content="CHECKOUT"
+                                    Content="Checkout"
                                     Command="{Binding CheckoutCommand}"
                                     />
                             </Grid>
