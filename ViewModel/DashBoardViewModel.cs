@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Security.Cryptography;
+using _4NH_HAO_Coffee_Shop.Model;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using static OfficeOpenXml.ExcelErrorValue;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -17,9 +21,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         public ISeries[] Series { get; set; } =
         {
-            new LineSeries<double>
+            new LineSeries<long>
             {
-                Values = new double[] { 7000000000, 2, 7, 2, 7, 2 },
+                Values = new long[] { 7000000000, 2, 7, 2, 7, 2 },
                 Fill = null,
                 GeometrySize = 0,
                 LineSmoothness = 1
@@ -33,7 +37,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Labels= new List<string> {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" }
             }
         };
-
         public List<Axis> Y { get; set; } = new List<Axis>
         {
             new Axis
@@ -46,6 +49,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public DashBoardViewModel()
         {
+            using (var conn = new TAHCoffeeEntities())
+            {
+                var result = conn.MonthlyRevenues.ToList();
+                long[] temp = new long[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                foreach(var obj in result)
+                {
+                    temp[obj.Month - 1] = obj.Revenue.GetValueOrDefault();
+                }
+                Series[0].Values = temp;
+            }; 
         }
     }
 }

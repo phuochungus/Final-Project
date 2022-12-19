@@ -236,9 +236,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public void VisibleTrigger(object p)
         {
             //TODO: add behavior upon visible
-            //Console.WriteLine("event fired");
-            executeQuery();
-            //t.Source = b1;
+
         }
         public delegate void ExecuteDelegate();
         ExecuteDelegate executeQuery;
@@ -274,7 +272,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             if (keepMonitor)
             {
                 executeQuery();
-                Console.WriteLine("monitor");
             }
         }
     }

@@ -32,5 +32,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Promo> Promoes { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<MonthlyRevenue> MonthlyRevenues { get; set; }
     }
 }

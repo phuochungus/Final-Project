@@ -73,6 +73,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DisplayName" Type="nvarchar(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TAHCoffee.dbo.MonthlyRevenue' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MonthlyRevenue">
+          <Key>
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Revenue" Type="int" />
+        </EntityType>
         <Association Name="FK__Account__Managed__4BAC3F29">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Account1" Type="Self.Account" Multiplicity="*" />
@@ -165,6 +174,12 @@
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyRevenue" EntityType="Self.MonthlyRevenue" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MonthlyRevenue].[Month] AS [Month], 
+    [MonthlyRevenue].[Revenue] AS [Revenue]
+    FROM [dbo].[MonthlyRevenue] AS [MonthlyRevenue]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Account__Managed__4BAC3F29" Association="Self.FK__Account__Managed__4BAC3F29">
             <End Role="Account" EntitySet="Account" />
             <End Role="Account1" EntitySet="Account" />
@@ -281,6 +296,13 @@
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Items" Relationship="Self.FK__Item__UnitId__3B75D760" FromRole="Unit" ToRole="Item" />
         </EntityType>
+        <EntityType Name="MonthlyRevenue">
+          <Key>
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Revenue" Type="Int32" />
+        </EntityType>
         <Association Name="FK__Account__Managed__4BAC3F29">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Account1" Type="Self.Account" Multiplicity="*" />
@@ -373,6 +395,7 @@
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Promoes" EntityType="Self.Promo" />
           <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="MonthlyRevenues" EntityType="Self.MonthlyRevenue" />
           <AssociationSet Name="FK__Account__Managed__4BAC3F29" Association="Self.FK__Account__Managed__4BAC3F29">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Account1" EntitySet="Accounts" />
@@ -479,6 +502,14 @@
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyRevenues">
+            <EntityTypeMapping TypeName="TAHCoffeeModel.MonthlyRevenue">
+              <MappingFragment StoreEntitySet="MonthlyRevenue">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Revenue" ColumnName="Revenue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
