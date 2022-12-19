@@ -54,12 +54,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set { _password = value; OnPropertyChanged(); }
         }
 
+        public ICommand LoadedCommand { get; set; }
 
         public LoginViewModel()
         {
             ProgressBar = Visibility.Hidden;
             LoginButton = Visibility.Visible;
             LoginCommand = new RelayCommand<Window>((p) => { return inputCheck(); }, (p) => { handleLoginButtonPress(p); });
+            LoadedCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { MessageBox.Show("Concac"); });
         }
 
         public bool inputCheck()
