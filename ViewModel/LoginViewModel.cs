@@ -1,19 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using MaterialDesignThemes.Wpf;
 using _4NH_HAO_Coffee_Shop.Model;
-using System.Net.Mail;
 using System.Security.Cryptography;
-using _4NH_HAO_Coffee_Shop.View;
 using System.Data.Entity;
 using _4NH_HAO_Coffee_Shop.Utils;
 
@@ -92,7 +84,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             try
             {
-                Email = "nguyenvana@gmail.com";
+                Email = "nguyenthib@gmail.com";
                 Password = "password";
                 if (p == null) return;
                 ProgressBar = Visibility.Visible;
