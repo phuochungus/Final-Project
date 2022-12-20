@@ -167,7 +167,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
                         ManagedBy = ManagedBy,
-
+                        ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
                     };
                 }
                 else
@@ -180,6 +180,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         Password = Password,
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
+                        ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
                     };
                 };
                 DataProvider.Ins.DB.Accounts.Add(account);

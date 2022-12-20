@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
@@ -19,8 +20,7 @@
         Background="#F6FFE2"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Style="{StaticResource Page_Style}"
-        DataContext="{StaticResource HomeVM}"
-        >
+        DataContext="{StaticResource HomeVM}">
     <UserControl.Resources>
         <Style x:Key="RoundedTextBox" TargetType="{x:Type TextBox}">
             <Style.Resources>
@@ -133,6 +133,7 @@
                                      HorizontalContentAlignment="Left"
                                      SelectionMode="Single"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
+
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding CategoryChangeCommand}"  CommandParameter="{Binding ElementName=RadioButtonGroupChoiceChip, Path=SelectedItem}"/>
@@ -165,8 +166,7 @@
                         <ItemsControl ItemsSource="{Binding categorizedItemList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                    </WrapPanel>
+                                    <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
@@ -187,9 +187,8 @@
 
                                             <Grid Grid.Row="0">
                                                 <Image 
-                                                    Source="{Binding ImageURL}"
-                                                    Stretch="UniformToFill"
-                                                    />
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageURL}"
+                                                    Stretch="UniformToFill"/>
                                             </Grid>
 
                                             <Grid Grid.Row="1">
@@ -250,7 +249,7 @@
                     </Grid>
                     <Grid Grid.Row="1" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.ProductList}">
+                            <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.ProductList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
@@ -270,7 +269,7 @@
                                                     Width="70"
                                                     Height="70"
                                                     Stretch="UniformToFill"
-                                                    Source="{Binding Path=Key.ImageURL}"/>
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Key.ImageURL}"/>
                                             </Grid>
                                             <Grid Grid.Column="1">
                                                 <StackPanel>
@@ -313,7 +312,7 @@
                                                             Command="{Binding Source={StaticResource HomeVM}, Path=DecreaseQuantityCommand}"
                                                             CommandParameter="{Binding}"
                                                             >
-                                                        <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" />
+                                                        <Image Source="pack://application:,,,/Assets/Icon/ArrowDown.ico"/>
                                                     </Button>
                                                 </StackPanel>
                                             </Grid>
@@ -328,9 +327,20 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Total(VND): "
                                        Margin="20 0 0 0"/>
-                                <Label Content="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.Total}"/>
+                                <Label Content="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.Total}"/>
                             </StackPanel>
                             <Grid>
+                                <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    Height="30"
+                                    Width="110"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Margin="10"
+                                    Foreground="#FFFFFF"
+                                    Background="OrangeRed"
+                                    Content="Clear"
+                                    Command="{Binding ClearBillCommand}"
+                                    />
                                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                                     Height="30"
                                     Width="110"
@@ -339,7 +349,7 @@
                                     Margin="10"
                                     Foreground="#FFFFFF"
                                     Background="#6139FF"
-                                    Content="CHECKOUT"
+                                    Content="Checkout"
                                     Command="{Binding CheckoutCommand}"
                                     />
                             </Grid>

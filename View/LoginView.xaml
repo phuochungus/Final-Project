@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -21,7 +22,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         x:Name="window">
-    
+
     <Window.DataContext>
         <vm:LoginViewModel/>
     </Window.DataContext>

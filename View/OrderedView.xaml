@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         mc:Ignorable="d"
@@ -22,13 +23,12 @@
     <UserControl.DataContext>
         <vm:OrderedViewModel/>
     </UserControl.DataContext>
-
     <Grid>
         <Grid>
             <Border
                     Background="#C1FFBB" 
                     Margin="32,32,32,32">
-                <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
+                <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
                               Margin="20,20,20,20">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -39,7 +39,6 @@
                         <DataTemplate>
                             <StackPanel>
                                 <materialDesign:Card Margin="5 5 5 5">
-
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition
@@ -50,7 +49,7 @@
                                                 Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Image
-                                            Source="{Binding ProductList[0].Key.ImageURL}"
+                                            utils:AlterSourceExtention.RegisterAlterSource="{Binding ProductList[0].Key.ImageURL}"
                                             Height="200"
                                             Width="200"
                                             Stretch="UniformToFill" />
@@ -61,7 +60,10 @@
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" FontWeight="Bold" Text="Bill: "/>
+                                            <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="Bill: #"/>
+                                                <TextBlock FontWeight="Bold" Text="{Binding Id}"/>
+                                            </StackPanel>
                                             <DataGrid 
                                                 Grid.Row="1"
                                                 ScrollViewer.CanContentScroll="true"
@@ -71,12 +73,12 @@
                                                 IsEnabled="True"
                                                 AutoGenerateColumns="False"
                                                 CanUserResizeRows="False"
-                                                CanUserResizeColumns="False">
+                                                CanUserResizeColumns="False"
+                                                MaxHeight="260">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Key.DisplayName}"/>
                                                     <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Value}"/>
                                                 </DataGrid.Columns>
-
                                             </DataGrid>
                                         </Grid>
                                         <StackPanel

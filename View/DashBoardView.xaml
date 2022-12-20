@@ -1,0 +1,104 @@
+﻿<UserControl         
+        x:Class="_4NH_HAO_Coffee_Shop.View.DashBoardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
+        mc:Ignorable="d"
+        d:Height="607.2" 
+        d:Width="878.15"  
+        xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Style="{StaticResource Page_Style}"
+        DataContext="{StaticResource DashBoardVM}"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label
+                Content="Total Revenue Per Month"
+                FontFamily="{StaticResource PoppinsBold}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                />
+            <lvc:CartesianChart 
+            x:Name="LargeCartesianChart" 
+            Series="{Binding Path=cartesianChartSeries}" 
+            XAxes="{Binding X}" 
+            YAxes="{Binding Y}"
+            Margin="5 5 5 5"
+            TooltipFindingStrategy="CompareOnlyX"
+            AnimationsSpeed="00:00:00.100" ChartPointPointerDown="LargeCartesianChart_ChartPointPointerDown"
+            />
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    Content="Production By Revenue"/>
+                <Grid Grid.Row="0">
+                    <lvc:PieChart 
+                    x:Name="pieChartRevenue"
+                    Series="{Binding PieChartRevenueSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    InitialRotation="90"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    Content="Production By Quantity"/>
+                <Grid Grid.Row="0">
+                    <lvc:PieChart 
+                    x:Name="pieChartQuantity"
+                    Series="{Binding PieChartQuantitySeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    InitialRotation="90"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <lvc:CartesianChart
+                    x:Name="CustomerCartesianChart"
+                    XAxes="{Binding MonthAxis}"
+                    YAxes="{Binding Yaxis}"
+                    Series="{Binding CustomerCartesianSeries}"/>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

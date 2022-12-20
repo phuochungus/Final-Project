@@ -1,13 +1,10 @@
-﻿using _4NH_HAO_Coffee_Shop;
-using _4NH_HAO_Coffee_Shop.View;
+﻿using _4NH_HAO_Coffee_Shop.View;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using _4NH_HAO_Coffee_Shop.ViewModel;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop
 {
@@ -16,6 +13,17 @@ namespace _4NH_HAO_Coffee_Shop
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            LiveCharts.Configure(config =>
+            {
+                config
+                .AddSkiaSharp()
+                .AddDefaultMappers()
+                .AddLightTheme();
+            });
+        }
         protected void AppicationStart(object sender, EventArgs e)
         {
             var LoginView = new LoginView();

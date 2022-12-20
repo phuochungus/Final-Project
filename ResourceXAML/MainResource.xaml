@@ -13,11 +13,20 @@
     <viewmodel:HRViewModel x:Key="HRVM"/>
     <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
+    <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
 
 
 
     <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
         <view:HistoryView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:MainControlBarViewModel}">
+        <UserControl:MainControlBarUC/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
+        <view:DashBoardView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type viewmodel:OrderedViewModel}">
@@ -38,6 +47,7 @@
     <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
         <view:SettingView/>
     </DataTemplate>
+    
     <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
         <UserControl:GeneralControlBarUC/>
     </DataTemplate>
@@ -60,13 +70,13 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                         Duration="0:0:1"
+                                         Duration="0:0:0.2"
                                          From="0"
                                          To="1" />
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                         From="50"
+                                         From="30"
                                          To="0"
-                                         Duration="0:0:0.4"
+                                         Duration="0:0:0.2"
                                          DecelerationRatio="0.3" />
                     </Storyboard>
                 </BeginStoryboard>
