@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using _4NH_HAO_Coffee_Shop.View;
 using System.Data.Entity;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -89,6 +90,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public async void handleLoginButtonPress(Window p)
         {
+            try
+            {
                 Email = "nguyenvana@gmail.com";
                 Password = "password";
                 if (p == null) return;
@@ -107,8 +110,12 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     Globals.Instance.isAdmin = (Globals.Instance.CurrUser.AccountType == "admin"); ;
                     p.Hide();
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-
 
         public string CreateMD5(string password)
         {

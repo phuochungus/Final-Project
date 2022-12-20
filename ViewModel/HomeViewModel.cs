@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {

@@ -20,6 +20,7 @@
             <FontFamily x:Key="WorkSansItalic">pack://application:,,,/Assets/Font/#Work Sans Italic</FontFamily>
             <FontFamily x:Key="InterRegular">pack://application:,,,/Assets/Font/#Inter Regular</FontFamily>
             <FontFamily x:Key="InterExtraBold">pack://application:,,,/Assets/Font/#Inter ExtraBold</FontFamily>
+            <FontFamily x:Key="PoppinsBold">pack://application:,,,/Assets/Font/#Poppins Bold</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

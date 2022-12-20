@@ -4,6 +4,7 @@ using System.Windows;
 using _4NH_HAO_Coffee_Shop.ViewModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using _4NH_HAO_Coffee_Shop.Utils;
 
 namespace _4NH_HAO_Coffee_Shop
 {
@@ -20,12 +21,7 @@ namespace _4NH_HAO_Coffee_Shop
                 config
                 .AddSkiaSharp()
                 .AddDefaultMappers()
-                .AddLightTheme()
-                .HasMap<City>((city, point) =>
-                {
-                    point.PrimaryValue = (float)city.Population;
-                    point.SecondaryValue = point.Context.Index;
-                });
+                .AddLightTheme();
             });
         }
         protected void AppicationStart(object sender, EventArgs e)

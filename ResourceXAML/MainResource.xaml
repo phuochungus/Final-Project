@@ -47,6 +47,7 @@
     <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
         <view:SettingView/>
     </DataTemplate>
+    
     <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
         <UserControl:GeneralControlBarUC/>
     </DataTemplate>
