@@ -22,7 +22,7 @@ namespace _4NH_HAO_Coffee_Shop.View
         {
             var parent1 = VisualTreeHelper.GetParent(pieChartRevenue);
             var parent2 = VisualTreeHelper.GetParent(pieChartQuantity);
-            var parent2 = VisualTreeHelper.GetParent(CustomerCartesianChart);
+            var parent3 = VisualTreeHelper.GetParent(CustomerCartesianChart);
             if (parent1 != null)
             {
                 Grid Parent = parent1 as Grid;
@@ -41,9 +41,9 @@ namespace _4NH_HAO_Coffee_Shop.View
                 pieChartQuantity.InitialRotation = -90;
                 Parent.Children.Add(pieChartQuantity);
             }
-            if (parent2 != null)
+            if (parent3 != null)
             {
-                Grid Parent = parent2 as Grid;
+                Grid Parent = parent3 as Grid;
                 Parent.Children.Remove(CustomerCartesianChart);
                 CustomerCartesianChart = new CartesianChart();
                 CustomerCartesianChart.Series = (DataContext as DashBoardViewModel).CustomerCartesianSeries;

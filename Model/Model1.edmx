@@ -166,6 +166,17 @@ warning 6002: The table/view 'TAHCoffee.dbo.MonthlyRevenue' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="FetchCustomerOfMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Day" Type="int" />
+                <Property Name="Customer" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="FetchDataOfMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Month" Type="int" Mode="In" />
           <ReturnType>
@@ -227,6 +238,10 @@ warning 6002: The table/view 'TAHCoffee.dbo.MonthlyRevenue' does not have a prim
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TAHCoffeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="FetchCustomerOfMonth_Result">
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Customer" Type="Int32" />
+        </ComplexType>
         <ComplexType Name="FetchDataOfMonth_Result">
           <Property Name="Id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -443,6 +458,9 @@ warning 6002: The table/view 'TAHCoffee.dbo.MonthlyRevenue' does not have a prim
             <End Role="Unit" EntitySet="Units" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
+          <FunctionImport Name="FetchCustomerOfMonth" IsComposable="true" ReturnType="Collection(TAHCoffeeModel.FetchCustomerOfMonth_Result)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="FetchDataOfMonth" IsComposable="true" ReturnType="Collection(TAHCoffeeModel.FetchDataOfMonth_Result)">
             <Parameter Name="Month" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -535,6 +553,14 @@ warning 6002: The table/view 'TAHCoffee.dbo.MonthlyRevenue' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionName="TAHCoffeeModel.Store.FetchCustomerOfMonth" FunctionImportName="FetchCustomerOfMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TAHCoffeeModel.FetchCustomerOfMonth_Result">
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionName="TAHCoffeeModel.Store.FetchDataOfMonth" FunctionImportName="FetchDataOfMonth">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TAHCoffeeModel.FetchDataOfMonth_Result">

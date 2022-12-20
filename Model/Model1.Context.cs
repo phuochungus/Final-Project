@@ -36,6 +36,16 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<MonthlyRevenue> MonthlyRevenues { get; set; }
     
+        [DbFunction("TAHCoffeeEntities", "FetchCustomerOfMonth")]
+        public virtual IQueryable<FetchCustomerOfMonth_Result> FetchCustomerOfMonth(Nullable<int> month)
+        {
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FetchCustomerOfMonth_Result>("[TAHCoffeeEntities].[FetchCustomerOfMonth](@month)", monthParameter);
+        }
+    
         [DbFunction("TAHCoffeeEntities", "FetchDataOfMonth")]
         public virtual IQueryable<FetchDataOfMonth_Result> FetchDataOfMonth(Nullable<int> month)
         {

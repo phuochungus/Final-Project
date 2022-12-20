@@ -66,11 +66,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public ObservableCollection<ISeries> CustomerCartesianSeries
         {
-            get => customerCartesianChart;
+            get => customerCartesianSeries;
             set
             {
-                customerCartesianChart = value;
-                OnPropertyChanged(nameof(CustomerCartesianChart));
+                customerCartesianSeries = value;
+                OnPropertyChanged(nameof(CustomerCartesianSeries));
             }
         }
 
