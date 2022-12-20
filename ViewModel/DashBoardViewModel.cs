@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Management;
 using _4NH_HAO_Coffee_Shop.Model;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
@@ -35,7 +36,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             new Axis
             {
-                Labels= new List<string> {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" }
+                Labels = new List<string> {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" }
             }
         };
         public List<Axis> Y { get; set; } = new List<Axis>
@@ -45,6 +46,37 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
             }
         };
+        private ObservableCollection<Axis> yaxis = new ObservableCollection<Axis>
+        {
+            new Axis
+            {
+                Labels=new ObservableCollection<string>(),
+                Name= "Customer",
+                MinStep=1,
+            }
+        };
+
+        public ObservableCollection<Axis> Yaxis { get => yaxis; set => yaxis = value; }
+
+        private ObservableCollection<Axis> monthAxis = new ObservableCollection<Axis>
+        {
+            new Axis
+            {
+                Labels=new ObservableCollection<string>(),
+                Name="Date",
+                MinStep=1,
+            }
+        };
+
+        public ObservableCollection<Axis> MonthAxis
+        {
+            get => monthAxis;
+            set
+            {
+                monthAxis = value;
+                OnPropertyChanged(nameof(MonthAxis));
+            }
+        }
 
         public ObservableCollection<ISeries> PieChartRevenueSeries
         {
@@ -90,14 +122,23 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         private void fetchAndTranformDataWholeMonth(int SeletedMonth)
         {
             List<FetchDataOfMonth_Result> table1, table2;
+            List<FetchCustomerOfMonth_Result> table3;
+            //
             using (var conn = new TAHCoffeeEntities())
             {
                 table1 = table2 = conn.FetchDataOfMonth(SeletedMonth).ToList();
+                table3 = conn.FetchCustomerOfMonth(SeletedMonth).ToList();
             }
+            //
             PieChartRevenueSeries.Clear();
             PieChartQuantitySeries.Clear();
+            CustomerCartesianSeries.Clear();
+            //
             table1.Sort(new PriceComparer());
             table2.Sort(new QuantityComparer());
+            table3.Sort(new CustomerComparer());
+            //
+
             foreach (FetchDataOfMonth_Result row in table1)
             {
                 PieChartRevenueSeries.Add(
@@ -115,7 +156,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     }
                 );
             }
-
             foreach (FetchDataOfMonth_Result row in table2)
             {
                 PieChartQuantitySeries.Add(
@@ -133,13 +173,36 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                    }
                 );
             }
-        }
 
+            //
+
+            CustomerCartesianSeries.Add(new ColumnSeries<int>
+            {
+                Values = new ObservableCollection<int>(),
+                TooltipLabelFormatter =
+                    (chartPoint) => $"{chartPoint.PrimaryValue}",
+
+
+            });
+            var temp = new ObservableCollection<int>();
+            var temp2 = new ObservableCollection<string>();
+            for (int i = 0; i < Math.Min(table3.Count, 5); i++)
+            {
+
+                temp.Add(table3[i].Customer.GetValueOrDefault());
+                temp2.Add(table3[i].Day.ToString());
+            }
+            CustomerCartesianSeries[0].Values = temp;
+            monthAxis[0].Labels = temp2;
+
+        }
         public void handlCartesianChartMouseDownEvent(IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
         {
             int SelectedMonth = (int)point.SecondaryValue + 1;
             fetchAndTranformDataWholeMonth(SelectedMonth);
         }
+
+
         public DashBoardViewModel()
         {
             fetchAndTranformDataWholeYear();

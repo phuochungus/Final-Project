@@ -21,5 +21,12 @@ namespace _4NH_HAO_Coffee_Shop.Model
             return y.Quantity.GetValueOrDefault().CompareTo(x.Quantity.GetValueOrDefault());
         }
     }
+    public class CustomerComparer : IComparer<FetchCustomerOfMonth_Result>
+    {
+        public int Compare(FetchCustomerOfMonth_Result x, FetchCustomerOfMonth_Result y)
+        {
+            return y.Customer.GetValueOrDefault().CompareTo(x.Customer.GetValueOrDefault());
+        }
+    }
 }
 

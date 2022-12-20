@@ -46,6 +46,8 @@ namespace _4NH_HAO_Coffee_Shop.View
                 Grid Parent = parent3 as Grid;
                 Parent.Children.Remove(CustomerCartesianChart);
                 CustomerCartesianChart = new CartesianChart();
+                CustomerCartesianChart.YAxes = (DataContext as DashBoardViewModel).Yaxis;
+                CustomerCartesianChart.XAxes = (DataContext as DashBoardViewModel).MonthAxis;
                 CustomerCartesianChart.Series = (DataContext as DashBoardViewModel).CustomerCartesianSeries;
                 Parent.Children.Add(CustomerCartesianChart);
             }

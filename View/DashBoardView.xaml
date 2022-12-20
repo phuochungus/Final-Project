@@ -94,7 +94,9 @@
             <Grid Grid.Column="2">
                 <lvc:CartesianChart
                     x:Name="CustomerCartesianChart"
-                    Series="{Binding }"/>
+                    XAxes="{Binding MonthAxis}"
+                    YAxes="{Binding Yaxis}"
+                    Series="{Binding CustomerCartesianSeries}"/>
 
             </Grid>
         </Grid>
