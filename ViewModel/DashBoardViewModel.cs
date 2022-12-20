@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Windows.Input;
 using _4NH_HAO_Coffee_Shop.Model;
-using _4NH_HAO_Coffee_Shop.Utils;
 using LiveChartsCore;
-using LiveChartsCore.Kernel.Events;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using static OfficeOpenXml.ExcelErrorValue;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class DashBoardViewModel : BaseViewModel
     {
-
+        private ObservableCollection<ISeries> pieChartRevenueSeries = new ObservableCollection<ISeries>();
+        private ObservableCollection<ISeries> pieChartQuantitySeries = new ObservableCollection<ISeries>();
+        private ObservableCollection<ISeries> customerCartesianSeries = new ObservableCollection<ISeries>();
         public ISeries[] cartesianChartSeries { get; set; } =
         {
             new LineSeries<long>
@@ -31,11 +28,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 GeometryStroke = null,
                 TooltipLabelFormatter =
                     (chartPoint) => $"{chartPoint.PrimaryValue.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN"))}",
-                Mapping = (month, point) =>
-                {
-                    point.PrimaryValue=(double)month;
-                    point.SecondaryValue=point.Context.Index;
-                }
             }
 
         };
@@ -53,9 +45,34 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
             }
         };
-        public PieSeries<Pie> pieChartSeries { get; set; }
 
-        ObservableCollection<Pie> data = new ObservableCollection<Pie>() { new Pie("1", 4), new Pie("2", 4), new Pie("3", 1) };
+        public ObservableCollection<ISeries> PieChartRevenueSeries
+        {
+            get => pieChartRevenueSeries;
+            set
+            {
+                pieChartRevenueSeries = value;
+                OnPropertyChanged(nameof(PieChartRevenueSeries));
+            }
+        }
+        public ObservableCollection<ISeries> PieChartQuantitySeries
+        {
+            get => pieChartQuantitySeries;
+            set
+            {
+                pieChartQuantitySeries = value;
+                OnPropertyChanged(nameof(PieChartQuantitySeries));
+            }
+        }
+        public ObservableCollection<ISeries> CustomerCartesianSeries
+        {
+            get => customerCartesianChart;
+            set
+            {
+                customerCartesianChart = value;
+                OnPropertyChanged(nameof(CustomerCartesianChart));
+            }
+        }
 
         private void fetchAndTranformDataWholeYear()
         {
@@ -70,55 +87,62 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 cartesianChartSeries[0].Values = temp;
             };
         }
-        private void fetchAndTranformDataWholeMonth()
+        private void fetchAndTranformDataWholeMonth(int SeletedMonth)
         {
-
-        }
-
-        public void handlCartesianChartMouseDownEvent(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
-        {
-            Console.WriteLine(chart);
-            Console.WriteLine(point);
-            int SelectedMonth = (int)point.SecondaryValue + 1;
-
-        }
-
-        //public ISeries[] Series { get; set; }
-        //   = new ISeries[]
-        //   {
-        //        new PieSeries<double> { Values = new double[] { 2 } },
-        //        new PieSeries<double> { Values = new double[] { 4 } },
-        //        new PieSeries<double> { Values = new double[] { 1 } },
-        //        new PieSeries<double> { Values = new double[] { 4 } },
-        //        new PieSeries<double> { Values = new double[] { 3 } }
-        //   };
-
-        public ISeries[] citiesSeries { get; set; } =
-        {
-            new PieSeries<int>
+            List<FetchDataOfMonth_Result> table1, table2;
+            using (var conn = new TAHCoffeeEntities())
             {
-                Values = new ObservableCollection<int>{1},
-                Name ="pie 1"
-                
-            },
-            new PieSeries<int>
-            {
-                Values = new ObservableCollection<int>{2},
-                Name="pie 2"
+                table1 = table2 = conn.FetchDataOfMonth(SeletedMonth).ToList();
             }
-        };
+            PieChartRevenueSeries.Clear();
+            PieChartQuantitySeries.Clear();
+            table1.Sort(new PriceComparer());
+            table2.Sort(new QuantityComparer());
+            foreach (FetchDataOfMonth_Result row in table1)
+            {
+                PieChartRevenueSeries.Add(
+                    new PieSeries<int>
+                    {
+                        Values = new ObservableCollection<int> { row.Price.GetValueOrDefault() },
+                        Name = row.DisplayName,
+                        Tag = row,
+                        Mapping = (FetchDataOfMonth_Result, Point) =>
+                        {
+                            Point.PrimaryValue = row.Price.GetValueOrDefault();
+                        },
+                        TooltipLabelFormatter =
+                            (chartPoint) => $"{chartPoint.Context.Series.Name} {chartPoint.PrimaryValue.ToString("C3", CultureInfo.CreateSpecificCulture("vi-VN"))} {chartPoint.StackedValue.Share:P2}",
+                    }
+                );
+            }
 
+            foreach (FetchDataOfMonth_Result row in table2)
+            {
+                PieChartQuantitySeries.Add(
+                   new PieSeries<int>
+                   {
+                       Values = new ObservableCollection<int> { row.Quantity.GetValueOrDefault() },
+                       Name = row.DisplayName,
+                       Tag = row,
+                       Mapping = (FetchDataOfMonth_Result, Point) =>
+                       {
+                           Point.PrimaryValue = row.Quantity.GetValueOrDefault();
+                       },
+                       TooltipLabelFormatter =
+                            (chartPoint) => $"{chartPoint.Context.Series.Name} {chartPoint.PrimaryValue} {chartPoint.StackedValue.Share:P2}",
+                   }
+                );
+            }
+        }
 
+        public void handlCartesianChartMouseDownEvent(IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
+        {
+            int SelectedMonth = (int)point.SecondaryValue + 1;
+            fetchAndTranformDataWholeMonth(SelectedMonth);
+        }
         public DashBoardViewModel()
         {
-
             fetchAndTranformDataWholeYear();
-        }
-
-        public class City
-        {
-            public string Name { get; set; }
-            public int Population { get; set; }
         }
     }
 }

@@ -27,27 +27,76 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart 
-            x:Name="cartesianChart" 
-            Grid.Row="0" 
+        <Grid Grid.Row="0">
+            <Label
+                Content="Total Revenue Per Month"
+                FontFamily="{StaticResource PoppinsBold}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                />
+            <lvc:CartesianChart 
+            x:Name="LargeCartesianChart" 
             Series="{Binding Path=cartesianChartSeries}" 
             XAxes="{Binding X}" 
             YAxes="{Binding Y}"
-            Margin="10 10 10 10"
+            Margin="5 5 5 5"
             TooltipFindingStrategy="CompareOnlyX"
-            AnimationsSpeed="00:00:00.100" ChartPointPointerDown="cartesianChart_ChartPointPointerDown"
-            >
-        </lvc:CartesianChart>
+            AnimationsSpeed="00:00:00.100" ChartPointPointerDown="LargeCartesianChart_ChartPointPointerDown"
+            />
+        </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            <lvc:PieChart 
-                x:Name="pieChart" 
-                Series="{Binding citiesSeries}"
-                AnimationsSpeed="00:00:00.100"
-                />
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    Content="Production By Revenue"/>
+                <Grid Grid.Row="0">
+                    <lvc:PieChart 
+                    x:Name="pieChartRevenue"
+                    Series="{Binding PieChartRevenueSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    InitialRotation="90"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    Content="Production By Quantity"/>
+                <Grid Grid.Row="0">
+                    <lvc:PieChart 
+                    x:Name="pieChartQuantity"
+                    Series="{Binding PieChartQuantitySeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    InitialRotation="90"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <lvc:CartesianChart
+                    x:Name="CustomerCartesianChart"
+                    Series="{Binding }"/>
+
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

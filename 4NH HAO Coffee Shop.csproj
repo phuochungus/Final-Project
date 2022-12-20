@@ -178,6 +178,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\Comparer.cs" />
+    <Compile Include="Model\FetchDataOfMonth_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Item.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,7 +205,6 @@
     </Compile>
     <Compile Include="Model\OrderList.cs" />
     <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\Pie.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\Promo.cs">
@@ -287,6 +290,7 @@
     <Resource Include="Assets\Font\WorkSans-Italic.ttf" />
     <Resource Include="Assets\Font\WorkSans-Regular.ttf" />
     <None Include="App.Config" />
+    <Resource Include="Assets\Font\Poppins-Bold.ttf" />
     <None Include="doc\TAHcoffe.docx" />
     <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -417,6 +421,7 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\ArrowDown.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

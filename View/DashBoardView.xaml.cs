@@ -1,7 +1,10 @@
 ﻿using _4NH_HAO_Coffee_Shop.ViewModel;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.WPF;
 using System;
 using System.Windows.Controls;
+using System.Windows.Diagnostics;
+using System.Windows.Media;
 
 namespace _4NH_HAO_Coffee_Shop.View
 {
@@ -15,7 +18,38 @@ namespace _4NH_HAO_Coffee_Shop.View
             InitializeComponent();
         }
 
-        private void cartesianChart_ChartPointPointerDown(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
-            => ((DashBoardViewModel)DataContext).handlCartesianChartMouseDownEvent(chart, point);
+        private void LargeCartesianChart_ChartPointPointerDown(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
+        {
+            var parent1 = VisualTreeHelper.GetParent(pieChartRevenue);
+            var parent2 = VisualTreeHelper.GetParent(pieChartQuantity);
+            var parent2 = VisualTreeHelper.GetParent(CustomerCartesianChart);
+            if (parent1 != null)
+            {
+                Grid Parent = parent1 as Grid;
+                Parent.Children.Remove(pieChartRevenue);
+                pieChartRevenue = new PieChart();
+                pieChartRevenue.Series = (DataContext as DashBoardViewModel).PieChartRevenueSeries;
+                pieChartRevenue.InitialRotation = -90;
+                Parent.Children.Add(pieChartRevenue);
+            }
+            if (parent2 != null)
+            {
+                Grid Parent = parent2 as Grid;
+                Parent.Children.Remove(pieChartQuantity);
+                pieChartQuantity = new PieChart();
+                pieChartQuantity.Series = (DataContext as DashBoardViewModel).PieChartQuantitySeries;
+                pieChartQuantity.InitialRotation = -90;
+                Parent.Children.Add(pieChartQuantity);
+            }
+            if (parent2 != null)
+            {
+                Grid Parent = parent2 as Grid;
+                Parent.Children.Remove(CustomerCartesianChart);
+                CustomerCartesianChart = new CartesianChart();
+                CustomerCartesianChart.Series = (DataContext as DashBoardViewModel).CustomerCartesianSeries;
+                Parent.Children.Add(CustomerCartesianChart);
+            }
+            ((DashBoardViewModel)DataContext).handlCartesianChartMouseDownEvent(chart, point);
+        }
     }
 }

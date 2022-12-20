@@ -23,7 +23,6 @@
     <UserControl.DataContext>
         <vm:OrderedViewModel/>
     </UserControl.DataContext>
-
     <Grid>
         <Grid>
             <Border
@@ -40,7 +39,6 @@
                         <DataTemplate>
                             <StackPanel>
                                 <materialDesign:Card Margin="5 5 5 5">
-
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition
@@ -66,7 +64,6 @@
                                                 <TextBlock FontWeight="Bold" Text="Bill: #"/>
                                                 <TextBlock FontWeight="Bold" Text="{Binding Id}"/>
                                             </StackPanel>
-                            
                                             <DataGrid 
                                                 Grid.Row="1"
                                                 ScrollViewer.CanContentScroll="true"
@@ -76,12 +73,12 @@
                                                 IsEnabled="True"
                                                 AutoGenerateColumns="False"
                                                 CanUserResizeRows="False"
-                                                CanUserResizeColumns="False">
+                                                CanUserResizeColumns="False"
+                                                MaxHeight="260">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Key.DisplayName}"/>
                                                     <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Value}"/>
                                                 </DataGrid.Columns>
-
                                             </DataGrid>
                                         </Grid>
                                         <StackPanel

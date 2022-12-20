@@ -312,7 +312,7 @@
                                                             Command="{Binding Source={StaticResource HomeVM}, Path=DecreaseQuantityCommand}"
                                                             CommandParameter="{Binding}"
                                                             >
-                                                        <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" />
+                                                        <Image Source="pack://application:,,,/Assets/Icon/ArrowDown.ico"/>
                                                     </Button>
                                                 </StackPanel>
                                             </Grid>
