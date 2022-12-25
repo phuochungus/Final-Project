@@ -1,4 +1,5 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,8 +13,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class HRViewModel : BaseViewModel
     {
-        private ObservableCollection<Account> _List;
-        public ObservableCollection<Account> List
+        private FullyObservableCollection<Account> _List;
+        public FullyObservableCollection<Account> List
         {
             get => _List;
             set
@@ -141,7 +142,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand DeleteCommand { get; set; }
         public HRViewModel()
         {
-            List = new ObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
+            List = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
                 if (Idlist == null || Idlist.Count() != 0) return false;
@@ -203,7 +204,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ModifyCommand = new RelayCommand<object>((p) => {
                 if (string.IsNullOrEmpty(Id)) return false;
                 if (Selecteditem == null) return false;
-                if (Id != Selecteditem.Id) return false;
+                if (Id != Selecteditem.Id ) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
@@ -229,7 +230,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 account.Id = Id;
                 account.DisplayName = DisplayName;
                 account.Email = Email;
-                account.Password = CreateMD5(Password);
+                if (Password != Selecteditem.Password) account.Password = CreateMD5(Password);
                 account.PhoneNumber = PhoneNumber;
                 account.AccountType = AccountType;
                 if (AccountType == "staff") account.ManagedBy = ManagedBy;
@@ -238,7 +239,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Selecteditem.Id = Id;
                 Selecteditem.DisplayName = DisplayName;
                 Selecteditem.Email = Email;
-                Selecteditem.Password = CreateMD5(Password);
+                if (Password != Selecteditem.Password) Selecteditem.Password = CreateMD5(Password);
                 Selecteditem.PhoneNumber = PhoneNumber;
                 Selecteditem.AccountType = AccountType;
                 Selecteditem.ManagedBy = ManagedBy;
