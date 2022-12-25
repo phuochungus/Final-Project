@@ -52,7 +52,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             }
         }
-        
 
         private string _Id;
         public string Id
@@ -143,7 +142,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public HRViewModel()
         {
             List = new ObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
-            
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
                 if (Idlist == null || Idlist.Count() != 0) return false;
@@ -181,6 +179,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         AccountType = AccountType,
                         ManagedBy = ManagedBy,
                         ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
+
                     };
                 }
                 else
@@ -204,9 +203,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ModifyCommand = new RelayCommand<object>((p) => {
                 if (string.IsNullOrEmpty(Id)) return false;
                 if (Selecteditem == null) return false;
-                if (Id != Selecteditem.Id || DisplayName == Selecteditem.DisplayName || Email == Selecteditem.Email || 
-                Password == Selecteditem.Password || PhoneNumber == Selecteditem.PhoneNumber || ManagedBy == Selecteditem.ManagedBy) 
-                    return false;
+                if (Id != Selecteditem.Id) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
