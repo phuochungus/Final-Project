@@ -42,7 +42,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public string ImageURL { get => _ImageURL; set { _ImageURL = value; OnPropertyChanged(); } }
 
         private string _ManageBy;
-        public string ManagedBy { get => _ManageBy; set { _ManageBy = value; OnPropertyChanged(); } 
+        public string ManagedBy { get => _ManageBy; set { _ManageBy = value; OnPropertyChanged(); } }
                                  
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account1 { get; set; }
