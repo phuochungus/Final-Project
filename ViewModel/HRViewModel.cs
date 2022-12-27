@@ -1,8 +1,10 @@
 ﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,8 +13,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class HRViewModel : BaseViewModel
     {
-        private ObservableCollection<Account> _List;
-        public ObservableCollection<Account> List
+        private FullyObservableCollection<Account> _List;
+        public FullyObservableCollection<Account> List
         {
             get => _List;
             set
@@ -21,6 +23,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public string CreateMD5(string password)
+        {
+            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
+
+            string encoded = BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
+            return encoded;
+        }
+
         private Account _Selecteditem;
         public Account Selecteditem
         {
@@ -130,7 +142,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand DeleteCommand { get; set; }
         public HRViewModel()
         {
-            List = new ObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
+            List = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
                 if (Idlist == null || Idlist.Count() != 0) return false;
@@ -163,10 +175,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         Id = Id,
                         DisplayName = DisplayName,
                         Email = Email,
-                        Password = Password,
+                        Password = CreateMD5(Password),
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
                         ManagedBy = ManagedBy,
+                        ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
 
                     };
                 }
@@ -177,9 +190,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         Id = Id,
                         DisplayName = DisplayName,
                         Email = Email,
-                        Password = Password,
+                        Password = CreateMD5(Password),
                         PhoneNumber = PhoneNumber,
                         AccountType = AccountType,
+                        ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
                     };
                 };
                 DataProvider.Ins.DB.Accounts.Add(account);
@@ -190,7 +204,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ModifyCommand = new RelayCommand<object>((p) => {
                 if (string.IsNullOrEmpty(Id)) return false;
                 if (Selecteditem == null) return false;
-                if (Id != Selecteditem.Id) return false;
+                if (Id != Selecteditem.Id ) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
@@ -216,7 +230,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 account.Id = Id;
                 account.DisplayName = DisplayName;
                 account.Email = Email;
-                account.Password = Password;
+                if (Password != Selecteditem.Password) account.Password = CreateMD5(Password);
                 account.PhoneNumber = PhoneNumber;
                 account.AccountType = AccountType;
                 if (AccountType == "staff") account.ManagedBy = ManagedBy;
@@ -225,7 +239,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Selecteditem.Id = Id;
                 Selecteditem.DisplayName = DisplayName;
                 Selecteditem.Email = Email;
-                Selecteditem.Password = Password;
+                if (Password != Selecteditem.Password) Selecteditem.Password = CreateMD5(Password);
                 Selecteditem.PhoneNumber = PhoneNumber;
                 Selecteditem.AccountType = AccountType;
                 Selecteditem.ManagedBy = ManagedBy;
