@@ -175,7 +175,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Console.WriteLine(ex.ToString());
                 throw;
             }
-
         }
         public ICommand executeViewAllCommand { get; set; }
         public ICommand executeViewTodayCommand { get; set; }
@@ -185,7 +184,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand VisibleTriggerCommand { get; set; }
         private void ExportToExcel()
         {
-
             try
             {
                 string filePath = "";
@@ -201,7 +199,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     workSheet.Row(1).Height = 20;
                     workSheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     workSheet.Row(1).Style.Font.Bold = true;
-
                     workSheet.Cells[1, 1].Value = "No";
                     workSheet.Cells[1, 2].Value = "Date";
                     workSheet.Cells[1, 3].Value = "Customer ID";
@@ -229,17 +226,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 System.Windows.MessageBox.Show("Export unsuccessful");
             }
         }
         public void VisibleTrigger(object p)
         {
             //TODO: add behavior upon visible
-            //Console.WriteLine("event fired");
-            //executeQuery();
-            System.Windows.Controls.Image t = new System.Windows.Controls.Image();
-            BitmapImage b1;
-            //t.Source = b1;
+
         }
         public delegate void ExecuteDelegate();
         ExecuteDelegate executeQuery;
@@ -275,7 +269,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             if (keepMonitor)
             {
                 executeQuery();
-                Console.WriteLine("monitor");
             }
         }
     }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
              mc:Ignorable="d" 
              xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
@@ -53,7 +54,9 @@
                 <Grid Width="300" Grid.Column="1">
                     <Ellipse Height="150" Width="150" Margin="50,10,50,150">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding ImageSource}" Stretch="UniformToFill"/>
+                            <ImageBrush 
+                                utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageSource}"
+                                Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
 

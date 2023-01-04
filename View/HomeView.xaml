@@ -249,7 +249,7 @@
                     </Grid>
                     <Grid Grid.Row="1" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.ProductList}">
+                            <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.ProductList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
@@ -269,7 +269,7 @@
                                                     Width="70"
                                                     Height="70"
                                                     Stretch="UniformToFill"
-                                                    Source="{Binding Path=Key.ImageURL}"/>
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Key.ImageURL}"/>
                                             </Grid>
                                             <Grid Grid.Column="1">
                                                 <StackPanel>
@@ -312,7 +312,7 @@
                                                             Command="{Binding Source={StaticResource HomeVM}, Path=DecreaseQuantityCommand}"
                                                             CommandParameter="{Binding}"
                                                             >
-                                                        <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" />
+                                                        <Image Source="pack://application:,,,/Assets/Icon/ArrowDown.ico"/>
                                                     </Button>
                                                 </StackPanel>
                                             </Grid>
@@ -327,7 +327,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Total(VND): "
                                        Margin="20 0 0 0"/>
-                                <Label Content="{Binding Source={x:Static vm:Globals.Instance}, Path=CurrBill.Total}"/>
+                                <Label Content="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.Total}"/>
                             </StackPanel>
                             <Grid>
                                 <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
