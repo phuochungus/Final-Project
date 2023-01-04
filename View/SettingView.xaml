@@ -10,6 +10,7 @@
         d:Width="878.15"  
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,22 +18,101 @@
         TextOptions.TextRenderingMode="Auto"
         Background="#F6FFE2"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Style="{StaticResource Page_Style}">
+        Style="{StaticResource Page_Style}"
+        DataContext="{StaticResource SettingVM}">
 
 
-    
-        <Grid Background="Transparent" 
+
+    <Grid Background="Transparent" 
               Margin="20 20 20 20">
-            <Border CornerRadius="30"
-                    Background="#B0A9FF">
-                
-                
-                <StackPanel>
-                
-                </StackPanel>
-            
-            
-            </Border>
-        </Grid>
-    
+
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="ADJUST SYSTEM COLORS"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" FontSize="22" FontFamily="Algerian" FontWeight="Bold"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Please change me, won't let you down: "
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <materialDesign:ColorPicker x:Name="ControlBarColorPicker">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp" >
+                                    <i:InvokeCommandAction Command="{Binding ChangeControlBarColor, Source={StaticResource GCBVM}}" 
+                                                           PassEventArgsToCommand="True"
+                                                           CommandParameter="{Binding ElementName=ControlBarColorPicker}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </materialDesign:ColorPicker>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Please change me, won't let you down: "
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <materialDesign:ColorPicker></materialDesign:ColorPicker>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Please change me, won't let you down: "
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <materialDesign:ColorPicker></materialDesign:ColorPicker>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+
 </UserControl>

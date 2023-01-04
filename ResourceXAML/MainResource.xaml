@@ -14,6 +14,7 @@
     <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
     <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
+    <viewmodel:SettingViewModel x:Key="SettingVM"/>
 
 
 
