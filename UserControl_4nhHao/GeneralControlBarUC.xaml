@@ -41,7 +41,7 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="{Binding BGColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+        <Grid Grid.Row="0" Background="{Binding BGColor}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

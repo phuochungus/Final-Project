@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         mc:Ignorable="d"
-         Title="HRView" Height="665" Width="936"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="HRView" Height="665" Width="936"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         DataContext="{StaticResource HRVM}">
     <Grid>
         <Grid.RowDefinitions>

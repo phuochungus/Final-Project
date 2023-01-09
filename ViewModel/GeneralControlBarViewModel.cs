@@ -1,5 +1,5 @@
 ﻿
-using MaterialDesignThemes.Wpf;
+using Haley.WPF.Controls;
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,14 +13,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         public ICommand DragMoveWindowCommand { get; set; }
         public ICommand ResizeWindowCommand { get; set; }
-        public ICommand ChangeControlBarColor { get; set; }
-
+        public ICommand UpperBarColorChange { get; set; }
 
         private System.Windows.Media.Brush _BGColor;
         public System.Windows.Media.Brush BGColor { get => _BGColor; set { _BGColor = value; OnPropertyChanged(); } }
 
         public GeneralControlBarViewModel()
         {
+            BGColor = new SolidColorBrush(Colors.DarkTurquoise);
+
             DragMoveWindowCommand = new RelayCommand<UserControl>((p) =>
             {
                 return true;
@@ -51,14 +52,12 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             });
 
-            ChangeControlBarColor = new RelayCommand<ColorPicker>((p) =>
+            UpperBarColorChange = new RelayCommand<Haley.WPF.Controls.ColorPickerButton>((p) =>
             {
                 return true;
             }, (p) =>   
             {
-                BaseViewModel us = new SettingViewModel();
-                
-                MessageBox.Show(p.Color.ToString());
+                BGColor = new SolidColorBrush(p.SelectedColor);
             });
         }
 
