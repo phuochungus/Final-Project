@@ -23,28 +23,28 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
 
         private string _Id;
-        public string Id { get => _Id; set { _Id = value; OnPropertyChanged(); } }
+        public string Id { get => _Id; set { _Id = value; notifyPropertyChange(); } }
 
         private string _Displayname;
-        public string DisplayName { get => _Displayname; set { _Displayname = value; OnPropertyChanged(); } }
+        public string DisplayName { get => _Displayname; set { _Displayname = value; notifyPropertyChange(); } }
 
         private string _Email;
-        public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
+        public string Email { get => _Email; set { _Email = value; notifyPropertyChange(); } }
 
         private string _PhonenNumber;
-        public string PhoneNumber { get => _PhonenNumber; set { _PhonenNumber = value; OnPropertyChanged(); } }
+        public string PhoneNumber { get => _PhonenNumber; set { _PhonenNumber = value; notifyPropertyChange(); } }
 
         private string _Password;
-        public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
+        public string Password { get => _Password; set { _Password = value; notifyPropertyChange(); } }
 
         private string _AccountType;
-        public string AccountType { get => _AccountType; set { _AccountType = value; OnPropertyChanged(); } }
+        public string AccountType { get => _AccountType; set { _AccountType = value; notifyPropertyChange(); } }
         private string _ImageURL { get; set; }
-        public string ImageURL { get => _ImageURL; set { _ImageURL = value; OnPropertyChanged(); } }
+        public string ImageURL { get => _ImageURL; set { _ImageURL = value; notifyPropertyChange(); } }
 
         private string _ManageBy;
-        public string ManagedBy { get => _ManageBy; set { _ManageBy = value; OnPropertyChanged(); } }
-                                 
+        public string ManagedBy { get => _ManageBy; set { _ManageBy = value; notifyPropertyChange(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account1 { get; set; }
         public virtual Account Account2 { get; set; }

@@ -9,12 +9,10 @@ using System.Windows.Input;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
-using System.Drawing;
-using System.Windows.Media.Imaging;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    internal class HistoryViewModel : BaseViewModel
+    partial class HistoryViewModel : BaseViewModel
     {
         private Timer ReloadTm = new Timer();
         private ObservableCollection<Bill> _historyList;
@@ -26,7 +24,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (_historyList != value)
                 {
                     _historyList = value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -37,7 +35,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _controlsEnabled = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
             }
         }
         private DateTime _startDate = DateTime.Now;
@@ -51,7 +49,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (_blackoutDates != value)
                 {
                     _blackoutDates = value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -64,7 +62,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     _endDate = value;
                     ExecuteViewCalendarRange();
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -80,7 +78,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
                     t.BlackoutDates.Add(new CalendarDateRange(new DateTime(), _startDate));
                     BlackoutDates = t.BlackoutDates;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -95,7 +93,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     _isCheckedViewAll = value;
                     if (value) IsCheckedToday = !value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -108,7 +106,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     _isCheckedToday = value;
                     if (value) IsCheckedViewAll = !value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -124,10 +122,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                     else CustomerId 
                                 end as CustomerId, Total   
                                 from Bill";
-
                 HistoryList = new ObservableCollection<Bill>(conn.Bills.SqlQuery(queryString).ToList());
             }
         }
+
         public void ExecuteViewToday()
         {
             using (var conn = new TAHCoffeeEntities())
@@ -246,6 +244,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ExecuteViewCalendarRange();
             executeQuery = ExecuteViewCalendarRange;
             ReloadTm.Start();
+
             VisibleTriggerCommand = new RelayCommand<object>(p => true, p => { VisibleTrigger(p); });
 
             executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>

@@ -19,7 +19,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
             {
                 if (key == value) return;
                 key = value;
-                OnPropertyChanged(nameof(Key));
+                notifyPropertyChange(nameof(Key));
             }
         }
         private int value { get; set; } = 0;
@@ -30,7 +30,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
             {
                 if (this.value == value) return;
                 this.value = value;
-                OnPropertyChanged(nameof(Value));
+                notifyPropertyChange(nameof(Value));
             }
         }
         unsafe public Product(Item item, int value) { Key = item; Value = value; }

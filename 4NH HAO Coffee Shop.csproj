@@ -213,12 +213,6 @@
     <Compile Include="Model\Promo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Unit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -239,6 +233,7 @@
     <Compile Include="ViewModel\GeneralControlBarViewModel.cs" />
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
+    <Compile Include="ViewModel\HistoryViewModel2.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\HRViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -298,6 +293,7 @@
     <Resource Include="Assets\Font\WorkSans-Bold.ttf" />
     <Resource Include="Assets\Font\WorkSans-Italic.ttf" />
     <Resource Include="Assets\Font\WorkSans-Regular.ttf" />
+    <None Include=".editorconfig" />
     <None Include="App.Config" />
     <Resource Include="Assets\Font\Poppins-Bold.ttf" />
     <None Include="doc\TAHcoffe.docx" />

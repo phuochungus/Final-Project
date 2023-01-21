@@ -11,11 +11,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class HomeViewModel : BaseViewModel
     {
         private ObservableCollection<Category> _categoryList;
-        public ObservableCollection<Category> CategoryList { get => _categoryList; set { _categoryList = value; OnPropertyChanged(); } }
+        public ObservableCollection<Category> CategoryList { get => _categoryList; set { _categoryList = value; notifyPropertyChange(); } }
         private Category _getCategory;
-        public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
+        public Category GetCategory { get => _getCategory; set { _getCategory = value; notifyPropertyChange(); } }
         private ObservableCollection<Item> _categorizedItemList;
-        public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
+        public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; notifyPropertyChange(); } }
         private int totalPrice = 0;
         public int TotalPrice
         {
@@ -25,7 +25,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (totalPrice != value)
                 {
                     totalPrice = value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (value != _currentCategory)
                 {
                     _currentCategory = value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
         }

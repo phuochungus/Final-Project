@@ -23,7 +23,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 if (total != value)
                 {
                     total = value;
-                    OnPropertyChanged(nameof(Total));
+                    notifyPropertyChange(nameof(Total));
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 if (productList != value)
                 {
                     productList = value;
-                    OnPropertyChanged(nameof(ProductList));
+                    notifyPropertyChange(nameof(ProductList));
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 if (id != value)
                 {
                     id = value;
-                    OnPropertyChanged(nameof(Id));
+                    notifyPropertyChange(nameof(Id));
                 }
             }
         }

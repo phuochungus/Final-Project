@@ -18,7 +18,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _currentView = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
             }
         }
         private string _ImageSource;
@@ -28,7 +28,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _ImageSource = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
 
             }
         }
@@ -40,7 +40,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _DisplayName = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
 
             }
         }
@@ -52,7 +52,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _Email = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
 
             }
         }
@@ -64,7 +64,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _PhoneNumber = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
 
             }
         }
@@ -77,7 +77,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _AccountType = value;
-                OnPropertyChanged();
+                notifyPropertyChange();
 
             }
         }

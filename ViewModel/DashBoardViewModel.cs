@@ -74,7 +74,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 monthAxis = value;
-                OnPropertyChanged(nameof(MonthAxis));
+                notifyPropertyChange(nameof(MonthAxis));
             }
         }
 
@@ -84,7 +84,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 pieChartRevenueSeries = value;
-                OnPropertyChanged(nameof(PieChartRevenueSeries));
+                notifyPropertyChange(nameof(PieChartRevenueSeries));
             }
         }
         public ObservableCollection<ISeries> PieChartQuantitySeries
@@ -93,7 +93,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 pieChartQuantitySeries = value;
-                OnPropertyChanged(nameof(PieChartQuantitySeries));
+                notifyPropertyChange(nameof(PieChartQuantitySeries));
             }
         }
         public ObservableCollection<ISeries> CustomerCartesianSeries
@@ -102,7 +102,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 customerCartesianSeries = value;
-                OnPropertyChanged(nameof(CustomerCartesianSeries));
+                notifyPropertyChange(nameof(CustomerCartesianSeries));
             }
         }
 
@@ -174,7 +174,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 );
             }
 
-            //
+            
 
             CustomerCartesianSeries.Add(new ColumnSeries<int>
             {
@@ -201,7 +201,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             int SelectedMonth = (int)point.SecondaryValue + 1;
             fetchAndTranformDataWholeMonth(SelectedMonth);
         }
-
 
         public DashBoardViewModel()
         {

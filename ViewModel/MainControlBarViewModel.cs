@@ -31,7 +31,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         HistoryViewModel.keepMonitor = false;
                     }
                     _currentView = value;
-                    OnPropertyChanged();
+                    notifyPropertyChange();
                 }
             }
 
