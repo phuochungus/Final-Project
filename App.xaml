@@ -6,14 +6,18 @@
              Startup="AppicationStart">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Material design -->
+           
             <ResourceDictionary.MergedDictionaries>
+                <!-- Material design -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/ResourceXAML/MainResource.xaml"/>
+                <!-- Haley -->
+                <ResourceDictionary Source="pack://application:,,,/Haley.WPF;component/Dictionaries/haleyRD.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
             <!-- Font -->
             <FontFamily x:Key="WorkSansRegular">pack://application:,,,/Assets/Font/#Work Sans Regular</FontFamily>
             <FontFamily x:Key="WorkSansBold">pack://application:,,,/Assets/Font/#Work Sans Bool</FontFamily>

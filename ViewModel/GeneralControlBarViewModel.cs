@@ -1,19 +1,32 @@
 ﻿
+using Haley.WPF.Controls;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public  class GeneralControlBarViewModel : BaseViewModel
+    public class GeneralControlBarViewModel : BaseViewModel
     {
         public ICommand DragMoveWindowCommand { get; set; }
         public ICommand ResizeWindowCommand { get; set; }
-        public GeneralControlBarViewModel() 
+        public ICommand UpperBarColorChange { get; set; }
+
+        private System.Windows.Media.Brush _BGColor;
+        public System.Windows.Media.Brush BGColor { get => _BGColor; set { _BGColor = value; OnPropertyChanged(); } }
+
+        public GeneralControlBarViewModel()
         {
-            DragMoveWindowCommand = new RelayCommand<UserControl>((p) => {
+            BGColor = new SolidColorBrush(Colors.DarkTurquoise);
+
+            DragMoveWindowCommand = new RelayCommand<UserControl>((p) =>
+            {
                 return true;
-            }, (p) => {
+            }, (p) =>
+            {
                 FrameworkElement window = GetWindowParent(p);
                 Window w = window as Window;
                 if (w != null)
@@ -23,9 +36,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             });
 
-            ResizeWindowCommand = new RelayCommand<UserControl>((p) => {
+            ResizeWindowCommand = new RelayCommand<UserControl>((p) =>
+            {
                 return true;
-            }, (p) => {
+            }, (p) =>
+            {
                 FrameworkElement window = GetWindowParent(p);
                 Window w = window as Window;
                 if (w != null)
@@ -35,6 +50,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     else if (w.WindowState != WindowState.Normal)
                         w.WindowState = WindowState.Normal;
                 }
+            });
+
+            UpperBarColorChange = new RelayCommand<Haley.WPF.Controls.ColorPickerButton>((p) =>
+            {
+                return true;
+            }, (p) =>   
+            {
+                BGColor = new SolidColorBrush(p.SelectedColor);
             });
         }
 
