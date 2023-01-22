@@ -20,7 +20,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _List = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
             }
         }
 
@@ -40,7 +40,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _Selecteditem = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
                 if (Selecteditem != null)
                 {
                     Id = Selecteditem.Id;
@@ -61,7 +61,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _Id = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -73,7 +73,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _DisplayName = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -85,7 +85,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _Email = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -97,7 +97,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _PhoneNumber = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -109,7 +109,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _Password = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -121,7 +121,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _AccountType = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }
@@ -133,7 +133,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 _ManagedBy = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
 
             }
         }

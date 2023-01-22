@@ -20,31 +20,31 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public Visibility ViewVisible
         {
             get => _viewVisible;
-            set { _viewVisible = value; notifyPropertyChange(); }
+            set { _viewVisible = value; OnPropertyChanged(); }
 
         }
         public Visibility LoginButton
         {
             get => _loginButton;
-            set { _loginButton = value; notifyPropertyChange(); }
+            set { _loginButton = value; OnPropertyChanged(); }
         }
         public Visibility ProgressBar
         {
             get => _progressBar;
-            set { _progressBar = value; notifyPropertyChange(); }
+            set { _progressBar = value; OnPropertyChanged(); }
         }
 
         private string _email { get; set; }
         public string Email
         {
             get => _email;
-            set { _email = value; notifyPropertyChange(); }
+            set { _email = value; OnPropertyChanged(); }
         }
         private string _password { get; set; }
         public string Password
         {
             get => _password;
-            set { _password = value; notifyPropertyChange(); }
+            set { _password = value; OnPropertyChanged(); }
         }
 
         public ICommand LoadedCommand { get; set; }

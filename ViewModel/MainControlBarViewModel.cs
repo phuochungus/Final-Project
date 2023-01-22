@@ -24,14 +24,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 {
                     if (value is HistoryViewModel)
                     {
-                        HistoryViewModel.keepMonitor = true;
+                        HistoryViewModel.keepFetchingSearchResult = true;
                     }
                     else
                     {
-                        HistoryViewModel.keepMonitor = false;
+                        HistoryViewModel.keepFetchingSearchResult = false;
                     }
                     _currentView = value;
-                    notifyPropertyChange();
+                    OnPropertyChanged();
                 }
             }
 

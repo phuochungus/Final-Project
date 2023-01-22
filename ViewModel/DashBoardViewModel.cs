@@ -28,7 +28,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 GeometryFill = null,
                 GeometryStroke = null,
                 TooltipLabelFormatter =
-                    (chartPoint) => $"{chartPoint.PrimaryValue.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN"))}",
+                    (chartPoint) => $"{chartPoint.PrimaryValue.ToString("C0",CultureInfo.CreateSpecificCulture("vi-VN"))}",
             }
 
         };
@@ -43,7 +43,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             new Axis
             {
-                Labeler=(value) => value.ToString("C3",CultureInfo.CreateSpecificCulture("vi-VN")),
+                Labeler=(value) => value.ToString("C0",CultureInfo.CreateSpecificCulture("vi-VN")),
             }
         };
         private ObservableCollection<Axis> yaxis = new ObservableCollection<Axis>
@@ -74,7 +74,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 monthAxis = value;
-                notifyPropertyChange(nameof(MonthAxis));
+                OnPropertyChanged(nameof(MonthAxis));
             }
         }
 
@@ -84,7 +84,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 pieChartRevenueSeries = value;
-                notifyPropertyChange(nameof(PieChartRevenueSeries));
+                OnPropertyChanged(nameof(PieChartRevenueSeries));
             }
         }
         public ObservableCollection<ISeries> PieChartQuantitySeries
@@ -93,7 +93,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 pieChartQuantitySeries = value;
-                notifyPropertyChange(nameof(PieChartQuantitySeries));
+                OnPropertyChanged(nameof(PieChartQuantitySeries));
             }
         }
         public ObservableCollection<ISeries> CustomerCartesianSeries
@@ -102,7 +102,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 customerCartesianSeries = value;
-                notifyPropertyChange(nameof(CustomerCartesianSeries));
+                OnPropertyChanged(nameof(CustomerCartesianSeries));
             }
         }
 
@@ -152,7 +152,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                             Point.PrimaryValue = row.Price.GetValueOrDefault();
                         },
                         TooltipLabelFormatter =
-                            (chartPoint) => $"{chartPoint.Context.Series.Name} {chartPoint.PrimaryValue.ToString("C3", CultureInfo.CreateSpecificCulture("vi-VN"))} {chartPoint.StackedValue.Share:P2}",
+                            (chartPoint) => $"{chartPoint.Context.Series.Name} {chartPoint.PrimaryValue.ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN"))} {chartPoint.StackedValue.Share:P2}",
                     }
                 );
             }

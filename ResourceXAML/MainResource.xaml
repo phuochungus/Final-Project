@@ -9,7 +9,7 @@
     <viewmodel:MainControlBarViewModel x:Key="MainControlBarVM"/>
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:HomeViewModel x:Key="HomeVM"/>
-    <viewmodel:HistoryViewModel2 x:Key="HistoryVM"/>
+    <viewmodel:HistoryViewModel x:Key="HistoryVM"/>
     <viewmodel:HRViewModel x:Key="HRVM"/>
     <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>

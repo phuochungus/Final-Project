@@ -12,7 +12,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
             {
                 if (currUser == value) return;
                 currUser = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
             }
         }
         private bool _isAdmin { get; set; }
@@ -23,7 +23,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
             {
                 if (_isAdmin == value) return;
                 _isAdmin = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
             }
         }
         private Order _currBill { get; set; } = new Order();
@@ -35,7 +35,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 if (_currBill != value)
                 {
                     _currBill = value;
-                    notifyPropertyChange();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
             {
                 if (orderQueue == value) return;
                 orderQueue = value;
-                notifyPropertyChange();
+                OnPropertyChanged();
             }
         }
 
@@ -70,7 +70,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                     CurrBill.Total += (quantity - CurrBill.ProductList[i].Value);
                     CurrBill.ProductList[i].Value = quantity;
                     if (quantity == 0) CurrBill.ProductList.RemoveAt(i);
-                    Instance.notifyPropertyChange();
+                    Instance.OnPropertyChanged();
                     return true;
                 }
             }
@@ -85,12 +85,12 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 if (CurrBill.ProductList[i].Key.Id == item.Id)
                 {
                     CurrBill.ProductList[i].Value++;
-                    Instance.notifyPropertyChange(nameof(CurrBill));
+                    Instance.OnPropertyChanged(nameof(CurrBill));
                     return true;
                 }
             }
             CurrBill.ProductList.Add(new Product(item, 1));
-            Instance.notifyPropertyChange(nameof(CurrBill));
+            Instance.OnPropertyChanged(nameof(CurrBill));
             return true;
         }
         public bool Delete(Item item)
@@ -101,7 +101,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 {
                     CurrBill.Total -= item.Price;
                     CurrBill.ProductList[i].Value--;
-                    Instance.notifyPropertyChange(nameof(CurrBill));
+                    Instance.OnPropertyChanged(nameof(CurrBill));
                     return true;
                 }
             }

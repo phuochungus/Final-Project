@@ -43,14 +43,9 @@
                     SelectedDateFormat="Long"
                     Margin="10 0 0 0"
                     materialDesign:HintAssist.Hint="Start"
-                    SelectedDate="{Binding transactionLogFilter.startDate}"
+                    SelectedDate="{Binding transactionLogSearcherProperty.transactionLogFilterProperty.startDate}"
                     Style="{StaticResource MaterialDesignDatePicker}"
                     materialDesign:HintAssist.HelperText="From">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectedDateChanged">
-                        <i:InvokeCommandAction Command="{Binding DatePicker_SelectedDateChanged}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
             </DatePicker>
             <DatePicker 
                 IsEnabled="{Binding transactionLogSearcherProperty.searchOptionsProperty[0].isCheckedProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -59,9 +54,15 @@
                         Margin="10 0 0 0"
                         materialDesign:CalendarAssist.IsHeaderVisible="False"
                         materialDesign:HintAssist.Hint="End"
-                        SelectedDate="{Binding transactionLogFilter.endDate}"
-                        utils:BlackoutDatesExtention.RegisterBlackoutDates="{Binding BlackoutDates}"
-                        materialDesign:HintAssist.HelperText="To"></DatePicker>
+                        SelectedDate="{Binding transactionLogSearcherProperty.transactionLogFilterProperty.endDate}"
+                        utils:BlackoutDatesExtention.RegisterBlackoutDates="{Binding transactionLogSearcherProperty.transactionLogFilterProperty.blackoutDatesProperty}"
+                        materialDesign:HintAssist.HelperText="To">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <i:InvokeCommandAction Command="{Binding notifyEndDateChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
             <ListBox
                 x:Name="searchOptionsBar"
                 Margin="30 10 10 10"
@@ -70,7 +71,7 @@
                 Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding notifyOptionChange}"  CommandParameter="{Binding ElementName=searchOptionsBar, Path=SelectedItem}"/>
+                        <i:InvokeCommandAction Command="{Binding changeSearchOption}"  CommandParameter="{Binding ElementName=searchOptionsBar, Path=SelectedItem}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ListBox.ItemTemplate>

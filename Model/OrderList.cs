@@ -21,7 +21,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 if (list != value)
                 {
                     list = value;
-                    notifyPropertyChange(nameof(list));
+                    OnPropertyChanged(nameof(list));
                 }
             }
 
@@ -29,7 +29,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public void Add(Order order)
         {
             list.Add((Order)order.Clone());
-            notifyPropertyChange(nameof(list));
+            OnPropertyChanged(nameof(list));
         }
         public OrderList()
         {
