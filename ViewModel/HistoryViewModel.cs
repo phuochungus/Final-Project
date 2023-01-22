@@ -9,130 +9,170 @@ using System.Windows.Input;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
-using System.Drawing;
-using System.Windows.Media.Imaging;
+using _4NH_HAO_Coffee_Shop.Utils;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    internal class HistoryViewModel : BaseViewModel
+    public class CheckableItem : BaseViewModel
     {
-        private Timer ReloadTm = new Timer();
-        private ObservableCollection<Bill> _historyList;
-        public ObservableCollection<Bill> HistoryList
+        public bool isChecked;
+        public bool isCheckedProperty
         {
-            get => _historyList;
+            get => isChecked;
             set
             {
-                if (_historyList != value)
-                {
-                    _historyList = value;
-                    OnPropertyChanged();
-                }
+                isChecked = value;
+                OnPropertyChanged(nameof(isCheckedProperty));
             }
         }
-        private string _controlsEnabled;
-        public string ControlsEnabled
+        private string name;
+        public string nameProperty
         {
-            get { return _controlsEnabled; }
+            get => name;
             set
             {
-                _controlsEnabled = value;
+                name = value;
+                OnPropertyChanged(nameof(nameProperty));
+            }
+        }
+
+        public CheckableItem(string name, bool isChecked)
+        {
+            this.name = name;
+            this.isChecked = isChecked;
+        }
+    }
+
+    public class TransactionLogFilter : BaseViewModel
+    {
+        private CalendarBlackoutDatesCollection blachoutDates;
+        public CalendarBlackoutDatesCollection blackoutDatesProperty
+        {
+            get => blachoutDates;
+            set
+            {
+                blachoutDates = value;
                 OnPropertyChanged();
             }
         }
-        private DateTime _startDate = DateTime.Now;
-        private DateTime _endDate = DateTime.Today.AddDays(1);
-        private CalendarBlackoutDatesCollection _blackoutDates;
-        public CalendarBlackoutDatesCollection BlackoutDates
+        private CalendarDateRange searchRange = new CalendarDateRange(DateTime.Now, DateTime.Today.AddDays(1));
+        public DateTime startDate
         {
-            get => _blackoutDates;
+            get => searchRange.Start;
             set
             {
-                if (_blackoutDates != value)
-                {
-                    _blackoutDates = value;
-                    OnPropertyChanged();
-                }
+                searchRange.Start = value;
+                DatePicker dummy = new DatePicker();
+                dummy.BlackoutDates.Add(new CalendarDateRange(new DateTime(), startDate));
+                blackoutDatesProperty = dummy.BlackoutDates;
+                OnPropertyChanged();
             }
         }
-        public DateTime EndDate
+        public DateTime endDate
         {
-            get => _endDate;
+            get => searchRange.End;
             set
             {
-                if (_endDate != value)
-                {
-                    _endDate = value;
-                    ExecuteViewCalendarRange();
-                    OnPropertyChanged();
-                }
+                searchRange.End = value;
+                OnPropertyChanged();
             }
         }
-        public DateTime StartDate
-        {
-            get => _startDate;
-            set
-            {
-                if (_startDate != value)
-                {
-                    _startDate = value;
-                    DatePicker t = new DatePicker();
+    }
 
-                    t.BlackoutDates.Add(new CalendarDateRange(new DateTime(), _startDate));
-                    BlackoutDates = t.BlackoutDates;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private bool _isCheckedViewAll = false;
-        private bool _isCheckedToday = false;
-        public bool IsCheckedViewAll
+    public class TransactionLogAdvancedSearcher : BaseViewModel
+    {
+        private const int VIEW_NONE = -1;
+        private const int VIEW_RANGE = 0;
+        private const int VIEW_ALL = 1;
+        private const int VIEW_TODAY = 2;
+        private ObservableCollection<Bill> resultLog = new ObservableCollection<Bill>();
+        public FullyObservableCollection<CheckableItem> searchOptions = new FullyObservableCollection<CheckableItem>();
+        public FullyObservableCollection<CheckableItem> searchOptionsProperty
         {
-            get => _isCheckedViewAll;
+            get => searchOptions;
             set
             {
-                if (_isCheckedViewAll != value)
-                {
-                    _isCheckedViewAll = value;
-                    if (value) IsCheckedToday = !value;
-                    OnPropertyChanged();
-                }
+                searchOptions = value;
+                OnPropertyChanged();
             }
         }
-        public bool IsCheckedToday
+        public TransactionLogFilter transactionLogFilterProperty { get; set; } = new TransactionLogFilter();
+
+        private void createDefaultOptionsGroup()
         {
-            get => _isCheckedToday;
-            set
-            {
-                if (_isCheckedToday != value)
-                {
-                    _isCheckedToday = value;
-                    if (value) IsCheckedViewAll = !value;
-                    OnPropertyChanged();
-                }
-            }
+            searchOptions.Add(new CheckableItem("View range", false));
+            searchOptions.Add(new CheckableItem("View all", false));
+            searchOptions.Add(new CheckableItem("View today", false));
         }
 
-        public void ExecuteViewAllQuery()
+        public TransactionLogAdvancedSearcher()
         {
-            using (var conn = new TAHCoffeeEntities())
+            createDefaultOptionsGroup();
+        }
+
+        public ObservableCollection<Bill> getSearchResult()
+        {
+            return resultLog;
+        }
+
+        public void executeSearching()
+        {
+            int chosenOption = getCurrentChoose();
+            switch (chosenOption)
             {
-                string queryString = @"
+                case VIEW_RANGE:
+                    searchTransactionInRange();
+                    break;
+                case VIEW_TODAY:
+                    searchTransactionInToday();
+                    break;
+                case VIEW_ALL:
+                    searchAllTransaction();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void searchAllTransaction()
+        {
+            resultLog = fetchAllLog();
+        }
+
+        private ObservableCollection<Bill> fetchAllLog()
+        {
+            ObservableCollection<Bill> transactionLog;
+            const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
                                     else CustomerId 
                                 end as CustomerId, Total   
                                 from Bill";
-
-                HistoryList = new ObservableCollection<Bill>(conn.Bills.SqlQuery(queryString).ToList());
-            }
-        }
-        public void ExecuteViewToday()
-        {
-            using (var conn = new TAHCoffeeEntities())
+            using (var DB = new TAHCoffeeEntities())
             {
-                string queryString = @"
+                transactionLog = new ObservableCollection<Bill>(
+                    DB.Bills.SqlQuery(
+                        queryString
+                    )
+                    .ToList()
+                    );
+
+            }
+            return transactionLog;
+        }
+
+        private void searchTransactionInToday()
+        {
+            resultLog = fetchTodayLog();
+        }
+
+        private ObservableCollection<Bill> fetchTodayLog()
+
+        {
+            ObservableCollection<Bill> transactionLog;
+            const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
@@ -140,136 +180,261 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 end as CustomerId, Total
                                 from Bill
                                 where  day(ExportTime) = @day and MONTH(ExportTime) = @month and YEAR(ExportTime) = @year";
-                HistoryList = new ObservableCollection<Bill>(
-                    conn.Bills.SqlQuery(queryString,
-                                        new SqlParameter("@day", DateTime.Today.Day),
-                                        new SqlParameter("@month", DateTime.Today.Month),
-                                        new SqlParameter("@year", DateTime.Today.Year))
-                                .ToList());
-            }
-        }
-        public void ExecuteViewCalendarRange()
-        {
-            try
+            using (var DB = new TAHCoffeeEntities())
             {
-                using (var conn = new TAHCoffeeEntities())
-                {
-                    string queryString = @"
+                transactionLog = new ObservableCollection<Bill>(
+                    DB.Bills.SqlQuery(
+                        queryString,
+                            new SqlParameter("@day", DateTime.Today.Day),
+                            new SqlParameter("@month", DateTime.Today.Month),
+                            new SqlParameter("@year", DateTime.Today.Year)
+                        )
+                        .ToList()
+                    );
+            }
+            return transactionLog;
+        }
+
+        private void searchTransactionInRange()
+        {
+            resultLog = fetchLogRangeBetweenDateTime(transactionLogFilterProperty);
+        }
+
+
+        private ObservableCollection<Bill> fetchLogRangeBetweenDateTime(TransactionLogFilter transactionLogFilter)
+        {
+            ObservableCollection<Bill> transactionLog;
+            const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
                                 case 
                                     when CustomerId IS NULL then 'Guest' 
                                     else CustomerId 
                                 end as CustomerId, Total  
                                 from Bill
-                                where ExportTime between @start and @end";
+                                where ExportTime between @start and @end"; using (var DB = new TAHCoffeeEntities())
+            {
 
-                    HistoryList = new ObservableCollection<Bill>(
-                        conn.Bills.SqlQuery(queryString,
-                                            new SqlParameter("@start", StartDate.ToString("M/d/y")),
-                                            new SqlParameter("@end", EndDate.ToString("M/d/y")))
-                                   .ToList());
+
+                transactionLog = new ObservableCollection<Bill>(
+                DB.Bills.SqlQuery(queryString,
+                                        new SqlParameter("@start", transactionLogFilter.startDate.ToString("M/d/y")),
+                                        new SqlParameter("@end", transactionLogFilter.endDate.ToString("M/d/y")))
+                               .ToList());
+            }
+            return transactionLog;
+        }
+
+        private int getCurrentChoose()
+        {
+            int currentOption = -1;
+            for (int index = 0; index < searchOptions.Count; index++)
+            {
+                if (searchOptions[index].isChecked)
+                {
+                    currentOption = index;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw;
-            }
+            return currentOption;
         }
-        public ICommand executeViewAllCommand { get; set; }
-        public ICommand executeViewTodayCommand { get; set; }
-        public ICommand executeViewCalendarRange { get; set; }
-        public ICommand DatePicker_SelectedDateChanged { get; set; }
-        public ICommand ExportCommand { get; set; }
-        public ICommand VisibleTriggerCommand { get; set; }
-        private void ExportToExcel()
+    }
+
+    public class ExcelExporter
+    {
+        private SaveFileDialog saveFileDialog;
+        private string resultPath = "";
+        private ObservableCollection<Bill> sourceLog { get; set; }
+        private void createDefaultSaveFileDialog()
+        {
+            saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
+        }
+        private string getFileNameWithPath()
+        {
+            return saveFileDialog.FileName;
+        }
+
+        public void setSource(ObservableCollection<Bill> sourceSheet)
+        {
+            this.sourceLog = sourceSheet;
+        }
+
+        private ExcelWorksheet createExcelFileWitlEmptySheet(ExcelWorksheet sheet, ExcelPackage excelPackage)
+        {
+            sheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+            return sheet;
+
+        }
+
+        public ExcelExporter()
+        {
+            createDefaultSaveFileDialog();
+        }
+        private ExcelWorksheet createDefaultSheet(ExcelPackage excelPackage)
+        {
+            ExcelWorksheet sheet = null;
+            sheet = createExcelFileWitlEmptySheet(sheet, excelPackage);
+            addColumnNames(ref sheet);
+            formatSheetToDefaultStyle(ref sheet);
+            return sheet;
+
+        }
+
+        private void formatSheetToDefaultStyle(ref ExcelWorksheet sheet)
+        {
+            sheet.TabColor = System.Drawing.Color.Black;
+            sheet.DefaultRowHeight = 12;
+            sheet.Row(1).Height = 20;
+            sheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Row(1).Style.Font.Bold = true;
+        }
+        private void addColumnNames(ref ExcelWorksheet sheet)
+        {
+            sheet.Cells[1, 1].Value = "No";
+            sheet.Cells[1, 2].Value = "Date";
+            sheet.Cells[1, 3].Value = "Customer ID";
+            sheet.Cells[1, 4].Value = "Total";
+        }
+        private bool successWriteToFile(ExcelPackage excelPackage)
         {
             try
             {
-                string filePath = "";
-                SaveFileDialog sf = new SaveFileDialog();
-                sf.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
-                if (sf.ShowDialog() == DialogResult.OK)
+                if (File.Exists(resultPath))
                 {
-                    filePath = sf.FileName;
-                    ExcelPackage excel = new ExcelPackage();
-                    var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
-                    workSheet.TabColor = System.Drawing.Color.Black;
-                    workSheet.DefaultRowHeight = 12;
-                    workSheet.Row(1).Height = 20;
-                    workSheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    workSheet.Row(1).Style.Font.Bold = true;
-                    workSheet.Cells[1, 1].Value = "No";
-                    workSheet.Cells[1, 2].Value = "Date";
-                    workSheet.Cells[1, 3].Value = "Customer ID";
-                    workSheet.Cells[1, 4].Value = "Total";
-                    int index = 2;
-                    foreach (Bill bill in HistoryList)
+                    File.Delete(resultPath);
+                }
+                FileStream objFilestrm = File.Create(resultPath);
+                objFilestrm.Close();
+                File.WriteAllBytes(resultPath, excelPackage.GetAsByteArray());
+                return true;
+            }
+            catch { return false; }
+        }
+
+        public void ExportToExcel()
+        {
+            Console.WriteLine(sourceLog.Count);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (ExcelPackage excelPackage = new ExcelPackage())
+                {
+                    resultPath = getFileNameWithPath();
+                    ExcelWorksheet sheet = createDefaultSheet(excelPackage);
+                    writeTransactionogToSheet(sourceLog, sheet);
+
+                    if (successWriteToFile(excelPackage) == true)
                     {
-                        workSheet.Cells[index, 1].Value = bill.IdNumber;
-                        workSheet.Cells[index, 2].Value = bill.ExportTime.ToString();
-                        workSheet.Cells[index, 3].Value = bill.CustomerId;
-                        workSheet.Cells[index, 4].Value = bill.Total;
-                        index++;
+                        System.Windows.MessageBox.Show("Export successful");
                     }
-                    workSheet.Column(1).AutoFit();
-                    workSheet.Column(2).AutoFit();
-                    workSheet.Column(3).AutoFit();
-                    workSheet.Column(4).AutoFit();
-                    if (File.Exists(filePath)) File.Delete(filePath);
-                    FileStream objFilestrm = File.Create(filePath);
-                    objFilestrm.Close();
-                    File.WriteAllBytes(filePath, excel.GetAsByteArray());
-                    excel.Dispose();
-                    System.Windows.MessageBox.Show("Export successful");
                 }
             }
-            catch (Exception e)
+
+        }
+
+        private void fitColumn(ExcelWorksheet sheet)
+        {
+            sheet.Column(1).AutoFit();
+            sheet.Column(2).AutoFit();
+            sheet.Column(3).AutoFit();
+            sheet.Column(4).AutoFit();
+        }
+
+        private void writeTransactionogToSheet(ObservableCollection<Bill> sourceLog, ExcelWorksheet sheet)
+        {
+            int columnIndex = 2;
+            foreach (Bill bill in sourceLog)
             {
-                Console.WriteLine(e.Message);
-                System.Windows.MessageBox.Show("Export unsuccessful");
+                sheet.Cells[columnIndex, 1].Value = bill.IdNumber;
+                sheet.Cells[columnIndex, 2].Value = bill.ExportTime.ToString();
+                sheet.Cells[columnIndex, 3].Value = bill.CustomerId;
+                sheet.Cells[columnIndex, 4].Value = bill.Total;
+                columnIndex++;
+            }
+            fitColumn(sheet);
+        }
+    }
+    public class HistoryViewModel : BaseViewModel
+    {
+        private ObservableCollection<Bill> transactionLog = new ObservableCollection<Bill>();
+        public ObservableCollection<Bill> transactionLogProperty
+        {
+            get => transactionLog;
+            set
+            {
+                if (transactionLog != value)
+                {
+                    transactionLog = value;
+                    OnPropertyChanged();
+                }
             }
         }
-        public void VisibleTrigger(object p)
+        private CalendarBlackoutDatesCollection backoutDates;
+        public CalendarBlackoutDatesCollection blackoutDatesProperty
         {
-            //TODO: add behavior upon visible
+            get => backoutDates;
+            set
+            {
+                if (backoutDates != value)
+                {
+                    backoutDates = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public ICommand changeSearchOption { get; set; }
+        public TransactionLogAdvancedSearcher transactionLogSearcher = new TransactionLogAdvancedSearcher();
+        public TransactionLogAdvancedSearcher transactionLogSearcherProperty
+        {
+            get => transactionLogSearcher;
+            set
+            {
+                transactionLogSearcher = value;
+                OnPropertyChanged();
+            }
+        }
+        public ICommand notifyEndDateChangedCommand { get; set; }
+        public ICommand ExportCommand { get; set; }
+        public ExcelExporter excelExporter = new ExcelExporter();
 
+
+        private void showResultLog()
+        {
+            transactionLogSearcher.executeSearching();
+            transactionLogProperty = transactionLogSearcher.getSearchResult();
+        }
+        private void notifyOptionChanged(CheckableItem selectedOption)
+        {
+            foreach (CheckableItem searchOption in transactionLogSearcher.searchOptions)
+            {
+                if (selectedOption == searchOption)
+                {
+                    searchOption.isCheckedProperty = true;
+                }
+                else
+                {
+                    searchOption.isCheckedProperty = false;
+                }
+            }
         }
         public delegate void ExecuteDelegate();
-        ExecuteDelegate executeQuery;
-        public static bool keepMonitor = true;
+        public static bool keepFetchingSearchResult = true;
         public HistoryViewModel()
         {
-            ReloadTm.Interval = 1000;
-            ReloadTm.Tick += ReloadTm_Tick;
-            ControlsEnabled = "False";
-            ExecuteViewCalendarRange();
-            executeQuery = ExecuteViewCalendarRange;
-            ReloadTm.Start();
-            VisibleTriggerCommand = new RelayCommand<object>(p => true, p => { VisibleTrigger(p); });
 
-            executeViewTodayCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>
+            changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
-                ExecuteViewToday(); executeQuery = ExecuteViewToday;
+                notifyOptionChanged(selectedOption);
+                showResultLog();
             });
-            executeViewAllCommand = new RelayCommand<bool>((p) => { return true; }, (p) =>
+            ExportCommand = new RelayCommand<System.Windows.Controls.Button>(btnExport => true,
+            btnExport =>
             {
-                ExecuteViewAllQuery(); executeQuery = ExecuteViewAllQuery;
+                excelExporter.setSource(transactionLogProperty);
+                excelExporter.ExportToExcel();
             });
-            executeViewCalendarRange = new RelayCommand<string>((p) => { return true; }, (p) =>
+            notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker =>
             {
-                ExecuteViewCalendarRange(); executeQuery = ExecuteViewCalendarRange;
+                showResultLog();
             });
-            DatePicker_SelectedDateChanged = new RelayCommand<object>(p => true, p => { IsCheckedToday = IsCheckedViewAll = false; });
-            ExportCommand = new RelayCommand<object>(p => true, p => { ExportToExcel(); });
-        }
-
-        private void ReloadTm_Tick(object sender, EventArgs e)
-        {
-            if (keepMonitor)
-            {
-                executeQuery();
-            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace _4NH_HAO_Coffee_Shop.Utils
         }
         public static CalendarBlackoutDatesCollection GetRegisterBlackoutDates(UIElement element)
         {
-            return (element != null ? (System.Windows.Controls.CalendarBlackoutDatesCollection)element.GetValue(RegisterBlackoutDatesProperty) : null);
+            return (element != null ? (CalendarBlackoutDatesCollection)element.GetValue(RegisterBlackoutDatesProperty) : null);
         }
         private static void OnRegisterCommandBindingChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
