@@ -90,9 +90,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
     public class TransactionLogAdvancedSearcher : BaseViewModel
     {
-        private const int VIEW_RANGE = 0;
-        private const int VIEW_ALL = 1;
-        private const int VIEW_TODAY = 2;
+        public const int VIEW_RANGE = 0;
+        public const int VIEW_ALL = 1;
+        public const int VIEW_TODAY = 2;
 
         private ObservableCollection<Bill> resultLog;
         public FullyObservableCollection<CheckableItem> searchOptions;
@@ -144,7 +144,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        private int getCurrentChoose()
+        public int getCurrentChoose()
         {
             int currentOption = -1;
             for (int index = 0; index < searchOptions.Count; index++)
@@ -380,11 +380,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
     public class HistoryViewModel : BaseViewModel
     {
+        private Timer refreshTransactionScreenTimer;
         private ObservableCollection<Bill> transactionLog;
         private CalendarBlackoutDatesCollection backoutDates;
         public TransactionLogAdvancedSearcher transactionLogSearcher;
         public ExcelExporter excelExporter;
-        public delegate void ExecuteDelegate();
+
+
+        public ICommand notifyEndDateChangedCommand { get; set; }
+        public ICommand ExportCommand { get; set; }
+        public ICommand changeSearchOption { get; set; }
 
         public TransactionLogAdvancedSearcher transactionLogSearcherProperty
         {
@@ -420,10 +425,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        public ICommand notifyEndDateChangedCommand { get; set; }
-        public ICommand ExportCommand { get; set; }
-        public ICommand changeSearchOption { get; set; }
-
         public static bool keepFetchingSearchResult = true;
 
         public HistoryViewModel()
@@ -431,6 +432,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             transactionLog = new ObservableCollection<Bill>();
             transactionLogSearcher = new TransactionLogAdvancedSearcher();
             excelExporter = new ExcelExporter();
+
+            refreshTransactionScreenTimer = createDefaultRefetchTimer();
+            refreshTransactionScreenTimer.Start();
 
             changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
@@ -446,6 +450,35 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker => showResultLog());
+        }
+
+        private Timer createDefaultRefetchTimer()
+        {
+            Timer refetchTransactionScreenTimer = new Timer();
+            setIntervalBetweenFetchingTransaction(refetchTransactionScreenTimer);
+            assignDefaultFetchingTransactionMethod(refetchTransactionScreenTimer);
+            return refetchTransactionScreenTimer;
+        }
+
+        private void setIntervalBetweenFetchingTransaction(Timer timer)
+        {
+            timer.Interval = 1000;
+        }
+
+        private void assignDefaultFetchingTransactionMethod(Timer timer)
+        {
+            timer.Tick += (s, e) =>
+            {
+                int currentSearchChoose = transactionLogSearcher.getCurrentChoose();
+                if (keepFetchingSearchResult == true)
+                {
+                    if (currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_ALL || currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_TODAY)
+                    {
+                        transactionLogSearcher.executeSearching();
+                        Console.WriteLine("fetched");
+                    }
+                }
+            };
         }
 
         private void showResultLog()
