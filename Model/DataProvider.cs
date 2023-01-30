@@ -13,7 +13,8 @@ namespace _4NH_HAO_Coffee_Shop.Model
         {
             get
             {
-                if (_ins == null) _ins = new DataProvider();
+                if (_ins == null)
+                    _ins = new DataProvider();
                 return _ins;
             }
             set
@@ -21,9 +22,9 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 _ins = value;
             }
         }
-        
+
         public TAHCoffeeEntities DB { get; set; }
-        
+
         public DataProvider()
         {
             DB = new TAHCoffeeEntities();
