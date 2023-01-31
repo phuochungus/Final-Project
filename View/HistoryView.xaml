@@ -22,11 +22,6 @@
         Style="{StaticResource Page_Style}"
         DataContext="{StaticResource HistoryVM}"
     >
-    <i:Interaction.Triggers>
-        <ei:PropertyChangedTrigger Binding="{Binding IsVisible, ElementName=HV}">
-            <ei:InvokeCommandAction  Command="{Binding VisibleTriggerCommand}" PassEventArgsToCommand="True"/>
-        </ei:PropertyChangedTrigger>
-    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="58"/>
@@ -121,7 +116,6 @@
                         Foreground="Black"
                         Background="#FDCFAD"
                         Command="{Binding ExportCommand}"
-                        CommandParameter="{Binding ElementName=DataGrid}"
                         />
                 </Grid>
             </Grid>
