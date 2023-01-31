@@ -1,5 +1,7 @@
-﻿using _4NH_HAO_Coffee_Shop.Utils;
+﻿using _4NH_HAO_Coffee_Shop.Model;
+using _4NH_HAO_Coffee_Shop.Utils;
 using _4NH_HAO_Coffee_Shop.View;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
@@ -106,7 +108,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     ImageSource = open.FileName;
-
+                    var account = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Globals.Instance.CurrUser.Id).SingleOrDefault();
+                    account.ImageURL = ImageSource;
                 }
 
             });
