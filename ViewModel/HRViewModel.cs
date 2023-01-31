@@ -51,6 +51,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     AccountType = Selecteditem.AccountType;
                     ManagedBy = Selecteditem.ManagedBy;
                 }
+               
             }
         }
 
@@ -145,23 +146,19 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             List = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
-                if (Idlist == null || Idlist.Count() != 0) return false;
+                if (Idlist == null || Idlist.Count() != 0) return false;               
+                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
+                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
+                    string.IsNullOrEmpty(PhoneNumber)) return false;
                 if (AccountType == "staff")
                 {
-                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy))
-                        return false;
+                    if (string.IsNullOrEmpty(ManagedBy)) return false;
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy);
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
                 }
                 else if (AccountType == "admin")
                 {
-                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || !string.IsNullOrEmpty(ManagedBy))
-                        return false;
-
+                    if (!string.IsNullOrEmpty(ManagedBy)) return false;
                 }
                 else return false;
                 return true;
@@ -205,21 +202,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (string.IsNullOrEmpty(Id)) return false;
                 if (Selecteditem == null) return false;
                 if (Id != Selecteditem.Id ) return false;
+                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
+                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
+                    string.IsNullOrEmpty(PhoneNumber)) return false;
                 if (AccountType == "staff")
                 {
-                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || string.IsNullOrEmpty(ManagedBy))
-                        return false;
+                    if (string.IsNullOrEmpty(ManagedBy)) return false;
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy && x.AccountType == "admin");
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
                 }
                 else if (AccountType == "admin")
                 {
-                    if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber) || !string.IsNullOrEmpty(ManagedBy))
-                        return false;
+                    if (!string.IsNullOrEmpty(ManagedBy)) return false;
                 }
                 else return false;
                 return true;
@@ -246,26 +240,17 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
-                if (Selecteditem == null) return false;
-                if (AccountType == "staff")
-                {
-                    if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
+                if (Selecteditem == null) return false;              
+                if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
                     Password != Selecteditem.Password || PhoneNumber != Selecteditem.PhoneNumber || AccountType != Selecteditem.AccountType ||
                     ManagedBy != Selecteditem.ManagedBy)
-                        return false;
-                    return true;
-                }
-                else if (AccountType == "admin")
+                    return false;
+                if (AccountType == "admin")
                 {
-                    if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
-                    Password != Selecteditem.Password || PhoneNumber != Selecteditem.PhoneNumber || AccountType != Selecteditem.AccountType ||
-                    ManagedBy != Selecteditem.ManagedBy)
-                        return false;
                     var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.ManagedBy == Id);
                     if (Idlist == null || Idlist.Count() != 0) return false;
-
                 }
-                else return false;
+
                 return true;
             },
             (p) => {

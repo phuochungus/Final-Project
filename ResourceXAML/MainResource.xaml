@@ -14,11 +14,10 @@
     <viewmodel:OrderedViewModel x:Key="OrderedVM"/>
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
     <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
-
-
-
-    <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
-        <view:HistoryView/>
+    <viewmodel:SettingViewModel x:Key="SettingVM"/>
+    
+    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
+        <view:SettingView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type viewmodel:MainControlBarViewModel}">
@@ -43,11 +42,10 @@
     <DataTemplate DataType="{x:Type viewmodel:YourProfileViewModel}">
         <view:YourProfileView/>
     </DataTemplate>
-
-    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
-        <view:SettingView/>
+    <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
+        <view:HistoryView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
         <UserControl:GeneralControlBarUC/>
     </DataTemplate>

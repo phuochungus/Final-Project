@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace _4NH_HAO_Coffee_Shop.Utils
 {
-    internal class TableOfImage
+    public class TableOfImage
     {
         private Dictionary<string, BitmapImage> dict = new Dictionary<string, BitmapImage>();
         public BitmapImage GetBitmapImage(string URL)
@@ -31,7 +31,12 @@ namespace _4NH_HAO_Coffee_Shop.Utils
         private static TableOfImage _instance;
         public static TableOfImage Instance
         {
-            get { return _instance ?? (_instance = new TableOfImage()); }
+            get
+            {
+                if (_instance == null)
+                    _instance = new TableOfImage();
+                return _instance;
+            }
         }
     }
 }
