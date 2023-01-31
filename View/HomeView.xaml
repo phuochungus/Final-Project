@@ -126,7 +126,7 @@
                 <Grid Grid.Column="0">
                     <ScrollViewer VerticalScrollBarVisibility="auto">
                         <materialDesign:Card Margin="0" VerticalAlignment="Center">
-                            <ListBox ItemsSource="{Binding categoriesProperty}"
+                            <ListBox ItemsSource="{Binding CategoryList}"
                                      x:Name="RadioButtonGroupChoiceChip"
                                      HorizontalContentAlignment="Left"
                                      SelectionMode="Single"
@@ -160,7 +160,7 @@
                 <materialDesign:Card Margin="20,10,10,10">
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding itemsBelongToCurrentCategoryProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl ItemsSource="{Binding categorizedItemList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Auto"/>
@@ -266,15 +266,15 @@
                                                     Width="70"
                                                     Height="70"
                                                     Stretch="UniformToFill"
-                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Item.ImageURL}"/>
+                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Key.ImageURL}"/>
                                             </Grid>
                                             <Grid Grid.Column="1">
                                                 <StackPanel>
                                                     <Label
                                                         FontFamily="{StaticResource InterRegular}"
-                                                        Content="{Binding Path=Item.DisplayName}"
+                                                        Content="{Binding Path=Key.DisplayName}"
                                                         ToolTip="{Binding Path=Content, RelativeSource={RelativeSource self}}"/>
-                                                    <Label Content="{Binding Path=Item.Price}" Foreground="CornflowerBlue"/>
+                                                    <Label Content="{Binding Path=Key.Price}" Foreground="CornflowerBlue"/>
                                                 </StackPanel>
                                             </Grid>
                                             <Grid Grid.Column="2">
@@ -298,7 +298,7 @@
                                                              HorizontalContentAlignment="Center"
                                                              Width="40"
                                                              Height="20"
-                                                             Text="{Binding Path=Quantity}">
+                                                             Text="{Binding Path=Value}">
                                                     </TextBox>
 
                                                     <Button Style="{StaticResource CircleButton}" 

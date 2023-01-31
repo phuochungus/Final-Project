@@ -26,7 +26,7 @@
             <Border
                     Background="#C1FFBB" 
                     Margin="32,32,32,32">
-                <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=OrderQueue.Orders, UpdateSourceTrigger=PropertyChanged}"
+                <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=OrderQueue.List, UpdateSourceTrigger=PropertyChanged}"
                               Margin="20,20,20,20">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -47,7 +47,7 @@
                                                 Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Image
-                                            utils:AlterSourceExtention.RegisterAlterSource="{Binding ProductList[0].Item.ImageURL}"
+                                            utils:AlterSourceExtention.RegisterAlterSource="{Binding ProductList[0].Key.ImageURL}"
                                             Height="200"
                                             Width="200"
                                             Stretch="UniformToFill" />
@@ -74,8 +74,8 @@
                                                 CanUserResizeColumns="False"
                                                 MaxHeight="260">
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Item.DisplayName}"/>
-                                                    <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Quantity}"/>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Key.DisplayName}"/>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Value}"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </Grid>

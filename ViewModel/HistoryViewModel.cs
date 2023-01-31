@@ -112,7 +112,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             searchOptions.Add(new CheckableItem("View range", false));
             searchOptions.Add(new CheckableItem("View all", false));
-            searchOptions.Add(new CheckableItem("View today", true));
+            searchOptions.Add(new CheckableItem("View today", false));
         }
 
         public TransactionLogAdvancedSearcher()
@@ -122,12 +122,12 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             transactionLogFilterProperty = new TransactionLogFilter();
 
             createDefaultOptionsGroup();
-            executeSearching();
+
         }
 
         public void executeSearching()
         {
-            int chosenOption = currentChooseProperty;
+            int chosenOption = getCurrentChoose();
             switch (chosenOption)
             {
                 case VIEW_RANGE:
@@ -143,28 +143,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     break;
             }
         }
-        public int currentChooseProperty
+
+        public int getCurrentChoose()
         {
-            get
+            int currentOption = -1;
+            for (int index = 0; index < searchOptions.Count; index++)
             {
-                int currentOption = -1;
-                for (int index = 0; index < searchOptions.Count; index++)
+                if (searchOptions[index].isChecked)
                 {
-                    if (searchOptions[index].isChecked)
-                    {
-                        currentOption = index;
-                    }
+                    currentOption = index;
                 }
-                return currentOption;
             }
-            set
-            {
-                foreach(var option in searchOptions)
-                {
-                    option.isCheckedProperty = true;
-                }
-                searchOptions[value].isCheckedProperty = true;
-            }
+            return currentOption;
         }
 
         private void searchTransactionInRange()
@@ -446,8 +436,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             refreshTransactionScreenTimer = createDefaultRefetchTimer();
             refreshTransactionScreenTimer.Start();
 
-            showResultLog();
-
             changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
                 notifyOptionChanged(selectedOption);
@@ -462,12 +450,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker => showResultLog());
-        }
-
-        ~HistoryViewModel()
-        {
-            refreshTransactionScreenTimer.Stop();
-            refreshTransactionScreenTimer.Dispose();
         }
 
         private Timer createDefaultRefetchTimer()
@@ -487,7 +469,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             timer.Tick += (s, e) =>
             {
-                int currentSearchChoose = transactionLogSearcher.currentChooseProperty;
+                int currentSearchChoose = transactionLogSearcher.getCurrentChoose();
                 if (keepFetchingSearchResult == true)
                 {
                     if (currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_ALL || currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_TODAY)

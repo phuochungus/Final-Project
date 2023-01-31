@@ -7,13 +7,9 @@ namespace _4NH_HAO_Coffee_Shop.Utils
 {
     class BlackoutDatesExtention : DependencyObject
     {
-        public static DependencyProperty RegisterBlackoutDatesProperty =
-            DependencyProperty
-            .RegisterAttached("RegisterBlackoutDates",
-                typeof(System.Windows.Controls.CalendarBlackoutDatesCollection),
-                typeof(BlackoutDatesExtention),
-                new PropertyMetadata(null, OnRegisterCommandBindingChanged));
-
+        #region RegisterBlackoutDates
+        // Usage: <DatePicker hacks:AttachedProperties.RegisterBlackoutDates="{Binding BlackoutDates}" >
+        public static DependencyProperty RegisterBlackoutDatesProperty = DependencyProperty.RegisterAttached("RegisterBlackoutDates", typeof(System.Windows.Controls.CalendarBlackoutDatesCollection), typeof(BlackoutDatesExtention), new PropertyMetadata(null, OnRegisterCommandBindingChanged));
         public static void SetRegisterBlackoutDates(UIElement element, CalendarBlackoutDatesCollection value)
         {
             element?.SetValue(RegisterBlackoutDatesProperty, value);
@@ -39,26 +35,19 @@ namespace _4NH_HAO_Coffee_Shop.Utils
                 }
             }
         }
+        #endregion
     }
     class AlterSourceExtention : DependencyObject
     {
-        public static DependencyProperty RegisterAlterSourceProperty =
-            DependencyProperty
-            .RegisterAttached("RegisterAlterSource",
-                typeof(string),
-                typeof(AlterSourceExtention),
-                new PropertyMetadata(null, OnRegisterCommandBindingChanged));
-
+        public static DependencyProperty RegisterAlterSourceProperty = DependencyProperty.RegisterAttached("RegisterAlterSource", typeof(string), typeof(AlterSourceExtention), new PropertyMetadata(null, OnRegisterCommandBindingChanged));
         public static void SetRegisterAlterSource(DependencyObject element, string value)
         {
             element?.SetValue(RegisterAlterSourceProperty, value);
         }
-
         public static string GetRegisterAlterSource(UIElement element)
         {
             return (element != null ? (string)element.GetValue(RegisterAlterSourceProperty) : null);
         }
-
         private static void OnRegisterCommandBindingChanged(DependencyObject seeder, DependencyPropertyChangedEventArgs e)
         {
             switch (seeder.GetType().Name)

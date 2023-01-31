@@ -65,10 +65,10 @@ namespace _4NH_HAO_Coffee_Shop.Utils
         {
             for (int i = 0; i < CurrBill.ProductList.Count; ++i)
             {
-                if (CurrBill.ProductList[i].Item.Id == item.Id)
+                if (CurrBill.ProductList[i].Key.Id == item.Id)
                 {
-                    CurrBill.Total += (quantity - CurrBill.ProductList[i].Quantity);
-                    CurrBill.ProductList[i].Quantity = quantity;
+                    CurrBill.Total += (quantity - CurrBill.ProductList[i].Value);
+                    CurrBill.ProductList[i].Value = quantity;
                     if (quantity == 0) CurrBill.ProductList.RemoveAt(i);
                     Instance.OnPropertyChanged();
                     return true;
@@ -82,9 +82,9 @@ namespace _4NH_HAO_Coffee_Shop.Utils
 
             for (int i = 0; i < CurrBill.ProductList.Count; ++i)
             {
-                if (CurrBill.ProductList[i].Item.Id == item.Id)
+                if (CurrBill.ProductList[i].Key.Id == item.Id)
                 {
-                    CurrBill.ProductList[i].Quantity++;
+                    CurrBill.ProductList[i].Value++;
                     Instance.OnPropertyChanged(nameof(CurrBill));
                     return true;
                 }
@@ -97,10 +97,10 @@ namespace _4NH_HAO_Coffee_Shop.Utils
         {
             for (int i = 0; i < CurrBill.ProductList.Count; ++i)
             {
-                if (CurrBill.ProductList[i].Item.Id == item.Id)
+                if (CurrBill.ProductList[i].Key.Id == item.Id)
                 {
                     CurrBill.Total -= item.Price;
-                    CurrBill.ProductList[i].Quantity--;
+                    CurrBill.ProductList[i].Value--;
                     Instance.OnPropertyChanged(nameof(CurrBill));
                     return true;
                 }

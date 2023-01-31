@@ -15,7 +15,11 @@
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
     <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
     <viewmodel:SettingViewModel x:Key="SettingVM"/>
+
+
+
     
+
     <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
         <view:SettingView/>
     </DataTemplate>

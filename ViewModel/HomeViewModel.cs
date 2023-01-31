@@ -5,128 +5,62 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using _4NH_HAO_Coffee_Shop.Utils;
-using System.Windows.Forms;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        private ObservableCollection<Category> categories;
-        private ObservableCollection<Item> itemsBelongToCurrentCategory;
-
-        public ObservableCollection<Category> categoriesProperty
+        private ObservableCollection<Category> _categoryList;
+        public ObservableCollection<Category> CategoryList { get => _categoryList; set { _categoryList = value; OnPropertyChanged(); } }
+        private Category _getCategory;
+        public Category GetCategory { get => _getCategory; set { _getCategory = value; OnPropertyChanged(); } }
+        private ObservableCollection<Item> _categorizedItemList;
+        public ObservableCollection<Item> categorizedItemList { get => _categorizedItemList; set { _categorizedItemList = value; OnPropertyChanged(); } }
+        private int totalPrice = 0;
+        public int TotalPrice
         {
-            get => categories;
+            get => totalPrice;
             set
             {
-                categories = value;
-                OnPropertyChanged();
+                if (totalPrice != value)
+                {
+                    totalPrice = value;
+                    OnPropertyChanged();
+                }
             }
         }
-        public ObservableCollection<Item> itemsBelongToCurrentCategoryProperty
+        private int _currentCategory;
+        public int currentCategory
         {
-            get => itemsBelongToCurrentCategory;
+            get => _currentCategory;
             set
             {
-                itemsBelongToCurrentCategory = value;
-                OnPropertyChanged();
+                if (value != _currentCategory)
+                {
+                    _currentCategory = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
         public ICommand CategoryChangeCommand { get; set; }
         public ICommand AddToBillCommand { get; set; }
         public ICommand DecreaseQuantityCommand { get; set; }
-        public ICommand CheckoutCommand { get; set; }
-        public ICommand IncreaseQuantityCommand { get; set; }
-        public ICommand ViewAll { get; set; }
-        public ICommand ClearBillCommand { get; set; }
 
-        public HomeViewModel()
-        {
-            fetchAllCategories();
-            fetchAllItems();
-
-            CheckoutCommand = new RelayCommand<object>(parameter => isCurrentNotEmpty(), parameter => handleCheckoutCommand());
-
-            ViewAll = new RelayCommand<object>(parameter => true, parameter => fetchAllItems());
-
-            AddToBillCommand = new RelayCommand<Item>(chosenItem => true, chosenItem => addItemtoBill(chosenItem));
-
-            DecreaseQuantityCommand = new RelayCommand<Product>(chosenProduct => true, chosenProduct => decreaseProductQuantityBy1(chosenProduct));
-
-            IncreaseQuantityCommand = new RelayCommand<Product>(chosenProduct => true, chosenProduct => increaseProductQuantityBy1(chosenProduct));
-
-            CategoryChangeCommand = new RelayCommand<Category>((p) => true, (p) =>
-            {
-                int ChosenCategoryID = p.Id;
-                itemsBelongToCurrentCategoryProperty = new ObservableCollection<Item>
-                (
-                    DataProvider.Ins.DB.Items
-                    .Where(Cond => Cond.CategoryId == ChosenCategoryID)
-                    .ToList()
-                );
-            });
-
-            ClearBillCommand = new RelayCommand<object>(parameter => true, parameter => clearCurrentOrder());
-        }
-
-
-        private void decreaseProductQuantityBy1(Product chosenProduct)
-        {
-            Item ProductItem = chosenProduct.Item;
-            removeItemFromBill(ProductItem);
-        }
-
-        private void removeItemFromBill(Item chosenItem)
-        {
-            Globals.Instance.Delete(chosenItem);
-        }
-
-        private void increaseProductQuantityBy1(Product chosenProduct)
-        {
-            Item ProductItem = chosenProduct.Item;
-            addItemtoBill(ProductItem);
-        }
-        private void addItemtoBill(Item chosenItem)
-        {
-            Globals.Instance.Insert(chosenItem);
-        }
-
-        private bool isCurrentNotEmpty()
-        {
-            return !Globals.Instance.CurrBill.isEmpty();
-        }
-
-        private void fetchAllItems()
-        {
-            itemsBelongToCurrentCategoryProperty = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList());
-        }
-
-        private void fetchAllCategories()
-        {
-            categoriesProperty = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
-        }
-
-        private void handleCheckoutCommand()
-        {
-            handleInsertIntoDB();
-            Globals.Instance.OrderQueue.Add(Globals.Instance.CurrBill);
-            Globals.Instance.CurrBill.Clear();
-        }
 
         private void handleInsertIntoDB()
         {
             try
             {
-                using (var DB = new TAHCoffeeEntities())
+                using (var context = new TAHCoffeeEntities())
                 {
                     var bill = new Bill()
                     {
                         Total = Globals.Instance.CurrBill.Total,
                         ExportTime = DateTime.Now
                     };
-                    DB.Bills.Add(bill);
-                    DB.SaveChanges();
+                    context.Bills.Add(bill);
+                    context.SaveChanges();
                     int id = Globals.Instance.CurrBill.Id = bill.IdNumber;
 
 
@@ -136,25 +70,49 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         billInfors.Add(new BillInfor()
                         {
                             IdNumber = id,
-                            ItemId = product.Item.Id,
-                            Quantity = product.Quantity,
-                            Price = product.Quantity * product.Item.Price
+                            ItemId = product.Key.Id,
+                            Quantity = product.Value,
+                            Price = product.Value * product.Key.Price
+
                         });
                     }
-                    DB.BillInfors.AddRange(billInfors);
-                    DB.SaveChanges();
+                    context.BillInfors.AddRange(billInfors);
+                    context.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Transaction fail!");
+                Console.WriteLine(e);
+                throw;
             }
         }
-
-        private void clearCurrentOrder()
+        private void handleCheckoutCommand(object p)
         {
+            handleInsertIntoDB();
+            Globals.Instance.OrderQueue.Add(Globals.Instance.CurrBill);
             Globals.Instance.CurrBill.Clear();
         }
+        public ICommand CheckoutCommand { get; set; }
 
+        public ICommand IncreaseQuantityCommand { get; set; }
+        public ICommand ViewAll { get; set; }
+        public ICommand ClearBillCommand { get; set; }
+        public HomeViewModel()
+        {
+            int ChosenCategoryID = -1;// Determine which CategoryID is chosen to be shown
+            CheckoutCommand = new RelayCommand<object>(p => !Globals.Instance.CurrBill.isEmpty(), p => handleCheckoutCommand(p));
+            ViewAll = new RelayCommand<object>(p => true, p => categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList()));
+            AddToBillCommand = new RelayCommand<object>((p) => true, (p) => Globals.Instance.Insert(p as Item));
+            DecreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Delete((p as Product).Key));
+            IncreaseQuantityCommand = new RelayCommand<object>((p) => true, p => Globals.Instance.Insert((p as Product).Key));
+            CategoryList = new ObservableCollection<Category>(DataProvider.Ins.DB.Categories.ToList());
+            categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.ToList());
+            CategoryChangeCommand = new RelayCommand<Category>((p) => true, (p) =>
+            {
+                ChosenCategoryID = p.Id;
+                categorizedItemList = new ObservableCollection<Item>(DataProvider.Ins.DB.Items.Where(Cond => Cond.CategoryId == ChosenCategoryID).ToList());
+            });
+            ClearBillCommand = new RelayCommand<object>(p=>true, p=> { Globals.Instance.CurrBill.Clear(); });  
+        }
     }
 }

@@ -11,29 +11,29 @@ namespace _4NH_HAO_Coffee_Shop.Model
 {
     public class OrderList : BaseViewModel
     {
-        private ObservableCollection<Order> orders;
+        private ObservableCollection<Order> list;
 
-        public ObservableCollection<Order> Orders
+        public ObservableCollection<Order> List
         {
-            get => orders;
+            get => list;
             set
             {
-                if (orders != value)
+                if (list != value)
                 {
-                    orders = value;
-                    OnPropertyChanged(nameof(Orders));
+                    list = value;
+                    OnPropertyChanged(nameof(list));
                 }
             }
 
         }
         public void Add(Order order)
         {
-            orders.Add((Order)order.Clone());
-            OnPropertyChanged(nameof(orders));
+            list.Add((Order)order.Clone());
+            OnPropertyChanged(nameof(list));
         }
         public OrderList()
         {
-            Orders = new ObservableCollection<Order>();
+            List = new ObservableCollection<Order>();
 
         }
 

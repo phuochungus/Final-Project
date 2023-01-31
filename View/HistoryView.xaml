@@ -64,7 +64,6 @@
                 </i:Interaction.Triggers>
             </DatePicker>
             <ListBox
-                SelectedIndex="{Binding transactionLogSearcherProperty.currentChooseProperty}"
                 x:Name="searchOptionsBar"
                 Margin="30 10 10 10"
                 Height="auto"
