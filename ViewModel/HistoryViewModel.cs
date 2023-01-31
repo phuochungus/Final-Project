@@ -94,6 +94,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public const int VIEW_ALL = 1;
         public const int VIEW_TODAY = 2;
 
+        private int currentChoose = VIEW_TODAY;
         private ObservableCollection<Bill> resultLog;
         public FullyObservableCollection<CheckableItem> searchOptions;
         public TransactionLogFilter transactionLogFilterProperty { get; set; }
@@ -122,7 +123,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             transactionLogFilterProperty = new TransactionLogFilter();
 
             createDefaultOptionsGroup();
-
         }
 
         public void executeSearching()
@@ -157,7 +157,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             return currentOption;
         }
 
-        private int currentChoose = VIEW_TODAY;
 
         public int currentChooseProperty
         {
@@ -215,7 +214,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
 
         private ObservableCollection<Bill> fetchTodayLog()
-
         {
             ObservableCollection<Bill> transactionLog;
 
@@ -460,6 +458,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
                 notifyOptionChanged(selectedOption);
+                transactionLogSearcher.executeSearching();
                 showResultLog();
             });
 
@@ -496,6 +495,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     if (currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_ALL || currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_TODAY)
                     {
                         transactionLogSearcher.executeSearching();
+                        showResultLog();
                         Console.WriteLine("fetched");
                     }
                 }
@@ -504,7 +504,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         private void showResultLog()
         {
-            transactionLogSearcher.executeSearching();
             transactionLogProperty = transactionLogSearcher.getSearchResult();
         }
 
