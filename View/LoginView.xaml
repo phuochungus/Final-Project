@@ -25,6 +25,10 @@
         <vm:LoginViewModel/>
     </Window.DataContext>
 
+    <Window.Visibility>
+        <Binding Path="ViewVisible" Mode="TwoWay"/>
+    </Window.Visibility>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition 
@@ -57,12 +61,13 @@
                 materialDesign:HintAssist.Hint="Email"
                 materialDesign:HintAssist.HelperText="Enter your email here!" 
                 Margin="100,199,100,225"
-                Text="{Binding emailProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <!-- Password -->
             <PasswordBox 
                 x:Name="txtPassword"
                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
-                materialDesign:PasswordBoxAssist.Password="{Binding passwordProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
+                materialDesign:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 Margin="100,263,100,162"/>
@@ -73,14 +78,14 @@
                 CommandParameter="{Binding ElementName=window}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="148,328,148,90"
-                Visibility="{Binding loginButtonVisibilityProperty}">
+                Visibility="{Binding LoginButton}">
                 Login
             </Button>
             <ProgressBar
                 Style="{StaticResource MaterialDesignCircularProgressBar}"
                 Value="35"
                 IsIndeterminate="True" Margin="190,334,190,96" 
-                Visibility="{Binding progressCircleVisibilityProperty}"/>
+                Visibility="{Binding ProgressBar}"/>
         </Grid>
     </Grid>
 </Window>

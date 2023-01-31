@@ -9,39 +9,35 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-    public class Product : BaseViewModel, ICloneable
+    public class Product : BaseViewModel,ICloneable
     {
-        private Item item;
-        public Item Item
+        private Item key { get; set; }
+        public Item Key
         {
-            get => item;
+            get => key;
             set
             {
-                if (item == value) return;
-                item = value;
-                OnPropertyChanged(nameof(item));
+                if (key == value) return;
+                key = value;
+                OnPropertyChanged(nameof(Key));
             }
         }
-        private int quantity;
-        public int Quantity
+        private int value { get; set; } = 0;
+        unsafe public int Value
         {
-            get => quantity;
+            get => value;
             set
             {
-                if (this.quantity == value) return;
-                this.quantity = value;
-                OnPropertyChanged(nameof(Quantity));
+                if (this.value == value) return;
+                this.value = value;
+                OnPropertyChanged(nameof(Value));
             }
         }
-        public Product(Item item, int value)
-        {
-            Item = item;
-            Quantity = value;
-        }
+        unsafe public Product(Item item, int value) { Key = item; Value = value; }
 
         public object Clone()
         {
-            return new Product(item, Quantity);
+            return new Product(Key, Value);
         }
     }
 }
