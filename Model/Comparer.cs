@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-    public class PriceComparer : IComparer<FetchDataOfMonth_Result>
+    public class PriceDescendingComparer : IComparer<FetchDataOfMonth_Result>
     {
         public int Compare(FetchDataOfMonth_Result x, FetchDataOfMonth_Result y)
         {
@@ -14,14 +14,14 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
     }
 
-    public class QuantityComparer : IComparer<FetchDataOfMonth_Result>
+    public class QuantityDescendingComparer : IComparer<FetchDataOfMonth_Result>
     {
         public int Compare(FetchDataOfMonth_Result x, FetchDataOfMonth_Result y)
         {
             return y.Quantity.GetValueOrDefault().CompareTo(x.Quantity.GetValueOrDefault());
         }
     }
-    public class CustomerComparer : IComparer<FetchCustomerOfMonth_Result>
+    public class TotalCustumerDescendingComparer : IComparer<FetchCustomerOfMonth_Result>
     {
         public int Compare(FetchCustomerOfMonth_Result x, FetchCustomerOfMonth_Result y)
         {

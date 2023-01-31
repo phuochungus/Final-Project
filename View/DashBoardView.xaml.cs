@@ -20,36 +20,36 @@ namespace _4NH_HAO_Coffee_Shop.View
 
         private void LargeCartesianChart_ChartPointPointerDown(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
         {
-            var parent1 = VisualTreeHelper.GetParent(pieChartRevenue);
-            var parent2 = VisualTreeHelper.GetParent(pieChartQuantity);
-            var parent3 = VisualTreeHelper.GetParent(CustomerCartesianChart);
-            if (parent1 != null)
+            var parentOfPiechartRevenue = VisualTreeHelper.GetParent(productSalesRevenueChart);
+            var parentOfPiechartProductSoldQuantity = VisualTreeHelper.GetParent(productSoldQuantityChart);
+            var parentOfDailyTotalCustomerChart = VisualTreeHelper.GetParent(dailyTotalCustomerChart);
+            if (parentOfPiechartRevenue != null)
             {
-                Grid Parent = parent1 as Grid;
-                Parent.Children.Remove(pieChartRevenue);
-                pieChartRevenue = new PieChart();
-                pieChartRevenue.Series = (DataContext as DashBoardViewModel).PieChartRevenueSeries;
-                pieChartRevenue.InitialRotation = -90;
-                Parent.Children.Add(pieChartRevenue);
+                Grid Parent = parentOfPiechartRevenue as Grid;
+                Parent.Children.Remove(productSalesRevenueChart);
+                productSalesRevenueChart = new PieChart();
+                productSalesRevenueChart.Series = (DataContext as DashBoardViewModel).productSalesRevenueChartControl.seriesProperty;
+                productSalesRevenueChart.InitialRotation = -90;
+                Parent.Children.Add(productSalesRevenueChart);
             }
-            if (parent2 != null)
+            if (parentOfPiechartProductSoldQuantity != null)
             {
-                Grid Parent = parent2 as Grid;
-                Parent.Children.Remove(pieChartQuantity);
-                pieChartQuantity = new PieChart();
-                pieChartQuantity.Series = (DataContext as DashBoardViewModel).PieChartQuantitySeries;
-                pieChartQuantity.InitialRotation = -90;
-                Parent.Children.Add(pieChartQuantity);
+                Grid Parent = parentOfPiechartProductSoldQuantity as Grid;
+                Parent.Children.Remove(productSoldQuantityChart);
+                productSoldQuantityChart = new PieChart();
+                productSoldQuantityChart.Series = (DataContext as DashBoardViewModel).productSoldQuantityChartControl.seriesProperty;
+                productSoldQuantityChart.InitialRotation = -90;
+                Parent.Children.Add(productSoldQuantityChart);
             }
-            if (parent3 != null)
+            if (parentOfDailyTotalCustomerChart != null)
             {
-                Grid Parent = parent3 as Grid;
-                Parent.Children.Remove(CustomerCartesianChart);
-                CustomerCartesianChart = new CartesianChart();
-                CustomerCartesianChart.YAxes = (DataContext as DashBoardViewModel).Yaxis;
-                CustomerCartesianChart.XAxes = (DataContext as DashBoardViewModel).MonthAxis;
-                CustomerCartesianChart.Series = (DataContext as DashBoardViewModel).CustomerCartesianSeries;
-                Parent.Children.Add(CustomerCartesianChart);
+                Grid Parent = parentOfDailyTotalCustomerChart as Grid;
+                Parent.Children.Remove(dailyTotalCustomerChart);
+                dailyTotalCustomerChart = new CartesianChart();
+                dailyTotalCustomerChart.YAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.VerticalAxis;
+                dailyTotalCustomerChart.XAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.HorizontalAxis;
+                dailyTotalCustomerChart.Series = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.seriesProperty;
+                Parent.Children.Add(dailyTotalCustomerChart);
             }
             ((DashBoardViewModel)DataContext).handlCartesianChartMouseDownEvent(chart, point);
         }
