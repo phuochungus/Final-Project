@@ -157,6 +157,27 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             return currentOption;
         }
 
+        private int currentChoose = VIEW_TODAY;
+
+        public int currentChooseProperty
+        {
+            get
+            {
+                currentChoose = getCurrentChoose();
+                return currentChoose;
+            }
+            set
+            {
+                currentChoose = value;
+                foreach (var option in searchOptions)
+                {
+                    option.isCheckedProperty = false;
+                }
+                searchOptions[currentChoose].isCheckedProperty = true;
+
+            }
+        }
+
         private void searchTransactionInRange()
         {
             resultLog = fetchLogRangeBetweenDateTime(transactionLogFilterProperty);
