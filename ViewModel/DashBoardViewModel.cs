@@ -186,7 +186,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public void setupUIWithDefaulSetting()
         {
-            //intentionally left empty
+            //method intentionally left empty
         }
 
         public void setRawData(List<FetchDataOfMonth_Result> rawData)
@@ -223,7 +223,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public void setupUIWithDefaulSetting()
         {
-            //intentionally left empty
+            //this method intentionally left empty
         }
 
         public void TranformRawDataToVisualChart()
@@ -299,6 +299,5 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             int SelectedMonth = (int)point.SecondaryValue + 1;
             fetchAndTranformDataOfMonth(SelectedMonth);
         }
-
     }
 }
