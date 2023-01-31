@@ -10,7 +10,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public OrderedViewModel() {
             handleServingFinish = new RelayCommand<object>(p => true, p =>
             {
-                Globals.Instance.OrderQueue.List.Remove(p as Order);
+                Globals.Instance.OrderQueue.Orders.Remove(p as Order);
             });
         }
     }

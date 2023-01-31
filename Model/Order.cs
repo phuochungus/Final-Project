@@ -14,7 +14,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
 {
     public class Order : BaseViewModel, ICloneable
     {
-        private int total { get; set; } = 0;
         public int Total
         {
             get => total;
@@ -27,7 +26,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 }
             }
         }
-        private FullyObservableCollection<Product> productList { get; set; }
+        private int total = 0;
         public FullyObservableCollection<Product> ProductList
         {
             get => productList;
@@ -40,7 +39,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 }
             }
         }
-        private int id { get; set; }
+        private FullyObservableCollection<Product> productList;
         public int Id
         {
             get => id;
@@ -53,6 +52,8 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 }
             }
         }
+        private int id;
+
         public void Clear()
         {
             Total = 0;
@@ -63,31 +64,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
         {
             return productList.Count == 0;
         }
-        public Order()
-        {
-            ProductList = new FullyObservableCollection<Product>();
-            ProductList.CollectionChanged += (s, e) => handeProductListChanged(s, e);
-            ProductList.ItemPropertyChanged += (s, e) => handeProductListChanged(s, e);
-        }
-
-        public Order(Order obj)
-        {
-            this.Total = obj.Total;
-            this.Id = obj.Id;
-        }
-        private void handeProductListChanged(object sender, EventArgs e)
-        {
-            foreach (var product in (sender as FullyObservableCollection<Product>).ToList())
-            {
-                if (product.Value == 0) { productList.Remove(product); }
-            }
-            Total = 0;
-            foreach (var product in ProductList)
-            {
-                Total += product.Key.Price * product.Value;
-            }
-        }
-
         public object Clone()
         {
             Order clone = new Order();
@@ -100,5 +76,32 @@ namespace _4NH_HAO_Coffee_Shop.Model
             }
             return clone;
         }
+
+        public Order()
+        {
+            ProductList = new FullyObservableCollection<Product>();
+            ProductList.CollectionChanged += (s, e) => handeProductListChanged(s, e);
+            ProductList.ItemPropertyChanged += (s, e) => handeProductListChanged(s, e);
+        }
+
+        public Order(Order obj)
+        {
+            this.Total = obj.Total;
+            this.Id = obj.Id;
+        }
+
+        private void handeProductListChanged(object sender, EventArgs e)
+        {
+            foreach (var product in (sender as FullyObservableCollection<Product>).ToList())
+            {
+                if (product.Quantity == 0) { productList.Remove(product); }
+            }
+            Total = 0;
+            foreach (var product in ProductList)
+            {
+                Total += product.Item.Price * product.Quantity;
+            }
+        }
+
     }
 }
