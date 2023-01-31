@@ -94,6 +94,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public const int VIEW_ALL = 1;
         public const int VIEW_TODAY = 2;
 
+        private int currentChoose = VIEW_TODAY;
         private ObservableCollection<Bill> resultLog;
         public FullyObservableCollection<CheckableItem> searchOptions;
         public TransactionLogFilter transactionLogFilterProperty { get; set; }
@@ -112,7 +113,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             searchOptions.Add(new CheckableItem("View range", false));
             searchOptions.Add(new CheckableItem("View all", false));
-            searchOptions.Add(new CheckableItem("View today", true));
+            searchOptions.Add(new CheckableItem("View today", false));
         }
 
         public TransactionLogAdvancedSearcher()
@@ -122,12 +123,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             transactionLogFilterProperty = new TransactionLogFilter();
 
             createDefaultOptionsGroup();
-            executeSearching();
         }
 
         public void executeSearching()
         {
-            int chosenOption = currentChooseProperty;
+            int chosenOption = getCurrentChoose();
             switch (chosenOption)
             {
                 case VIEW_RANGE:
@@ -143,27 +143,37 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     break;
             }
         }
+
+        public int getCurrentChoose()
+        {
+            int currentOption = -1;
+            for (int index = 0; index < searchOptions.Count; index++)
+            {
+                if (searchOptions[index].isChecked)
+                {
+                    currentOption = index;
+                }
+            }
+            return currentOption;
+        }
+
+
         public int currentChooseProperty
         {
             get
             {
-                int currentOption = -1;
-                for (int index = 0; index < searchOptions.Count; index++)
-                {
-                    if (searchOptions[index].isChecked)
-                    {
-                        currentOption = index;
-                    }
-                }
-                return currentOption;
+                currentChoose = getCurrentChoose();
+                return currentChoose;
             }
             set
             {
-                foreach(var option in searchOptions)
+                currentChoose = value;
+                foreach (var option in searchOptions)
                 {
-                    option.isCheckedProperty = true;
+                    option.isCheckedProperty = false;
                 }
-                searchOptions[value].isCheckedProperty = true;
+                searchOptions[currentChoose].isCheckedProperty = true;
+
             }
         }
 
@@ -204,7 +214,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
 
         private ObservableCollection<Bill> fetchTodayLog()
-
         {
             ObservableCollection<Bill> transactionLog;
 
@@ -446,11 +455,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             refreshTransactionScreenTimer = createDefaultRefetchTimer();
             refreshTransactionScreenTimer.Start();
 
-            showResultLog();
-
             changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
                 notifyOptionChanged(selectedOption);
+                transactionLogSearcher.executeSearching();
                 showResultLog();
             });
 
@@ -462,12 +470,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker => showResultLog());
-        }
-
-        ~HistoryViewModel()
-        {
-            refreshTransactionScreenTimer.Stop();
-            refreshTransactionScreenTimer.Dispose();
         }
 
         private Timer createDefaultRefetchTimer()
@@ -487,12 +489,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             timer.Tick += (s, e) =>
             {
-                int currentSearchChoose = transactionLogSearcher.currentChooseProperty;
+                int currentSearchChoose = transactionLogSearcher.getCurrentChoose();
                 if (keepFetchingSearchResult == true)
                 {
                     if (currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_ALL || currentSearchChoose == TransactionLogAdvancedSearcher.VIEW_TODAY)
                     {
                         transactionLogSearcher.executeSearching();
+                        showResultLog();
                         Console.WriteLine("fetched");
                     }
                 }
@@ -501,7 +504,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         private void showResultLog()
         {
-            transactionLogSearcher.executeSearching();
             transactionLogProperty = transactionLogSearcher.getSearchResult();
         }
 

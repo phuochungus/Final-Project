@@ -51,7 +51,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     AccountType = Selecteditem.AccountType;
                     ManagedBy = Selecteditem.ManagedBy;
                 }
-               
             }
         }
 
@@ -146,10 +145,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             List = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
             AddCommand = new RelayCommand<object>((p) => {
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
-                if (Idlist == null || Idlist.Count() != 0) return false;               
+                if (Idlist == null || Idlist.Count() != 0) return false;
                 if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber)) return false;
+                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
+                     string.IsNullOrEmpty(PhoneNumber)) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(ManagedBy)) return false;
@@ -203,8 +202,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 if (Selecteditem == null) return false;
                 if (Id != Selecteditem.Id ) return false;
                 if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                    string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                    string.IsNullOrEmpty(PhoneNumber)) return false;
+                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
+                     string.IsNullOrEmpty(PhoneNumber)) return false;
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(ManagedBy)) return false;
@@ -240,7 +239,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
-                if (Selecteditem == null) return false;              
+                if (Selecteditem == null) return false;
                 if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
                     Password != Selecteditem.Password || PhoneNumber != Selecteditem.PhoneNumber || AccountType != Selecteditem.AccountType ||
                     ManagedBy != Selecteditem.ManagedBy)
@@ -250,7 +249,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.ManagedBy == Id);
                     if (Idlist == null || Idlist.Count() != 0) return false;
                 }
-
                 return true;
             },
             (p) => {

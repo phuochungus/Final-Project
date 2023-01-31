@@ -101,7 +101,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 hr.ShowDialog();
 
             });
-
             AvatarCommand = new RelayCommand<object>((p) => { return true; }, p =>
             {
                 OpenFileDialog open = new OpenFileDialog();

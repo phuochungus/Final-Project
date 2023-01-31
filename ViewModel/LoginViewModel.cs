@@ -121,7 +121,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     loginWindow.Hide();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 MessageBox.Show("Login fail!");
             }
