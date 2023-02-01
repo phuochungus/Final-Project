@@ -8,6 +8,7 @@ using _4NH_HAO_Coffee_Shop.Model;
 using System.Security.Cryptography;
 using System.Data.Entity;
 using _4NH_HAO_Coffee_Shop.Utils;
+using System.Net.Mail;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
@@ -57,7 +58,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             progressCircleVisibilityProperty = Visibility.Hidden;
             loginButtonVisibilityProperty = Visibility.Visible;
-            LoginCommand = new RelayCommand<Window>(loginWindow => isEmailValidated(), loginWindow => loginFromCurrentWindow(loginWindow));
+
+            //Thực hiện login khi nhấn nút login
+            LoginCommand = new RelayCommand<Window>(loginWindow => isValidAccount(), loginWindow => loginFromCurrentWindow(loginWindow));
         }
 
         public bool isEmailValidated()
@@ -104,7 +107,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 passwordProperty = "password";
 
                 showProgressCircle();
+                //Mã hóa password
                 string EncryptedPassword = CreateMD5(passwordProperty);
+                //Tìm tài khoản
                 Globals.Instance.CurrUser = await DataProvider.Ins
                     .DB.Accounts
                     .Where(x => x.Email == emailProperty && x.Password == EncryptedPassword)
@@ -113,10 +118,12 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
                 if (Globals.Instance.CurrUser == null)
                 {
+                    //Không tìm được
                     MessageBox.Show("Wrong email or password!");
                 }
                 else
                 {
+                    //Tìm được
                     Globals.Instance.isAdmin = (Globals.Instance.CurrUser.AccountType == "admin"); ;
                     loginWindow.Hide();
                 }
@@ -134,5 +141,18 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             string encoded = BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
             return encoded;
         }
+
+        private void showProgressCircle()
+        {
+            progressCircleVisibilityProperty = Visibility.Visible;
+            loginButtonVisibilityProperty = Visibility.Hidden;
+        }
+
+        private void hideProgressCircle()
+        {
+            progressCircleVisibilityProperty = Visibility.Hidden;
+            loginButtonVisibilityProperty = Visibility.Visible;
+        }
+
     }
 }

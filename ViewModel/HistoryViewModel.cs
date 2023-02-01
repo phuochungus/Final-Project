@@ -398,12 +398,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         private Timer refreshTransactionScreenTimer;
         private ObservableCollection<Bill> transactionLog;
-        private CalendarBlackoutDatesCollection backoutDates;
         public TransactionLogAdvancedSearcher transactionLogSearcher;
         public ExcelExporter excelExporter;
 
         public ICommand notifyEndDateChangedCommand { get; set; }
-        public ICommand ExportCommand { get; set; }
+        public ICommand exportCommand { get; set; }
         public ICommand changeSearchOption { get; set; }
 
         public TransactionLogAdvancedSearcher transactionLogSearcherProperty
@@ -413,18 +412,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             {
                 transactionLogSearcher = value;
                 OnPropertyChanged();
-            }
-        }
-        public CalendarBlackoutDatesCollection blackoutDatesProperty
-        {
-            get => backoutDates;
-            set
-            {
-                if (backoutDates != value)
-                {
-                    backoutDates = value;
-                    OnPropertyChanged();
-                }
             }
         }
         public ObservableCollection<Bill> transactionLogProperty
@@ -444,28 +431,47 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public HistoryViewModel()
         {
+            //Giữ giao dịch sẽ được hiển thị 
             transactionLog = new ObservableCollection<Bill>();
+
+            //Công cụ tìm kiếm lịch sữ giao dịch
             transactionLogSearcher = new TransactionLogAdvancedSearcher();
+
+            //Công cụ xuất file excel
             excelExporter = new ExcelExporter();
 
+            //Timer phục vụ cho việc theo dõi kết quả realtime
             refreshTransactionScreenTimer = createDefaultRefetchTimer();
             refreshTransactionScreenTimer.Start();
 
+            //Thông báo khi search option trên UI thay đổi
             changeSearchOption = new RelayCommand<CheckableItem>(selectedOption => true, selectedOption =>
             {
+                //Thông báo search option thay đổi 
                 notifyOptionChanged(selectedOption);
+                //Tìm kiếm lại các giao dịch đúng yêu cầu
                 transactionLogSearcher.executeSearching();
+                //Hiển thị kết quả tìm kiếm
                 showResultLog();
             });
 
-            ExportCommand = new RelayCommand<System.Windows.Controls.Button>(btnExport => true,
-            btnExport =>
+            //Thực hiện khi nhấn nút Export Report
+            exportCommand = new RelayCommand<System.Windows.Controls.Button>(btnExport => true, btnExport =>
             {
+                //Đặt nguồn dữ liệu cho exporter là các giao dịch được hiển thị 
                 excelExporter.setSource(transactionLogProperty);
+                //Xuất file
                 excelExporter.ExportToExcel();
             });
 
-            notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker => showResultLog());
+            //Thực hiện khi giá trị End Date bị thay đổi trong DateRange dùng trong Search Range
+            notifyEndDateChangedCommand = new RelayCommand<DatePicker>(endDatePicker => true, endDatePicker =>
+            {
+                //Tìm kiếm lại các giao dịch đúng yêu cầu
+                transactionLogSearcher.executeSearching();
+                //Hiển thị kết quả tìm kiếm
+                showResultLog();
+            });
         }
 
         private Timer createDefaultRefetchTimer()
@@ -508,14 +514,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             foreach (CheckableItem searchOption in transactionLogSearcher.searchOptions)
             {
                 if (selectedOption == searchOption)
-                {
                     searchOption.isCheckedProperty = true;
-                }
                 else
-                {
                     searchOption.isCheckedProperty = false;
-                }
             }
         }
+
     }
 }

@@ -110,10 +110,10 @@
                     <Button
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Content="Export a report"
+                        Content="Export report"
                         Foreground="Black"
                         Background="#FDCFAD"
-                        Command="{Binding ExportCommand}"
+                        Command="{Binding exportCommand}"
                         />
                 </Grid>
             </Grid>
