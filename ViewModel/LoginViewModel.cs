@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -63,49 +63,32 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             LoginCommand = new RelayCommand<Window>(loginWindow => isValidAccount(), loginWindow => loginFromCurrentWindow(loginWindow));
         }
 
-        public bool isEmailValidated()
+
+        public bool isValidAccount()
         {
-
-            return true;
-
-
-            // CODE COMMENTED FOR DEVELPOPMENT PURPOSE
-            //if (!isValidEmail(_email) || _password == null || _password == "") return false;
-            //return true;
-
-            //bool isValidEmail(string Email)
-            //{
-            //    try
-            //    {
-            //        MailAddress mail = new MailAddress(Email);
-            //        return true;
-            //    }
-            //    catch (Exception)
-            //    {
-            //        return false;
-            //    }
-            //};
+            if (isValidEmail(email) == false || password == null || password == "")
+                return false;
+            else
+                return true;
         }
 
-        private void showProgressCircle()
+        private bool isValidEmail(string Email)
         {
-            progressCircleVisibilityProperty = Visibility.Visible;
-            loginButtonVisibilityProperty = Visibility.Hidden;
-        }
-
-        private void hideProgressCircle()
-        {
-            progressCircleVisibilityProperty = Visibility.Hidden;
-            loginButtonVisibilityProperty = Visibility.Visible;
+            try
+            {
+                MailAddress mail = new MailAddress(Email);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async void loginFromCurrentWindow(Window loginWindow)
         {
             try
             {
-                emailProperty = "nguyenthib@gmail.com";
-                passwordProperty = "password";
-
                 showProgressCircle();
                 //Mã hóa password
                 string EncryptedPassword = CreateMD5(passwordProperty);
