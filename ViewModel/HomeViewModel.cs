@@ -143,7 +143,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     }
                     DB.BillInfors.AddRange(billInfors);
                     DB.SaveChanges();
+                    var t = DB.MonthlyRevenues.ToList();
+                    Console.WriteLine(DB.MonthlyRevenues.ToList());
                 }
+                
             }
             catch (Exception)
             {

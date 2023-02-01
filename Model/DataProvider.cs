@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
+    //Lớp sử dụng Signleton Pattern để truy cập database
     internal class DataProvider
     {
         private static DataProvider _ins;
@@ -16,15 +17,11 @@ namespace _4NH_HAO_Coffee_Shop.Model
                 if (_ins == null) _ins = new DataProvider();
                 return _ins;
             }
-            set
-            {
-                _ins = value;
-            }
         }
-        
+
         public TAHCoffeeEntities DB { get; set; }
-        
-        public DataProvider()
+
+        private DataProvider()
         {
             DB = new TAHCoffeeEntities();
         }

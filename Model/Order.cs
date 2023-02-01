@@ -54,29 +54,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
         private int id;
 
-        public void Clear()
-        {
-            Total = 0;
-            productList.Clear();
-            Id = 0;
-        }
-        public bool isEmpty()
-        {
-            return productList.Count == 0;
-        }
-        public object Clone()
-        {
-            Order clone = new Order();
-            clone.total = total;
-            clone.id = id;
-            foreach (var item in ProductList)
-            {
-                Product clonedItem = (Product)item.Clone();
-                clone.ProductList.Add(clonedItem);
-            }
-            return clone;
-        }
-
         public Order()
         {
             ProductList = new FullyObservableCollection<Product>();
@@ -94,13 +71,39 @@ namespace _4NH_HAO_Coffee_Shop.Model
         {
             foreach (var product in (sender as FullyObservableCollection<Product>).ToList())
             {
-                if (product.Quantity == 0) { productList.Remove(product); }
+                if (product.Quantity == 0)
+                    productList.Remove(product);
             }
             Total = 0;
             foreach (var product in ProductList)
             {
                 Total += product.Item.Price * product.Quantity;
             }
+        }
+
+        public void Clear()
+        {
+            Total = 0;
+            productList.Clear();
+            Id = 0;
+        }
+
+        public bool isEmpty()
+        {
+            return productList.Count == 0;
+        }
+
+        public object Clone()
+        {
+            Order clone = new Order();
+            clone.total = total;
+            clone.id = id;
+            foreach (var item in ProductList)
+            {
+                Product clonedItem = (Product)item.Clone();
+                clone.ProductList.Add(clonedItem);
+            }
+            return clone;
         }
 
     }
