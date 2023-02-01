@@ -1,4 +1,4 @@
-using _4NH_HAO_Coffee_Shop.Model;
+﻿using _4NH_HAO_Coffee_Shop.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
@@ -14,37 +14,7 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    public class CheckableItem : BaseViewModel
-    {
-        public bool isChecked;
-        private string name;
-
-        public bool isCheckedProperty
-        {
-            get => isChecked;
-            set
-            {
-                isChecked = value;
-                OnPropertyChanged(nameof(isCheckedProperty));
-            }
-        }
-        public string nameProperty
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged(nameof(nameProperty));
-            }
-        }
-
-        public CheckableItem(string name, bool isChecked)
-        {
-            this.name = name;
-            this.isChecked = isChecked;
-        }
-    }
-
+    //class này quy định khoảng thời gian mà TransactionLogAdvancedSearcher có thể thực hiện search khi search option = VIEW_RANGE
     public class TransactionLogFilter : BaseViewModel
     {
         private CalendarBlackoutDatesCollection blachoutDates;
@@ -81,10 +51,40 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-
         public TransactionLogFilter()
         {
             searchRange = new CalendarDateRange(DateTime.Now, DateTime.Today.AddDays(1));
+        }
+    }
+
+    public class CheckableItem : BaseViewModel
+    {
+        public bool isChecked;
+        private string name;
+
+        public bool isCheckedProperty
+        {
+            get => isChecked;
+            set
+            {
+                isChecked = value;
+                OnPropertyChanged(nameof(isCheckedProperty));
+            }
+        }
+        public string nameProperty
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(nameProperty));
+            }
+        }
+
+        public CheckableItem(string name, bool isChecked)
+        {
+            this.name = name;
+            this.isChecked = isChecked;
         }
     }
 
@@ -173,7 +173,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                     option.isCheckedProperty = false;
                 }
                 searchOptions[currentChoose].isCheckedProperty = true;
-
             }
         }
 
@@ -402,7 +401,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         private CalendarBlackoutDatesCollection backoutDates;
         public TransactionLogAdvancedSearcher transactionLogSearcher;
         public ExcelExporter excelExporter;
-
 
         public ICommand notifyEndDateChangedCommand { get; set; }
         public ICommand ExportCommand { get; set; }

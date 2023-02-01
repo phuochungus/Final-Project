@@ -20,38 +20,38 @@ namespace _4NH_HAO_Coffee_Shop.View
 
         private void LargeCartesianChart_ChartPointPointerDown(LiveChartsCore.Kernel.Sketches.IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
         {
-            var parentOfPiechartRevenue = VisualTreeHelper.GetParent(productSalesRevenueChart);
-            var parentOfPiechartProductSoldQuantity = VisualTreeHelper.GetParent(productSoldQuantityChart);
-            var parentOfDailyTotalCustomerChart = VisualTreeHelper.GetParent(dailyTotalCustomerChart);
+            var parentOfPiechartRevenue = VisualTreeHelper.GetParent(ProductSalesRevenue);
+            var parentOfPiechartProductSoldQuantity = VisualTreeHelper.GetParent(ProductSoldQuantity);
+            var parentOfDailyTotalCustomerChart = VisualTreeHelper.GetParent(DailyTotalCustomer);
             if (parentOfPiechartRevenue != null)
             {
                 Grid Parent = parentOfPiechartRevenue as Grid;
-                Parent.Children.Remove(productSalesRevenueChart);
-                productSalesRevenueChart = new PieChart();
-                productSalesRevenueChart.Series = (DataContext as DashBoardViewModel).productSalesRevenueChartControl.seriesProperty;
-                productSalesRevenueChart.InitialRotation = -90;
-                Parent.Children.Add(productSalesRevenueChart);
+                Parent.Children.Remove(ProductSalesRevenue);
+                ProductSalesRevenue = new PieChart();
+                ProductSalesRevenue.Series = (DataContext as DashBoardViewModel).productSalesRevenueChartControl.seriesProperty;
+                ProductSalesRevenue.InitialRotation = -90;
+                Parent.Children.Add(ProductSalesRevenue);
             }
             if (parentOfPiechartProductSoldQuantity != null)
             {
                 Grid Parent = parentOfPiechartProductSoldQuantity as Grid;
-                Parent.Children.Remove(productSoldQuantityChart);
-                productSoldQuantityChart = new PieChart();
-                productSoldQuantityChart.Series = (DataContext as DashBoardViewModel).productSoldQuantityChartControl.seriesProperty;
-                productSoldQuantityChart.InitialRotation = -90;
-                Parent.Children.Add(productSoldQuantityChart);
+                Parent.Children.Remove(ProductSoldQuantity);
+                ProductSoldQuantity = new PieChart();
+                ProductSoldQuantity.Series = (DataContext as DashBoardViewModel).productSoldQuantityChartControl.seriesProperty;
+                ProductSoldQuantity.InitialRotation = -90;
+                Parent.Children.Add(ProductSoldQuantity);
             }
             if (parentOfDailyTotalCustomerChart != null)
             {
                 Grid Parent = parentOfDailyTotalCustomerChart as Grid;
-                Parent.Children.Remove(dailyTotalCustomerChart);
-                dailyTotalCustomerChart = new CartesianChart();
-                dailyTotalCustomerChart.YAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.VerticalAxis;
-                dailyTotalCustomerChart.XAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.HorizontalAxis;
-                dailyTotalCustomerChart.Series = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.seriesProperty;
-                Parent.Children.Add(dailyTotalCustomerChart);
+                Parent.Children.Remove(DailyTotalCustomer);
+                DailyTotalCustomer = new CartesianChart();
+                DailyTotalCustomer.YAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.VerticalAxis;
+                DailyTotalCustomer.XAxes = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.HorizontalAxis;
+                DailyTotalCustomer.Series = (DataContext as DashBoardViewModel).dailyTotalCustomerChartControl.seriesProperty;
+                Parent.Children.Add(DailyTotalCustomer);
             }
-            ((DashBoardViewModel)DataContext).handlCartesianChartMouseDownEvent(chart, point);
+            ((DashBoardViewModel)DataContext).handleBigChartMouseDownEvent(chart, point);
         }
     }
 }
