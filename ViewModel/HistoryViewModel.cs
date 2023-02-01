@@ -197,8 +197,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             using (var DB = new TAHCoffeeEntities())
             {
-
-
                 transactionLog = new ObservableCollection<Bill>(
                 DB.Bills.SqlQuery(queryString,
                                         new SqlParameter("@start", transactionLogFilter.startDate.ToString("M/d/y")),

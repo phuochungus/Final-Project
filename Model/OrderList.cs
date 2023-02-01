@@ -26,15 +26,16 @@ namespace _4NH_HAO_Coffee_Shop.Model
             }
 
         }
+
+        public OrderList()
+        {
+            Orders = new ObservableCollection<Order>();
+        }
+
         public void Add(Order order)
         {
             orders.Add((Order)order.Clone());
             OnPropertyChanged(nameof(Orders));
-        }
-        public OrderList()
-        {
-            Orders = new ObservableCollection<Order>();
-
         }
 
     }

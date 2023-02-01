@@ -12,27 +12,30 @@ namespace _4NH_HAO_Coffee_Shop.Model
     public class Product : BaseViewModel, ICloneable
     {
         private Item item;
+
         public Item Item
         {
             get => item;
             set
             {
-                if (item == value) return;
-                item = value;
-                OnPropertyChanged(nameof(item));
+                if (item != value)
+                    item = value;
+                OnPropertyChanged();
             }
         }
         private int quantity;
+
         public int Quantity
         {
             get => quantity;
             set
             {
-                if (this.quantity == value) return;
-                this.quantity = value;
-                OnPropertyChanged(nameof(Quantity));
+                if (this.quantity != value)
+                    this.quantity = value;
+                OnPropertyChanged();
             }
         }
+
         public Product(Item item, int value)
         {
             Item = item;

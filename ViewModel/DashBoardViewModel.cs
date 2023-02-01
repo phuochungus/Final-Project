@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xaml.Behaviors.Core;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -11,9 +12,11 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using static SkiaSharp.HarfBuzz.SKShaper;
+using System.Windows.Input;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
+    //abstract class quản lý Chart
     public abstract class ChartUIController : BaseViewModel
     {
         protected ObservableCollection<ISeries> series;
@@ -24,7 +27,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             set
             {
                 series = value;
-                OnPropertyChanged(nameof(seriesProperty));
+                OnPropertyChanged();
             }
         }
 
@@ -244,16 +247,25 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
     }
 
+
     public class DashBoardViewModel : BaseViewModel
     {
+
         public MonthlyRevenueChartControl monthlyRevenueChartControl { get; set; } = new MonthlyRevenueChartControl();
         public ProductSalesRevenueChartControl productSalesRevenueChartControl { get; set; } = new ProductSalesRevenueChartControl();
         public ProductSoldQuantityChartControl productSoldQuantityChartControl { get; set; } = new ProductSoldQuantityChartControl();
         public DailyTotalCustomerChartControl dailyTotalCustomerChartControl { get; set; } = new DailyTotalCustomerChartControl();
 
+        public ICommand visibleTriggerCommand { get; set; }
+
         public DashBoardViewModel()
         {
-            fetchAndTranformMonthlyRevenueDataOfCurrentYear();
+            visibleTriggerCommand = new RelayCommand<System.Windows.DependencyPropertyChangedEventArgs>(p => true, p =>
+            {
+                if (p.NewValue as bool? == true)
+                    fetchAndTranformMonthlyRevenueDataOfCurrentYear();
+            });
+
         }
 
         private void fetchAndTranformMonthlyRevenueDataOfCurrentYear()
@@ -282,16 +294,25 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         private List<MonthlyRevenue> getRawMonthlyRevenuesDataFromDatabase()
         {
-            return DataProvider.Ins.DB.MonthlyRevenues.ToList();
+            using (var DB = new TAHCoffeeEntities())
+            {
+                return DB.MonthlyRevenues.ToList();
+            }
         }
         private List<FetchDataOfMonth_Result> getRawProductDataFromDatabase(int selectedMonth)
         {
-            return DataProvider.Ins.DB.FetchDataOfMonth(selectedMonth).ToList();
+            using (var DB = new TAHCoffeeEntities())
+            {
+                return DB.FetchDataOfMonth(selectedMonth).ToList();
+            }
         }
 
         private List<FetchCustomerOfMonth_Result> getRawTotalCustomerDataFromDatabase(int selectedMonth)
         {
-            return DataProvider.Ins.DB.FetchCustomerOfMonth(selectedMonth).ToList();
+            using (var DB = new TAHCoffeeEntities())
+            {
+                return DB.FetchCustomerOfMonth(selectedMonth).ToList();
+            }
         }
 
         public void handlCartesianChartMouseDownEvent(IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
@@ -299,5 +320,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             int SelectedMonth = (int)point.SecondaryValue + 1;
             fetchAndTranformDataOfMonth(SelectedMonth);
         }
+
     }
 }

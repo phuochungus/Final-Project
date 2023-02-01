@@ -9,8 +9,18 @@ using System.Threading.Tasks;
 
 namespace _4NH_HAO_Coffee_Shop.Utils
 {
-    public class FullyObservableCollection<T> : ObservableCollection<T>
-       where T : INotifyPropertyChanged
+    /// <summary>
+    /// FullyObservableCollection là bản cải tiến của ObservableCollection 
+    /// Ưu điểm:
+    ///     Đưa ra notify khi:
+    ///     Thêm 1 item
+    ///     Xóa 1 item
+    ///     Sửa 1 item
+    /// Nhước điểm:
+    ///     Phức tạp hơn khi xử lý notify sửa item, yêu cầu EventArgs đặc biệt
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class FullyObservableCollection<T> : ObservableCollection<T> where T : INotifyPropertyChanged
     {
         public event EventHandler<ItemPropertyChangedEventArgs> ItemPropertyChanged;
 
@@ -77,11 +87,12 @@ namespace _4NH_HAO_Coffee_Shop.Utils
 
             if (i < 0)
                 throw new ArgumentException("Received property notification from item not in collection");
-
             OnItemPropertyChanged(i, e);
         }
     }
-
+    /// <summary>
+    /// EventArgs đặt biệt cho FullyObservableCollection
+    /// </summary>
     public class ItemPropertyChangedEventArgs : PropertyChangedEventArgs
     {
         public int CollectionIndex { get; }
