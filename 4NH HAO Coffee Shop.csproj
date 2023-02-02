@@ -222,6 +222,7 @@
     <Compile Include="Model\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\AccountWrapper.cs" />
     <Compile Include="Model\Bill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
