@@ -3,12 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+<<<<<<< HEAD
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
+=======
+        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
+        xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
+        mc:Ignorable="d"
+        d:Height="607.2"
+        d:Width="878.15"
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -22,11 +30,15 @@
     <UserControl.DataContext>
         <vm:OrderedViewModel/>
     </UserControl.DataContext>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     <Grid>
         <Grid>
             <Border
                     Background="#C1FFBB" 
+<<<<<<< HEAD
                     Margin="32,31,31,73"/>
             <Grid 
                     Margin="451,0,31,10" Height="57" VerticalAlignment="Bottom">
@@ -57,6 +69,88 @@
                         />
                 </Grid>
             </Grid>
+=======
+                    Margin="32,32,32,32">
+                <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=OrderQueue.Orders, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="20,20,20,20">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <materialDesign:Card Margin="5 5 5 5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="Auto" />
+                                            <RowDefinition
+                                                Height="Auto" />
+                                            <RowDefinition
+                                                Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Image
+                                            utils:AlterSourceExtention.RegisterAlterSource="{Binding ProductList[0].Item.ImageURL}"
+                                            Height="200"
+                                            Width="200"
+                                            Stretch="UniformToFill" />
+                                        <Grid
+                                            Grid.Row="1"
+                                            Margin="8 24 8 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="Bill: #"/>
+                                                <TextBlock FontWeight="Bold" Text="{Binding Id}"/>
+                                            </StackPanel>
+                                            <DataGrid 
+                                                Grid.Row="1"
+                                                ScrollViewer.CanContentScroll="true"
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                                ItemsSource="{Binding ProductList}"
+                                                IsEnabled="True"
+                                                AutoGenerateColumns="False"
+                                                CanUserResizeRows="False"
+                                                CanUserResizeColumns="False"
+                                                MaxHeight="260">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Product" Binding="{Binding Item.DisplayName}"/>
+                                                    <DataGridTextColumn IsReadOnly="True" Header="Quan." Binding="{Binding Quantity}"/>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>
+                                        <StackPanel
+                                            HorizontalAlignment="Right"
+                                            Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            Margin="8">
+                                            <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                Width="30"
+                                                Padding="2 0 2 0"
+                                                Command="{Binding Source={StaticResource OrderedVM}, Path=handleServingFinish}"
+                                                CommandParameter="{Binding}"
+                                                materialDesign:RippleAssist.IsCentered="True">
+                                                <Image Source="pack://application:,,,/Assets/Icon/ReceiptTextCheck.ico"></Image>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+
+                </ItemsControl>
+            </Border>
+
+
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         </Grid>
     </Grid>
 </UserControl>

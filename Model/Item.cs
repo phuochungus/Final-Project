@@ -9,17 +9,25 @@
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
+<<<<<<< HEAD
     using _4NH_HAO_Coffee_Shop.ViewModel;
     using System;
     using System.Collections.Generic;
     
     public partial class Item : BaseViewModel
+=======
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Item
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
             this.BillInfors = new HashSet<BillInfor>();
         }
+<<<<<<< HEAD
 
         private string _Id;
         public string Id
@@ -57,6 +65,16 @@ namespace _4NH_HAO_Coffee_Shop.Model
             get { return _ImageURL; }
             set { _ImageURL = value; OnPropertyChanged(); }
         }
+=======
+    
+        public string Id { get; set; }
+        public string DisplayName { get; set; }
+        public int UnitId { get; set; }
+        public int CategoryId { get; set; }
+        public int Price { get; set; }
+        public string ImageURL { get; set; }
+    
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }
         public virtual Category Category { get; set; }

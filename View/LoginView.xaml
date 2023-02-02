@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+<<<<<<< HEAD
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
+=======
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -21,15 +24,22 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         x:Name="window">
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     <Window.DataContext>
         <vm:LoginViewModel/>
     </Window.DataContext>
 
+<<<<<<< HEAD
     <Window.Visibility>
         <Binding Path="ViewVisible" Mode="TwoWay"/>
     </Window.Visibility>
 
+=======
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition 
@@ -62,13 +72,21 @@
                 materialDesign:HintAssist.Hint="Email"
                 materialDesign:HintAssist.HelperText="Enter your email here!" 
                 Margin="100,199,100,225"
+<<<<<<< HEAD
                 Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+=======
+                Text="{Binding emailProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             <!-- Password -->
             <PasswordBox 
                 x:Name="txtPassword"
                 Style="{StaticResource MaterialDesignRevealPasswordBox}"
+<<<<<<< HEAD
                 IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
                 materialDesign:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+=======
+                materialDesign:PasswordBoxAssist.Password="{Binding passwordProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                 materialDesign:HintAssist.Hint="Password"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 Margin="100,263,100,162"/>
@@ -79,14 +97,25 @@
                 CommandParameter="{Binding ElementName=window}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 materialDesign:ShadowAssist.ShadowAnimationDuration="0:0:0" Margin="148,328,148,90"
+<<<<<<< HEAD
                 Visibility="{Binding LoginButton}">
+=======
+                Visibility="{Binding loginButtonVisibilityProperty}">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                 Login
             </Button>
             <ProgressBar
                 Style="{StaticResource MaterialDesignCircularProgressBar}"
                 Value="35"
                 IsIndeterminate="True" Margin="190,334,190,96" 
+<<<<<<< HEAD
                 Visibility="{Binding ProgressBar}"/>
         </Grid>
     </Grid>
 </Window>
+=======
+                Visibility="{Binding progressCircleVisibilityProperty}"/>
+        </Grid>
+    </Grid>
+</Window>
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d

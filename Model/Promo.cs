@@ -9,17 +9,25 @@
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
+<<<<<<< HEAD
     using _4NH_HAO_Coffee_Shop.ViewModel;
     using System;
     using System.Collections.Generic;
     
     public partial class Promo : BaseViewModel
+=======
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Promo
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Promo()
         {
             this.Bills = new HashSet<Bill>();
         }
+<<<<<<< HEAD
         private string _Id;
         public string Id
         {
@@ -86,6 +94,15 @@ namespace _4NH_HAO_Coffee_Shop.Model
             }
         }
 
+=======
+    
+        public string Id { get; set; }
+        public string DisplayName { get; set; }
+        public string Script { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+    
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
     }

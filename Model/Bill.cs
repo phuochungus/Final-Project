@@ -11,24 +11,52 @@ namespace _4NH_HAO_Coffee_Shop.Model
 {
     using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     
     public partial class Bill
+=======
+
+    public partial class Bill : ICloneable
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bill()
         {
             this.BillInfors = new HashSet<BillInfor>();
         }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         public int IdNumber { get; set; }
         public System.DateTime ExportTime { get; set; }
         public string CustomerId { get; set; }
         public string PromoId { get; set; }
         public int Total { get; set; }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         public virtual Account Account { get; set; }
         public virtual Promo Promo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }
+<<<<<<< HEAD
+=======
+
+        public object Clone()
+        {
+            Bill clone = new Bill();
+            clone.IdNumber = this.IdNumber;
+            clone.ExportTime = this.ExportTime;
+            clone.CustomerId = this.CustomerId;
+            clone.Total = this.Total;
+            clone.Promo = this.Promo;
+            return clone;
+        }
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     }
 }

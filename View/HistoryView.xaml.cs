@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+=======
+﻿using System.Windows.Controls;
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
 
 namespace _4NH_HAO_Coffee_Shop.View
 {
@@ -24,5 +28,9 @@ namespace _4NH_HAO_Coffee_Shop.View
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     }
 }

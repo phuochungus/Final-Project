@@ -118,21 +118,34 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) || UnitId <= 0 || string.IsNullOrEmpty(UnitId.ToString()) || CategoryId <= 0 || string.IsNullOrEmpty(CategoryId.ToString()) || string.IsNullOrEmpty(ImageURL)) 
+                // Kiểm tra các TextBox hiển thị thông tin Item có hợp lệ ?
+                if (string.IsNullOrEmpty(Id) 
+                    || string.IsNullOrEmpty(DisplayName) 
+                    || UnitId <= 0 
+                    || string.IsNullOrEmpty(UnitId.ToString()) 
+                    || CategoryId <= 0 
+                    || string.IsNullOrEmpty(CategoryId.ToString()) 
+                    || string.IsNullOrEmpty(ImageURL)) 
                 {
                     return false;
                 }
+                // Lấy List Items có Item trùng Id với Item cần thêm 
                 var displayList = DataProvider.Ins.DB.Items.Where(x => (x.Id == Id || x.DisplayName == DisplayName));
+                // Kiểm tra List Items có Item trùng Id với Item cần thêm = null hoặc không có phần tử hay không ?
                 if (displayList == null || displayList.Count() != 0)
                 {
                     return false;
                 }
+                //  Lấy List Categories có Category trùng Id với CategoryId của Item cần thêm
                 var categoryList = DataProvider.Ins.DB.Categories.Where(x => (x.Id == CategoryId));
+                // Kiểm tra List Categories có Category trùng Id với CategoryId của Item cần thêm = null hoặc không có phần tử hay không ?
                 if (categoryList == null || categoryList.Count() == 0)
                 {
                     return false;
                 }
+                //  Lấy List Units có Unit trùng Id với UnitId của Item cần thêm
                 var unitList = DataProvider.Ins.DB.Units.Where(x => (x.Id == UnitId));
+                // Kiểm tra List Units có Unit trùng Id với UnitId của Item cần thêm = null hoặc không có phần tử hay không ?
                 if (unitList == null || unitList.Count() == 0)
                 {
                     return false;
@@ -142,10 +155,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }, (p) => 
             {
+                // Tạo Item cần thêm
                 var newItem = new Item() { Id = Id, DisplayName = DisplayName, UnitId = UnitId, CategoryId = CategoryId, Price = Price, ImageURL = ImageURL };
+                // Thêm newItem vào DataBase
                 DataProvider.Ins.DB.Items.Add(newItem);
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
-
+                // Thêm newItem vào List Item
                 List.Add(newItem);
             });
             

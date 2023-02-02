@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="665" d:DesignWidth="936"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+<<<<<<< HEAD
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
@@ -15,6 +16,15 @@
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
              
+=======
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
              DataContext="{StaticResource MainControlBarVM}"
              Name="ucMainControlBar">
 
@@ -26,6 +36,7 @@
 
 
 
+<<<<<<< HEAD
         <Grid Background="#DD8823">
 
 
@@ -36,17 +47,34 @@
                 <Button Width="44" Height="44" 
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+        <Grid Background="{Binding BGColor}">
+            <StackPanel Margin="0 7 0 5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Image Margin="2 2 2 2" Width="44" Source="\Assets\Image\4nhHaoLogo@4x.png"></Image>
+                <Button Width="44" Height="44" 
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="Home"
+                    Command="{Binding ShowHomeViewCommand}">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
+<<<<<<< HEAD
                     <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"/>
+                </Button>
+                <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="Data management">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -57,7 +85,13 @@
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+<<<<<<< HEAD
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                    ToolTip="Order"
+                    Command="{Binding ShowOrderedViewCommand}">
+
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -68,7 +102,12 @@
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+<<<<<<< HEAD
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                    ToolTip="Report"
+                    Command="{Binding ShowHistoryViewCommand}">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -77,13 +116,33 @@
                     </Button.BorderBrush>
                     <Image Margin="2 2 2 2"  Source="\Assets\Icon\History@4x.png"></Image>
                 </Button>
+<<<<<<< HEAD
+=======
+                <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="Dashboard"
+                    Command="{Binding ShowDashBoardViewCommand}">
+                    <Button.Background>
+                        <SolidColorBrush Opacity="0"/>
+                    </Button.Background>
+                    <Button.BorderBrush>
+                        <SolidColorBrush Opacity="0"/>
+                    </Button.BorderBrush>
+                    <materialDesign:PackIcon Width="38" Height="38" Margin="2 2 2 2" Kind="ViewDashboard" />
+                </Button>
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
 
             </StackPanel>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+<<<<<<< HEAD
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                    ToolTip="Personal Information"
+                    Command="{Binding ShowYourProfiledViewCommand}">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -92,9 +151,17 @@
                     </Button.BorderBrush>
                     <Image Margin="2 2 2 2" Source="\Assets\Icon\Person@4x.png"></Image>
                 </Button>
+<<<<<<< HEAD
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                <Button Width="44" 
+                            Height="44"
+                            Command="{Binding ShowSettingViewCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            ToolTip="Settibg">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -108,7 +175,11 @@
                     CommandParameter="{Binding ElementName=ucMainControlBar}"
                     Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+<<<<<<< HEAD
                     ToolTip="MaterialDesignFloatingActionLightButton">
+=======
+                    ToolTip="Exit">
+>>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
