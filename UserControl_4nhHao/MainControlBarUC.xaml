@@ -7,13 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="665" d:DesignWidth="936"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+             
              DataContext="{StaticResource MainControlBarVM}"
              Name="ucMainControlBar">
 
@@ -25,24 +26,27 @@
 
 
 
-        <Grid Background="{Binding BGColor}">
+        <Grid Background="#DD8823">
+
+
             <StackPanel Margin="0 7 0 5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+
                 <Image Margin="2 2 2 2" Width="44" Source="\Assets\Image\4nhHaoLogo@4x.png"></Image>
                 <Button Width="44" Height="44" 
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Home"
-                    Command="{Binding ShowHomeViewCommand}">
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"/>
+                    <Image Margin="2 2 2 2" Source="\Assets\Icon\Home@4x.png"></Image>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Data management">
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -53,9 +57,7 @@
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Order"
-                    Command="{Binding ShowOrderedViewCommand}">
-
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -66,8 +68,7 @@
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Report"
-                    Command="{Binding ShowHistoryViewCommand}">
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -76,26 +77,13 @@
                     </Button.BorderBrush>
                     <Image Margin="2 2 2 2"  Source="\Assets\Icon\History@4x.png"></Image>
                 </Button>
-                <Button Width="44" Height="44"
-                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Dashboard"
-                    Command="{Binding ShowDashBoardViewCommand}">
-                    <Button.Background>
-                        <SolidColorBrush Opacity="0"/>
-                    </Button.Background>
-                    <Button.BorderBrush>
-                        <SolidColorBrush Opacity="0"/>
-                    </Button.BorderBrush>
-                    <materialDesign:PackIcon Width="38" Height="38" Margin="2 2 2 2" Kind="ViewDashboard" />
-                </Button>
 
             </StackPanel>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Personal Information"
-                    Command="{Binding ShowYourProfiledViewCommand}">
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -104,11 +92,9 @@
                     </Button.BorderBrush>
                     <Image Margin="2 2 2 2" Source="\Assets\Icon\Person@4x.png"></Image>
                 </Button>
-                <Button Width="44" 
-                            Height="44"
-                            Command="{Binding ShowSettingViewCommand}"
-                            Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="Settibg">
+                <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>
@@ -122,7 +108,7 @@
                     CommandParameter="{Binding ElementName=ucMainControlBar}"
                     Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    ToolTip="Exit">
+                    ToolTip="MaterialDesignFloatingActionLightButton">
                     <Button.Background>
                         <SolidColorBrush Opacity="0"/>
                     </Button.Background>

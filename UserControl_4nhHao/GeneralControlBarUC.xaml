@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
              mc:Ignorable="d" 
              d:DesignHeight="665" d:DesignWidth="936"
@@ -15,33 +14,14 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-             Name="ucGeneralControlBar"
-             DataContext="{StaticResource GCBVM}">
-    
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}"
-                                    CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
-        </i:EventTrigger>
-
-        <i:EventTrigger EventName="MouseDoubleClick">
-            <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}"
-                                    CommandParameter="{Binding ElementName=ucGeneralControlBar}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
-
-        
-
-
+             Name="ucGeneralControlBar">
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="57.8"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="{Binding BGColor}">
+        <Grid Grid.Row="0" Background="#A9006F">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -174,7 +154,7 @@
                                 <Image  Source="\Assets\Icon\Add@4x.png" Width="10"/>
                             </Grid>
                             <Grid Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text=" Add new menu" FontSize="10"/>
+                                <TextBlock Text=" Add new menu" FontSize="9"/>
                             </Grid>
                         </Grid>
                     </Button>                   
