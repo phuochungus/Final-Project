@@ -7,12 +7,7 @@
         mc:Ignorable="d"
         d:DesignHeight="665" d:DesignWidth="936"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-<<<<<<< HEAD
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
-=======
-        xmlns:usercontrol="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -22,19 +17,11 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainVM}"
-<<<<<<< HEAD
         >
-=======
-        WindowStyle="None"
-        ResizeMode="NoResize">
-
-
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-<<<<<<< HEAD
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
@@ -133,11 +120,6 @@
 
             </Grid>
 
-=======
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <usercontrol:MainControlBarUC></usercontrol:MainControlBarUC>
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -146,21 +128,10 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-<<<<<<< HEAD
                 <uc:GeneralControlBarUC></uc:GeneralControlBarUC>
             </Grid>
             <Grid Grid.Row="1">
                 <ContentControl Content="{Binding CurrentView}"/>
-=======
-                <usercontrol:GeneralControlBarUC></usercontrol:GeneralControlBarUC>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="387*"/>
-                    <RowDefinition Height="220*"/>
-                </Grid.RowDefinitions>
-                <ContentControl Content="{Binding CurrentView, Source={StaticResource MainControlBarVM}}" Grid.RowSpan="2"/>
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             </Grid>
         </Grid>
     </Grid>

@@ -9,25 +9,17 @@
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-<<<<<<< HEAD
     using _4NH_HAO_Coffee_Shop.ViewModel;
     using System;
     using System.Collections.Generic;
     
     public partial class Category :BaseViewModel
-=======
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Category
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
             this.Items = new HashSet<Item>();
         }
-<<<<<<< HEAD
 
         public int Id { get; set; }
         private string _DisplayName;
@@ -44,12 +36,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
             }
         }
 
-=======
-    
-        public int Id { get; set; }
-        public string DisplayName { get; set; }
-    
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
     }

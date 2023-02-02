@@ -1,27 +1,14 @@
-<<<<<<< HEAD
 ﻿<UserControl  x:Class="_4NH_HAO_Coffee_Shop.View.HomeView"
-=======
-﻿<UserControl  
-        x:Class="_4NH_HAO_Coffee_Shop.View.HomeView"
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-<<<<<<< HEAD
         xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
         xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
         mc:Ignorable="d"
         d:Height="607.2" 
         d:Width="878.15"  
         xmlns:uc="clr-namespace:_4NH_HAO_Coffee_Shop.UserControl_4nhHao"
-=======
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
-        mc:Ignorable="d"
-        d:Height="607.2"
-        d:Width="878.15"
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -32,91 +19,6 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Style="{StaticResource Page_Style}"
         DataContext="{StaticResource HomeVM}">
-<<<<<<< HEAD
-=======
-    <UserControl.Resources>
-        <Style x:Key="RoundedTextBox" TargetType="{x:Type TextBox}">
-            <Style.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Style.Resources>
-        </Style>
-        <Style x:Key="MyFocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Control}">
-                        <Grid Margin="8">
-                            <Ellipse
-                    Name="r1"
-                    Stroke="Black"
-                    StrokeDashArray="2 2"
-                    StrokeThickness="1"/>
-                            <Border
-                    Name="border"
-                    Width="{TemplateBinding ActualWidth}"
-                    Height="{TemplateBinding ActualHeight}"
-                    BorderThickness="1"
-                    CornerRadius="2"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="CircleButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
-            <Setter Property="Background" Value="#FF6DB4EF"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Ellipse Fill="{TemplateBinding Background}"/>
-                            <Ellipse>
-                                <Ellipse.Fill>
-                                    <RadialGradientBrush>
-                                        <GradientStop Offset="0" Color="#00000000"/>
-                                        <GradientStop Offset="0.88" Color="#00000000"/>
-                                        <GradientStop Offset="1" Color="#00000000"/>
-                                    </RadialGradientBrush>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <Ellipse Margin="10" x:Name="highlightCircle" >
-                                <Ellipse.Fill >
-                                    <LinearGradientBrush >
-                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
-                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
-                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
-                                    </LinearGradientBrush>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="highlightCircle" Property="Fill">
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
-                                            <GradientStop Offset="0" Color="#50FFFFFF"/>
-                                            <GradientStop Offset="0.5" Color="#00FFFFFF"/>
-                                            <GradientStop Offset="1" Color="#50FFFFFF"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter TargetName="content" Property="RenderTransform">
-                                    <Setter.Value>
-                                        <TranslateTransform Y="0.5" X="0.5"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
 
 
     <Grid>
@@ -133,7 +35,6 @@
             </Grid.RowDefinitions>
 
             <!--button-->
-<<<<<<< HEAD
             <Grid Grid.Row="0" Height="70">
                 <ItemsControl ItemsSource="{Binding CategoryList}"
                               Margin="10 0 10 0"
@@ -158,122 +59,15 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-=======
-            <Grid Grid.Row="0" Height="70" Margin="10 0 10 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="0">
-                    <ScrollViewer VerticalScrollBarVisibility="auto">
-                        <materialDesign:Card Margin="0" VerticalAlignment="Center">
-                            <ListBox ItemsSource="{Binding categoriesProperty}"
-                                     x:Name="RadioButtonGroupChoiceChip"
-                                     HorizontalContentAlignment="Left"
-                                     SelectionMode="Single"
-                                     Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineListBox}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <i:InvokeCommandAction Command="{Binding CategoryChangeCommand}"  CommandParameter="{Binding ElementName=RadioButtonGroupChoiceChip, Path=SelectedItem}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Content="{Binding DisplayName}"></Label>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </materialDesign:Card>
-                    </ScrollViewer>
-                </Grid>
-
-                <Grid Grid.Column="1">
-                    <Button Width="90" 
-                            Height="30" 
-                            Margin="5 0 5 0"
-                            Content="All"
-                            Command="{Binding ViewAll}"/>
-                </Grid>
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             </Grid>
 
             <!--list-->
             <Grid Grid.Row="1">
-<<<<<<< HEAD
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="394*"/>
                     <ColumnDefinition Width="165*"/>
                 </Grid.ColumnDefinitions>
                 <materialDesign:Card Margin="10,10,10,10" Grid.ColumnSpan="2">
-=======
-                <materialDesign:Card Margin="20,10,10,10">
-
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding itemsBelongToCurrentCategoryProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <materialDesign:Card Width="130"
-                                                     Height="200"
-                                                     Margin="20 20 20 20"
-                                                     HorizontalAlignment="Stretch"
-                                                     VerticalAlignment="Stretch"
-                                                     Background="LightBlue">
-                                        <Grid>
-                                            <!--image of product + product's infor-->
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-
-                                            <Grid Grid.Row="0">
-                                                <Image 
-                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageURL}"
-                                                    Stretch="UniformToFill"/>
-                                            </Grid>
-
-                                            <Grid Grid.Row="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition Height="auto"></RowDefinition>
-                                                </Grid.RowDefinitions>
-
-                                                <Grid Grid.Row="0">
-                                                    <Label 
-                                                            FontFamily="{StaticResource WorkSansRegular}"
-                                                            VerticalAlignment="Center"
-                                                            HorizontalAlignment="Center"
-                                                            FontSize="17"
-                                                            ToolTip="{Binding DisplayName}"
-                                                            Content="{Binding DisplayName}"/>
-                                                </Grid>
-
-                                                <Grid Grid.Row="1">
-                                                    <Button Command="{Binding AddToBillCommand, Source={StaticResource HomeVM}}"
-                                                    CommandParameter="{Binding }">
-                                                        <Button.Content>
-                                                            <TextBlock Text="{Binding Price}"></TextBlock>
-                                                        </Button.Content>
-                                                    </Button>
-                                                </Grid>
-                                            </Grid>
-
-
-                                        </Grid>
-                                    </materialDesign:Card>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-
-
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
 
                 </materialDesign:Card>
             </Grid>
@@ -283,7 +77,6 @@
         <Grid Grid.Column="1">
             <materialDesign:Card Width="300"
                                  Margin="10 10 10 10">
-<<<<<<< HEAD
                 <ItemsControl>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -299,131 +92,6 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ItemsControl>
-=======
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Label  Content="Bill"
-                                FontFamily="{StaticResource InterRegular}"
-                                FontSize="30"
-                                Margin="20 0 0 0"/>
-                    </Grid>
-                    <Grid Grid.Row="1" >
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ItemsControl ItemsSource="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.ProductList}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Width="300"
-                                              Margin="2 2 2 2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Column="0">
-                                                <Image 
-                                                    Width="70"
-                                                    Height="70"
-                                                    Stretch="UniformToFill"
-                                                    utils:AlterSourceExtention.RegisterAlterSource="{Binding Path=Item.ImageURL}"/>
-                                            </Grid>
-                                            <Grid Grid.Column="1">
-                                                <StackPanel>
-                                                    <Label
-                                                        FontFamily="{StaticResource InterRegular}"
-                                                        Content="{Binding Path=Item.DisplayName}"
-                                                        ToolTip="{Binding Path=Content, RelativeSource={RelativeSource self}}"/>
-                                                    <Label Content="{Binding Path=Item.Price}" Foreground="CornflowerBlue"/>
-                                                </StackPanel>
-                                            </Grid>
-                                            <Grid Grid.Column="2">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button 
-                                                            Style="{StaticResource CircleButton}" 
-                                                            Width="20" 
-                                                            Height="20" 
-                                                            Background="Transparent"
-                                                            BorderThickness="0"
-                                                            Command="{Binding Source={StaticResource HomeVM}, Path=IncreaseQuantityCommand}"
-                                                            CommandParameter="{Binding}"
-                                                            >
-                                                        <materialDesign:PackIcon Kind="ArrowUpBoldCircleOutline" />
-                                                    </Button>
-                                                    <TextBox 
-                                                             x:Name="QuantityTextBox"
-                                                             Style="{StaticResource RoundedTextBox}"
-                                                             BorderThickness="1"
-                                                             BorderBrush="Black"
-                                                             HorizontalContentAlignment="Center"
-                                                             Width="40"
-                                                             Height="20"
-                                                             Text="{Binding Path=Quantity}">
-                                                    </TextBox>
-
-                                                    <Button Style="{StaticResource CircleButton}" 
-                                                            Width="20" 
-                                                            Height="20" 
-                                                            Background="Transparent"
-                                                            BorderThickness="0"
-                                                            Command="{Binding Source={StaticResource HomeVM}, Path=DecreaseQuantityCommand}"
-                                                            CommandParameter="{Binding}"
-                                                            >
-                                                        <Image Source="pack://application:,,,/Assets/Icon/ArrowDown.ico"/>
-                                                    </Button>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Total(VND): "
-                                       Margin="20 0 0 0"/>
-                                <Label Content="{Binding Source={x:Static utils:Globals.Instance}, Path=CurrBill.Total}"/>
-                            </StackPanel>
-                            <Grid>
-                                <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                    Height="30"
-                                    Width="110"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Margin="10"
-                                    Foreground="#FFFFFF"
-                                    Background="OrangeRed"
-                                    Content="Clear"
-                                    Command="{Binding ClearBillCommand}"
-                                    />
-                                <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                    Height="30"
-                                    Width="110"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Right"
-                                    Margin="10"
-                                    Foreground="#FFFFFF"
-                                    Background="#6139FF"
-                                    Content="Checkout"
-                                    Command="{Binding CheckoutCommand}"
-                                    />
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-
-                </Grid>
-
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             </materialDesign:Card>
         </Grid>
     </Grid>

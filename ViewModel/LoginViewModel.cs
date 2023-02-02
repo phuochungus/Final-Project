@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 using System;
 using System.Collections.Generic;
@@ -17,24 +16,11 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using _4NH_HAO_Coffee_Shop.View;
 using System.Data.Entity;
-=======
-using System;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Input;
-using _4NH_HAO_Coffee_Shop.Model;
-using System.Security.Cryptography;
-using System.Data.Entity;
-using _4NH_HAO_Coffee_Shop.Utils;
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-<<<<<<< HEAD
         public ICommand LoginCommand { get; set; }
         private Visibility _progressBar { get; set; }
         private Visibility _loginButton { get; set; }
@@ -81,62 +67,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             return true;
             /////-----
-=======
-        private Visibility progressCircleVisibility { get; set; }
-        private Visibility loginButtonVisibility { get; set; }
-        private string password { get; set; }
-        private string email { get; set; }
-
-        public ICommand LoginCommand { get; set; }
-
-        public Visibility loginButtonVisibilityProperty
-        {
-            get => loginButtonVisibility;
-            set { loginButtonVisibility = value; OnPropertyChanged(); }
-        }
-        public Visibility progressCircleVisibilityProperty
-        {
-            get => progressCircleVisibility;
-            set
-            {
-                progressCircleVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-        public string emailProperty
-        {
-            get => email;
-            set
-            {
-                email = value;
-                OnPropertyChanged();
-            }
-        }
-        public string passwordProperty
-        {
-            get => password;
-            set
-            {
-                password = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public LoginViewModel()
-        {
-            progressCircleVisibilityProperty = Visibility.Hidden;
-            loginButtonVisibilityProperty = Visibility.Visible;
-            LoginCommand = new RelayCommand<Window>(loginWindow => isEmailValidated(), loginWindow => loginFromCurrentWindow(loginWindow));
-        }
-
-        public bool isEmailValidated()
-        {
-
-            return true;
-
-
-            // CODE COMMENTED FOR DEVELPOPMENT PURPOSE
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             //if (!isValidEmail(_email) || _password == null || _password == "") return false;
             //return true;
 
@@ -153,7 +83,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             //    }
             //};
         }
-<<<<<<< HEAD
         public string CreateMD5(string password)
         {
             byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
@@ -183,43 +112,11 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 ProgressBar = Visibility.Hidden;
                 LoginButton = Visibility.Visible;
                 if (Globals.CurrUser == null)
-=======
-
-        private void showProgressCircle()
-        {
-            progressCircleVisibilityProperty = Visibility.Visible;
-            loginButtonVisibilityProperty = Visibility.Hidden;
-        }
-
-        private void hideProgressCircle()
-        {
-            progressCircleVisibilityProperty = Visibility.Hidden;
-            loginButtonVisibilityProperty = Visibility.Visible;
-        }
-
-        public async void loginFromCurrentWindow(Window loginWindow)
-        {
-            try
-            {
-                emailProperty = "nguyenthib@gmail.com";
-                passwordProperty = "password";
-
-                showProgressCircle();
-                string EncryptedPassword = CreateMD5(passwordProperty);
-                Globals.Instance.CurrUser = await DataProvider.Ins
-                    .DB.Accounts
-                    .Where(x => x.Email == emailProperty && x.Password == EncryptedPassword)
-                    .FirstOrDefaultAsync();
-                hideProgressCircle();
-
-                if (Globals.Instance.CurrUser == null)
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                 {
                     MessageBox.Show("Wrong email or password!");
                 }
                 else
                 {
-<<<<<<< HEAD
                     Globals.isAdmin = (Globals.CurrUser.AccountType == "admin"); ;
                     p.Hide();
                 }
@@ -232,24 +129,3 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
     }
 }
-=======
-                    Globals.Instance.isAdmin = (Globals.Instance.CurrUser.AccountType == "admin"); ;
-                    loginWindow.Hide();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Login fail!");
-            }
-        }
-
-        public string CreateMD5(string password)
-        {
-            byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
-            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
-            string encoded = BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
-            return encoded;
-        }
-    }
-}
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d

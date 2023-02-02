@@ -12,11 +12,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-<<<<<<< HEAD
-=======
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     
     public partial class TAHCoffeeEntities : DbContext
     {
@@ -36,32 +31,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Promo> Promoes { get; set; }
-<<<<<<< HEAD
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
-=======
-        public virtual DbSet<Unit> Units { get; set; }
-        public virtual DbSet<MonthlyRevenue> MonthlyRevenues { get; set; }
-    
-        [DbFunction("TAHCoffeeEntities", "FetchCustomerOfMonth")]
-        public virtual IQueryable<FetchCustomerOfMonth_Result> FetchCustomerOfMonth(Nullable<int> month)
-        {
-            var monthParameter = month.HasValue ?
-                new ObjectParameter("month", month) :
-                new ObjectParameter("month", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FetchCustomerOfMonth_Result>("[TAHCoffeeEntities].[FetchCustomerOfMonth](@month)", monthParameter);
-        }
-    
-        [DbFunction("TAHCoffeeEntities", "FetchDataOfMonth")]
-        public virtual IQueryable<FetchDataOfMonth_Result> FetchDataOfMonth(Nullable<int> month)
-        {
-            var monthParameter = month.HasValue ?
-                new ObjectParameter("Month", month) :
-                new ObjectParameter("Month", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FetchDataOfMonth_Result>("[TAHCoffeeEntities].[FetchDataOfMonth](@Month)", monthParameter);
-        }
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     }
 }

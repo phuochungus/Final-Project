@@ -9,18 +9,10 @@
 
 namespace _4NH_HAO_Coffee_Shop.Model
 {
-<<<<<<< HEAD
     using System;
     using System.Collections.Generic;
     
     public partial class Account
-=======
-    using _4NH_HAO_Coffee_Shop.ViewModel;
-    using System;
-    using System.Collections.Generic;
-
-    public partial class Account : BaseViewModel
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
@@ -28,7 +20,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
             this.Account1 = new HashSet<Account>();
             this.Bills = new HashSet<Bill>();
         }
-<<<<<<< HEAD
     
         public string Id { get; set; }
         public string DisplayName { get; set; }
@@ -39,32 +30,6 @@ namespace _4NH_HAO_Coffee_Shop.Model
         public string ImageURL { get; set; }
         public string ManagedBy { get; set; }
     
-=======
-
-        private string _Id;
-        public string Id { get => _Id; set { _Id = value; OnPropertyChanged(); } }
-
-        private string _Displayname;
-        public string DisplayName { get => _Displayname; set { _Displayname = value; OnPropertyChanged(); } }
-
-        private string _Email;
-        public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
-
-        private string _PhonenNumber;
-        public string PhoneNumber { get => _PhonenNumber; set { _PhonenNumber = value; OnPropertyChanged(); } }
-
-        private string _Password;
-        public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
-
-        private string _AccountType;
-        public string AccountType { get => _AccountType; set { _AccountType = value; OnPropertyChanged(); } }
-        private string _ImageURL { get; set; }
-        public string ImageURL { get => _ImageURL; set { _ImageURL = value; OnPropertyChanged(); } }
-
-        private string _ManageBy;
-        public string ManagedBy { get => _ManageBy; set { _ManageBy = value; OnPropertyChanged(); } }
-
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Account1 { get; set; }
         public virtual Account Account2 { get; set; }

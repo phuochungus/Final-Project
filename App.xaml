@@ -3,44 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop"
-<<<<<<< HEAD
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <!-- Material design -->
             <ResourceDictionary.MergedDictionaries>
-=======
-             Startup="AppicationStart">
-    <Application.Resources>
-        <ResourceDictionary>
-           
-            <ResourceDictionary.MergedDictionaries>
-                <!-- Material design -->
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/ResourceXAML/MainResource.xaml"/>
-<<<<<<< HEAD
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
             </ResourceDictionary.MergedDictionaries>
-=======
-                <!-- Haley -->
-                <ResourceDictionary Source="pack://application:,,,/Haley.WPF;component/Dictionaries/haleyRD.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
             <!-- Font -->
             <FontFamily x:Key="WorkSansRegular">pack://application:,,,/Assets/Font/#Work Sans Regular</FontFamily>
             <FontFamily x:Key="WorkSansBold">pack://application:,,,/Assets/Font/#Work Sans Bool</FontFamily>
             <FontFamily x:Key="WorkSansItalic">pack://application:,,,/Assets/Font/#Work Sans Italic</FontFamily>
             <FontFamily x:Key="InterRegular">pack://application:,,,/Assets/Font/#Inter Regular</FontFamily>
             <FontFamily x:Key="InterExtraBold">pack://application:,,,/Assets/Font/#Inter ExtraBold</FontFamily>
-<<<<<<< HEAD
-=======
-            <FontFamily x:Key="PoppinsBold">pack://application:,,,/Assets/Font/#Poppins Bold</FontFamily>
->>>>>>> 911f89f27d58cdff66191ef34e0b40255ca4413d
         </ResourceDictionary>
     </Application.Resources>
 </Application>
