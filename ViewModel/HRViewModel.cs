@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -13,8 +14,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class HRViewModel : BaseViewModel
     {
-        private FullyObservableCollection<Account> _List;
-        public FullyObservableCollection<Account> List
+        private FullyObservableCollection<Account> ListDemo;
+
+        private FullyObservableCollection<AccountWrapper> _List;
+        public FullyObservableCollection<AccountWrapper> List
         {
             get => _List;
             set
@@ -33,8 +36,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             return encoded;
         }
 
-        private Account _Selecteditem;
-        public Account Selecteditem
+        private AccountWrapper _Selecteditem;
+        public AccountWrapper Selecteditem
         {
             get => _Selecteditem;
             set
@@ -140,21 +143,48 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand ModifyCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+
+        private void AccountToList()
+        {
+            ListDemo = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
+            List = new FullyObservableCollection<AccountWrapper>();
+            foreach (Account ac in ListDemo)
+            {
+                AccountWrapper acw = new AccountWrapper()
+                {
+                    account = new Account(),
+                    Id = ac.Id,
+                    DisplayName = ac.DisplayName,
+                    Email = ac.Email,
+                    Password = ac.Password,
+                    PhoneNumber = ac.PhoneNumber,
+                    AccountType = ac.AccountType,
+                    ManagedBy = ac.ManagedBy,
+                    ImageURL = ac.ImageURL,
+                };              
+                List.Add(acw);
+            }
+        }
         public HRViewModel()
         {
-            List = new FullyObservableCollection<Account>(DataProvider.Ins.DB.Accounts);
+            AccountToList();
+
             AddCommand = new RelayCommand<object>((p) => {
+                // Kiểm tra xem id nhập vào đã tồn tại hay chưa
                 var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Id);
                 if (Idlist == null || Idlist.Count() != 0) return false;
+                // Kiểm tra các textbox nhập thông tin có hợp lệ
                 if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
                      string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
                      string.IsNullOrEmpty(PhoneNumber)) return false;
+                // Kiểm tra nếu AccountType là staff thì thông tin Id người quản lý có hợp lệ
                 if (AccountType == "staff")
                 {
                     if (string.IsNullOrEmpty(ManagedBy)) return false;
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy);
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
                 }
+                // Kiểm tra nếu AccountType là admin thì thông tin ManageBy có hợp lệ 
                 else if (AccountType == "admin")
                 {
                     if (!string.IsNullOrEmpty(ManagedBy)) return false;
@@ -163,11 +193,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 return true;
             },
             (p) => {
-                Account account;
+                // Khởi tạo account mới tùy theo  AccountType là staff hoặc admin
+                AccountWrapper NewaAcount;
                 if (AccountType == "staff")
                 {
-                    account = new Account()
+                    NewaAcount = new AccountWrapper()
                     {
+                        account = new Account(),
                         Id = Id,
                         DisplayName = DisplayName,
                         Email = Email,
@@ -176,13 +208,13 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         AccountType = AccountType,
                         ManagedBy = ManagedBy,
                         ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
-
                     };
                 }
                 else
                 {
-                    account = new Account()
+                    NewaAcount = new AccountWrapper()
                     {
+                        account = new Account(),
                         Id = Id,
                         DisplayName = DisplayName,
                         Email = Email,
@@ -192,32 +224,46 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         ImageURL = @"https://i.ibb.co/gD6SVPT/Cat.jpg",
                     };
                 };
-                DataProvider.Ins.DB.Accounts.Add(account);
+                // Thêm account mới vào database
+                DataProvider.Ins.DB.Accounts.Add(NewaAcount.account);
+
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
-                List.Add(account);
+
+                // Thêm account mới vào list account
+                List.Add(NewaAcount);
             });
 
             ModifyCommand = new RelayCommand<object>((p) => {
-                if (string.IsNullOrEmpty(Id)) return false;
+                // Kiểm tra có chọn Selecteditem chưa
                 if (Selecteditem == null) return false;
+
+                // Kiểm tra các thông tin trên textbox có hợp lệ vào Id có bị thay đổi không
                 if (Id != Selecteditem.Id ) return false;
-                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) ||
-                     string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) ||
-                     string.IsNullOrEmpty(PhoneNumber)) return false;
+                if (string.IsNullOrEmpty(Id) || 
+                    string.IsNullOrEmpty(DisplayName) ||
+                    string.IsNullOrEmpty(Email) || 
+                    string.IsNullOrEmpty(Password) ||
+                    string.IsNullOrEmpty(PhoneNumber)) return false;
+
                 if (AccountType == "staff")
                 {
+                    // Kiểm tra thông tin ManagedBy có hợp lệ của account staff 
                     if (string.IsNullOrEmpty(ManagedBy)) return false;
+                    // Lấy list tài khoản có id trùng với id người quản lý xem có chính xác
                     var ManagedByList = DataProvider.Ins.DB.Accounts.Where(x => x.Id == ManagedBy && x.AccountType == "admin");
                     if (ManagedByList == null || ManagedByList.Count() != 1) return false;
                 }
                 else if (AccountType == "admin")
                 {
+                    // Kiểm tra thông tin ManagedBy có hợp lệ của account admin
                     if (!string.IsNullOrEmpty(ManagedBy)) return false;
                 }
                 else return false;
                 return true;
             },
             (p) => {
+                // Tìm thông tin account tương ứng trong database để cập nhật thông tin mới
                 var account = DataProvider.Ins.DB.Accounts.Where(x => x.Id == Selecteditem.Id).SingleOrDefault();
 
                 account.Id = Id;
@@ -228,7 +274,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 account.AccountType = AccountType;
                 if (AccountType == "staff") account.ManagedBy = ManagedBy;
                 else account.ManagedBy = null;
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
+                // Lưu thay đổi tại Selecteditem của list account
                 Selecteditem.Id = Id;
                 Selecteditem.DisplayName = DisplayName;
                 Selecteditem.Email = Email;
@@ -239,22 +287,38 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             });
 
             DeleteCommand = new RelayCommand<object>((p) => {
+                // Kiểm tra có chọn Selecteditem chưa
                 if (Selecteditem == null) return false;
-                if (Id != Selecteditem.Id || DisplayName != Selecteditem.DisplayName || Email != Selecteditem.Email ||
-                    Password != Selecteditem.Password || PhoneNumber != Selecteditem.PhoneNumber || AccountType != Selecteditem.AccountType ||
-                    ManagedBy != Selecteditem.ManagedBy)
+
+                // Kiểm tra các thông tin trên textbox có bị thay đổi không
+                if (Id != Selecteditem.Id || 
+                   DisplayName != Selecteditem.DisplayName || 
+                   Email != Selecteditem.Email || 
+                   Password != Selecteditem.Password ||
+                   PhoneNumber != Selecteditem.PhoneNumber || 
+                   AccountType != Selecteditem.AccountType ||
+                   ManagedBy != Selecteditem.ManagedBy)
                     return false;
                 if (AccountType == "admin")
                 {
+                    // Với account admin kiểm tra xem có tài khoản nào đang chịu quản lý bời account cần xóa không, nếu có thì không thể xóa 
                     var Idlist = DataProvider.Ins.DB.Accounts.Where(x => x.ManagedBy == Id);
                     if (Idlist == null || Idlist.Count() != 0) return false;
                 }
                 return true;
             },
             (p) => {
-                DataProvider.Ins.DB.Accounts.Remove(Selecteditem);
+                
+                // Xóa account có id tương ứng trong database
+                DataProvider.Ins.DB.Accounts.Remove(Selecteditem.account);
+
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
+
+                // Xóa account trong list account 
                 List.Remove(Selecteditem);
+
+                // Đưa thông tin các textbox về null
                 Id = DisplayName = Email = Password = PhoneNumber = AccountType = ManagedBy = null;
             });
         }
