@@ -228,6 +228,7 @@
     <Compile Include="Model\BillInfor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BillWrapper.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

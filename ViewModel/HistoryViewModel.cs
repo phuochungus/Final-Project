@@ -95,7 +95,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public const int VIEW_TODAY = 2;
 
         private int currentChoose = VIEW_TODAY;
-        private ObservableCollection<Bill> resultLog;
+        private ObservableCollection<BillWrapper> resultLog;
         public FullyObservableCollection<CheckableItem> searchOptions;
         public TransactionLogFilter transactionLogFilterProperty { get; set; }
 
@@ -118,7 +118,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public TransactionLogAdvancedSearcher()
         {
-            resultLog = new ObservableCollection<Bill>();
+            resultLog = new ObservableCollection<BillWrapper>();
             searchOptions = new FullyObservableCollection<CheckableItem>();
             transactionLogFilterProperty = new TransactionLogFilter();
 
@@ -181,7 +181,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             resultLog = fetchLogRangeBetweenDateTime(transactionLogFilterProperty);
         }
 
-        private ObservableCollection<Bill> fetchLogRangeBetweenDateTime(TransactionLogFilter transactionLogFilter)
+        private ObservableCollection<BillWrapper> fetchLogRangeBetweenDateTime(TransactionLogFilter transactionLogFilter)
         {
             const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
@@ -192,15 +192,19 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 from Bill
                                 where ExportTime between @start and @end";
 
-            ObservableCollection<Bill> transactionLog;
+            ObservableCollection<BillWrapper> transactionLog = new ObservableCollection<BillWrapper>();
 
             using (var DB = new TAHCoffeeEntities())
             {
-                transactionLog = new ObservableCollection<Bill>(
+                var rawData = new ObservableCollection<Bill>(
                 DB.Bills.SqlQuery(queryString,
                                         new SqlParameter("@start", transactionLogFilter.startDate.ToString("M/d/y")),
                                         new SqlParameter("@end", transactionLogFilter.endDate.ToString("M/d/y")))
                                .ToList());
+                foreach (Bill raw in rawData)
+                {
+                    transactionLog.Add(new BillWrapper { bill = raw });
+                }
             }
             return transactionLog;
         }
@@ -210,9 +214,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             resultLog = fetchTodayLog();
         }
 
-        private ObservableCollection<Bill> fetchTodayLog()
+        private ObservableCollection<BillWrapper> fetchTodayLog()
         {
-            ObservableCollection<Bill> transactionLog;
+            ObservableCollection<BillWrapper> transactionLog = new ObservableCollection<BillWrapper>();
 
             const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
@@ -225,7 +229,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             using (var DB = new TAHCoffeeEntities())
             {
-                transactionLog = new ObservableCollection<Bill>(
+                var rawData = new ObservableCollection<Bill>(
                     DB.Bills.SqlQuery(
                         queryString,
                             new SqlParameter("@day", DateTime.Today.Day),
@@ -234,6 +238,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                         )
                         .ToList()
                     );
+                foreach (Bill raw in rawData)
+                {
+                    transactionLog.Add(new BillWrapper { bill = raw });
+                }
             }
             return transactionLog;
         }
@@ -243,9 +251,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             resultLog = fetchAllLog();
         }
 
-        private ObservableCollection<Bill> fetchAllLog()
+        private ObservableCollection<BillWrapper> fetchAllLog()
         {
-            ObservableCollection<Bill> transactionLog;
+            ObservableCollection<BillWrapper> transactionLog = new ObservableCollection<BillWrapper>();
             const string queryString = @"
                                 select IdNumber, ExportTime, PromoId,
                                 case 
@@ -255,18 +263,17 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                                 from Bill";
             using (var DB = new TAHCoffeeEntities())
             {
-                transactionLog = new ObservableCollection<Bill>(
-                    DB.Bills.SqlQuery(
-                        queryString
-                    )
-                    .ToList()
-                    );
+                var rawData = new ObservableCollection<Bill>(DB.Bills.SqlQuery(queryString).ToList());
+                foreach (Bill raw in rawData)
+                {
+                    transactionLog.Add(new BillWrapper { bill = raw });
+                }
 
             }
             return transactionLog;
         }
 
-        public ObservableCollection<Bill> getSearchResult()
+        public ObservableCollection<BillWrapper> getSearchResult()
         {
             return resultLog;
         }
@@ -277,7 +284,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         private string resultPath = "";
         private SaveFileDialog saveFileDialog;
 
-        private ObservableCollection<Bill> sourceLog { get; set; }
+        private ObservableCollection<BillWrapper> sourceLog { get; set; }
 
         public ExcelExporter()
         {
@@ -323,10 +330,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         }
 
-        private void writeTransactionogToSheet(ObservableCollection<Bill> sourceLog, ExcelWorksheet sheet)
+        private void writeTransactionogToSheet(ObservableCollection<BillWrapper> sourceLog, ExcelWorksheet sheet)
         {
             int columnIndex = 2;
-            foreach (Bill bill in sourceLog)
+            foreach (BillWrapper bill in sourceLog)
             {
                 sheet.Cells[columnIndex, 1].Value = bill.IdNumber;
                 sheet.Cells[columnIndex, 2].Value = bill.ExportTime.ToString();
@@ -388,7 +395,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             sheet.Column(4).AutoFit();
         }
 
-        public void setSource(ObservableCollection<Bill> sourceSheet)
+        public void setSource(ObservableCollection<BillWrapper> sourceSheet)
         {
             this.sourceLog = sourceSheet;
         }
@@ -397,7 +404,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     public class HistoryViewModel : BaseViewModel
     {
         private Timer refreshTransactionScreenTimer;
-        private ObservableCollection<Bill> transactionLog;
+        private ObservableCollection<BillWrapper> transactionLog;
         public TransactionLogAdvancedSearcher transactionLogSearcher;
         public ExcelExporter excelExporter;
 
@@ -414,7 +421,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<Bill> transactionLogProperty
+        public ObservableCollection<BillWrapper> transactionLogProperty
         {
             get => transactionLog;
             set
@@ -432,7 +439,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public HistoryViewModel()
         {
             //Giữ giao dịch sẽ được hiển thị 
-            transactionLog = new ObservableCollection<Bill>();
+            transactionLog = new ObservableCollection<BillWrapper>();
 
             //Công cụ tìm kiếm lịch sữ giao dịch
             transactionLogSearcher = new TransactionLogAdvancedSearcher();
