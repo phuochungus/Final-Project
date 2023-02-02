@@ -49,7 +49,19 @@
                     <Button.BorderBrush>
                         <SolidColorBrush Opacity="0"/>
                     </Button.BorderBrush>
-                    <Image Margin="2 2 2 2" Source="\Assets\Icon\ProductManagement@4x.png"></Image>
+                    <Button Width="44" Height="44"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    ToolTip="Order"
+                    Command="{Binding ShowProductManagementViewCommand}">
+
+                        <Button.Background>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.Background>
+                        <Button.BorderBrush>
+                            <SolidColorBrush Opacity="0"/>
+                        </Button.BorderBrush>
+                        <Image Margin="2 2 2 2" Source="\Assets\Icon\ProductManagement@4x.png"></Image>
+                    </Button>
                 </Button>
                 <Button Width="44" Height="44"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
