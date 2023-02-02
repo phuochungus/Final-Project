@@ -35,12 +35,12 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row ="0" Background="#FFF3C186" Margin="40,35,40,0" VerticalAlignment="Top" Height="91">
                         <materialDesign:Card Background="#FFF3C186" Foreground="#DDFF0F0F">
-                            <WrapPanel>
-                                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="auto" Margin="5,15,5,15"/>
-                                <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="DisplayName" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="auto" Margin="5,15,5,15" />
-                                <TextBox Text="{Binding Script, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Script" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Width="auto" Margin="5,15,5,15"/>
-                                <DatePicker SelectedDate="{Binding StartTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Start Time" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="40" Margin="5,15,5,15"/>
-                                <DatePicker SelectedDate="{Binding EndTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="End Time" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="40" Margin="5,15,5,15"/>
+                            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="578" Height="49">
+                                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Height="40" Width="23" Margin="10,0,0,0"/>
+                                <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="DisplayName" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Height="40" Width="148" Margin="10,0,0,0" />
+                                <TextBox Text="{Binding Script, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Script" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="15" Height="40" Width="86" Margin="10,0,0,0"/>
+                                <DatePicker SelectedDate="{Binding StartTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Start Time" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="40" Width="96" Margin="10,0,0,0"/>
+                                <DatePicker SelectedDate="{Binding EndTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="End Time" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="40" Width="105" Margin="10,0,0,0"/>
                             </WrapPanel>
                         </materialDesign:Card>
                     </Grid>

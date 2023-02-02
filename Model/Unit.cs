@@ -13,7 +13,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Unit : BaseViewModel
+    public partial class Unit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
@@ -21,19 +21,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
             this.Items = new HashSet<Item>();
         }
         public int Id { get; set; }
-        private string _DisplayName;
-        public string DisplayName
-        {
-            get
-            {
-                return _DisplayName;
-            }
-            set
-            {
-                _DisplayName = value;
-                OnPropertyChanged();
-            }
-        }
+        public string DisplayName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }

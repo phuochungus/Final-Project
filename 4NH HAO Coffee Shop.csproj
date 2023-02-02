@@ -146,10 +146,13 @@
     </Compile>
     <Compile Include="Utils\AttachedProperties.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CategoryWrapper.cs" />
     <Compile Include="ViewModel\Globals.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\CategoryListViewModel.cs" />
+    <Compile Include="ViewModel\ItemWrapper.cs" />
+    <Compile Include="ViewModel\PromoWrapper.cs" />
     <Compile Include="ViewModel\UnitListViewModel.cs" />
     <Compile Include="ViewModel\PromoListViewModel.cs" />
     <Compile Include="ViewModel\ItemListViewModel.cs" />
@@ -158,6 +161,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrderedViewModel.cs" />
     <Compile Include="ViewModel\ProductManagementViewModel.cs" />
+    <Compile Include="ViewModel\UnitWrapper.cs" />
     <Compile Include="View\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>

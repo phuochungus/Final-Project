@@ -13,7 +13,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Item : BaseViewModel
+    public partial class Item
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
@@ -21,42 +21,13 @@ namespace _4NH_HAO_Coffee_Shop.Model
             this.BillInfors = new HashSet<BillInfor>();
         }
 
-        private string _Id;
-        public string Id
-        {
-            get { return _Id; }
-            set { _Id = value; OnPropertyChanged(); }
-        }
-        private string _DisplayName;
-        public string DisplayName
-        {
-            get { return _DisplayName; }
-            set { _DisplayName = value; OnPropertyChanged(); }
-        }
-        private int _UnitId;
-        public int UnitId
-        {
-            get { return _UnitId; }
-            set { _UnitId = value; OnPropertyChanged(); }
-        }
-        private int _CategoryId;
-        public int CategoryId
-        {
-            get { return _CategoryId; }
-            set { _CategoryId = value; OnPropertyChanged(); }
-        }
-        private int _Price;
-        public int Price
-        {
-            get { return _Price; }
-            set { _Price = value; OnPropertyChanged(); }
-        }
-        private string _ImageURL;
-        public string ImageURL
-        {
-            get { return _ImageURL; }
-            set { _ImageURL = value; OnPropertyChanged(); }
-        }
+        public string Id { get; set; }
+        public string DisplayName{ get; set;}
+        public int UnitId { get; set; }
+        public int CategoryId { get; set; }
+        public int Price { get; set; }
+        public string ImageURL { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }
         public virtual Category Category { get; set; }

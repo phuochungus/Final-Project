@@ -13,7 +13,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Category :BaseViewModel
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
@@ -22,19 +22,7 @@ namespace _4NH_HAO_Coffee_Shop.Model
         }
 
         public int Id { get; set; }
-        private string _DisplayName;
-        public string DisplayName
-        {
-            get
-            {
-                return _DisplayName;
-            }
-            set
-            {
-                _DisplayName = value;
-                OnPropertyChanged();
-            }
-        }
+        public string DisplayName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
