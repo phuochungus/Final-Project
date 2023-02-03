@@ -15,12 +15,14 @@
     <viewmodel:GeneralControlBarViewModel x:Key="GCBVM"/>
     <viewmodel:DashBoardViewModel x:Key="DashBoardVM"/>
     <viewmodel:SettingViewModel x:Key="SettingVM"/>
+	<viewmodel:ProductManagementViewModel x:Key="ProductManagementVM"/>
 
 
 
-    
 
-    <DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
+
+
+	<DataTemplate DataType="{x:Type viewmodel:SettingViewModel}">
         <view:SettingView/>
     </DataTemplate>
 
@@ -53,6 +55,24 @@
     <DataTemplate DataType="{x:Type viewmodel:GeneralControlBarViewModel}">
         <UserControl:GeneralControlBarUC/>
     </DataTemplate>
+	
+	<DataTemplate DataType="{x:Type viewmodel:ProductManagementViewModel}">
+		<view:ProductManagementView/>
+	</DataTemplate>
+	
+	<DataTemplate DataType="{x:Type viewmodel:ItemListViewModel}">
+		<view:ProductManagement_ItemListView/>
+	</DataTemplate>
+	
+	<DataTemplate DataType="{x:Type viewmodel:PromoListViewModel}">
+		<view:ProductManagement_PromoListView/>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type viewmodel:CategoryListViewModel}">
+		<view:ProductManagement_CategoryListView/>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type viewmodel:UnitListViewModel}">
+		<view:ProductManagement_UnitListView/>
+	</DataTemplate>
 
     <Style x:Key="Page_Style"
            TargetType="{x:Type UserControl}">
