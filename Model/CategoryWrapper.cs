@@ -9,7 +9,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class CategoryWrapper : BaseViewModel
     {
-        Category category;
+        public Category category;
+        public int Id 
+        { 
+            get => category.Id; 
+            set
+            {
+                category.Id = value;
+                OnPropertyChanged();
+            }
+        }
         public string DisplayName
         {
             get

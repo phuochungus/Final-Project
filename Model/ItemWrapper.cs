@@ -9,7 +9,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class ItemWrapper : BaseViewModel
     {
-        Item item;
+        public Item item;
         public string Id
         {
             get { return item.Id; }

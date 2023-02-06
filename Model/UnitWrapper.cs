@@ -9,7 +9,19 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     public class UnitWrapper : BaseViewModel
     {
-        Unit unit;
+        public Unit unit;
+        public int Id
+        {
+            get
+            {
+                return unit.Id;
+            }
+            set
+            {
+                unit.Id = value;
+                OnPropertyChanged();
+            }
+        }
         public string DisplayName
         {
             get

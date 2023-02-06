@@ -13,12 +13,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
     internal class PromoListViewModel : BaseViewModel
     {
-        private ObservableCollection<Promo> _List;
-        public ObservableCollection<Promo> List { get => _List; set { _List = value; OnPropertyChanged(); } }
+        private ObservableCollection<Promo> ListDemo;
+        private ObservableCollection<PromoWrapper> _List;
+
+        public ObservableCollection<PromoWrapper> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
 
-        private Promo _SelectedPromo;
-        public Promo SelectedPromo
+        private PromoWrapper _SelectedPromo;
+        public PromoWrapper SelectedPromo
         {
             get => _SelectedPromo;
             set
@@ -97,17 +99,42 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public static ICommand AddCommand { get; set; }
         public static ICommand EditCommand { get; set; }
         public static ICommand DeleteCommand { get; set; }
+        private void PromoToList()
+        {
+            ListDemo = new ObservableCollection<Promo>(DataProvider.Ins.DB.Promoes);
+            List = new ObservableCollection<PromoWrapper>();
+            foreach (Promo prom in ListDemo)
+            {
+                PromoWrapper promw = new PromoWrapper()
+                {
+                    promo = new Promo(),
+                    Id = prom.Id,
+                    DisplayName = prom.DisplayName,
+                    Script = prom.Script,
+                    StartTime = prom.StartTime,
+                    EndTime = prom.EndTime,
+                };
+                List.Add(promw);
+            }
+        }
         public PromoListViewModel()
         {
-            List = new ObservableCollection<Promo>(DataProvider.Ins.DB.Promoes);
+            PromoToList();
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Script) || string.IsNullOrEmpty(StartTime.ToString()) || string.IsNullOrEmpty(EndTime.ToString()))
+                // Kiểm tra các TextBox hiển thị thông tin Promo có hợp lệ ?
+                if (string.IsNullOrEmpty(Id)
+                    || string.IsNullOrEmpty(DisplayName)
+                    || string.IsNullOrEmpty(Script)
+                    || string.IsNullOrEmpty(StartTime.ToString())
+                    || string.IsNullOrEmpty(EndTime.ToString()))
                 {
                     return false;
                 }
+                // Lấy List Promos có Promo trùng Id với Promo cần thêm
                 var displayList = DataProvider.Ins.DB.Promoes.Where(x => (x.Id == Id && x.DisplayName == DisplayName));
+                // Kiểm tra List Promos có Promo trùng Id với Promo cần thêm = null hoặc không có phần tử hay không ?
                 if (displayList == null || displayList.Count() != 0)
                 {
                     return false;
@@ -117,20 +144,43 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }, (p) =>
             {
-                var newPromo = new Promo() { Id = Id, DisplayName = DisplayName, Script = Script, StartTime = StartTime, EndTime = EndTime };
-                DataProvider.Ins.DB.Promoes.Add(newPromo);
+                // Tạo promo cần thêm
+                PromoWrapper newPromo = new PromoWrapper()
+                {
+                    promo = new Promo(),
+                    Id = Id,
+                    DisplayName = DisplayName,
+                    Script = Script,
+                    StartTime = StartTime,
+                    EndTime = EndTime
+                };
+                // Thêm newPromo vào DataBase
+                DataProvider.Ins.DB.Promoes.Add(newPromo.promo);
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
-
+                // Thêm newPromo vào List Promo
                 List.Add(newPromo);
             });
 
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Script) || string.IsNullOrEmpty(StartTime.ToString()) || string.IsNullOrEmpty(EndTime.ToString()))
+                // Kiểm tra các TextBox hiển thị thông tin Promo có hợp lệ ?
+                if (string.IsNullOrEmpty(Id)
+                    || string.IsNullOrEmpty(DisplayName)
+                    || string.IsNullOrEmpty(Script)
+                    || string.IsNullOrEmpty(StartTime.ToString())
+                    || string.IsNullOrEmpty(EndTime.ToString()))
                 {
                     return false;
                 }
-                var displayList = DataProvider.Ins.DB.Promoes.Where(x => (x.DisplayName == DisplayName && x.Id == Id && x.Script == Script && x.StartTime == StartTime && x.EndTime == EndTime));
+                // Lấy List Promo có promo trùng Id với promo cần chỉnh sửa 
+
+                var displayList = DataProvider.Ins.DB.Promoes.Where(x => (x.DisplayName == DisplayName
+                                                                        && x.Id == Id
+                                                                        && x.Script == Script
+                                                                        && x.StartTime == StartTime
+                                                                        && x.EndTime == EndTime));
+                // Kiểm tra List Promos có promo trùng Id với promo cần chỉnh sửa = null hoặc không có phần tử hay không ?
                 if (displayList == null || displayList.Count() != 0)
                 {
                     return false;
@@ -139,24 +189,42 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 return true;
             }, (p) =>
             {
+                // Lấy promo cần chỉnh sửa
                 var getPromo = DataProvider.Ins.DB.Promoes.Where(x => x.Id == SelectedPromo.Id).SingleOrDefault();
+                // Thay đổi thông tin của promo cần sửa
                 getPromo.Id = Id;
                 getPromo.DisplayName = DisplayName;
                 getPromo.Script = Script;
                 getPromo.StartTime = StartTime;
                 getPromo.EndTime = EndTime;
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
 
-                SelectedPromo = getPromo;
+                SelectedPromo.Id = getPromo.Id;
+                SelectedPromo.Script = getPromo.Script;
+                SelectedPromo.DisplayName = getPromo.DisplayName;
+                SelectedPromo.StartTime = getPromo.StartTime;
+                SelectedPromo.EndTime = getPromo.EndTime;
             });
 
             DeleteCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Id) || string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Script) || string.IsNullOrEmpty(StartTime.ToString()) || string.IsNullOrEmpty(EndTime.ToString()))
+                // Kiểm tra các TextBox hiển thị thông tin Promo có hợp lệ ?
+                if (string.IsNullOrEmpty(Id)
+                    || string.IsNullOrEmpty(DisplayName)
+                    || string.IsNullOrEmpty(Script)
+                    || string.IsNullOrEmpty(StartTime.ToString())
+                    || string.IsNullOrEmpty(EndTime.ToString()))
                 {
                     return false;
                 }
-                var displayList = DataProvider.Ins.DB.Promoes.Where(x => (x.DisplayName == DisplayName && x.Id == Id && x.Script == Script && x.StartTime == StartTime && x.EndTime == EndTime));
+                // Lấy List Promos có Promo trùng thông tin với Promo cần xóa
+                var displayList = DataProvider.Ins.DB.Promoes.Where(x => (x.DisplayName == DisplayName
+                                                                            && x.Id == Id
+                                                                            && x.Script == Script
+                                                                            && x.StartTime == StartTime
+                                                                            && x.EndTime == EndTime));
+                // Kiểm tra List Promos có Promo trùng thông tin với Promo cần xóa = null hoặc không có phần tử hay không ?
                 if (displayList == null || displayList.Count() == 0)
                 {
                     return false;
@@ -166,9 +234,15 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
             }, (p) =>
             {
-                DataProvider.Ins.DB.Promoes.Remove(SelectedPromo);
+                // Xóa item khỏi Database
+                DataProvider.Ins.DB.Promoes.Remove(SelectedPromo.promo);
+                // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
+                // Xóa promo khỏi List Promos
                 List.Remove(SelectedPromo);
+                // Đưa thông tin các textbox về null
+                Id = DisplayName = Script = "";
+                StartTime = EndTime = null;
             });
         }
     }
