@@ -1,17 +1,13 @@
-﻿using Microsoft.Xaml.Behaviors.Core;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Management;
 using _4NH_HAO_Coffee_Shop.Model;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using static SkiaSharp.HarfBuzz.SKShaper;
 using System.Windows.Input;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
