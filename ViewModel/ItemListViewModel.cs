@@ -241,7 +241,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 getItem.ImageURL = ImageURL;
                 // Lưu thay đổi
                 DataProvider.Ins.DB.SaveChanges();
-
                 SelectedItem.Id = getItem.Id;
                 SelectedItem.DisplayName = getItem.DisplayName;
                 SelectedItem.UnitId = getItem.UnitId;

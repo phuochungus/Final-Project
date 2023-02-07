@@ -39,7 +39,7 @@
   Background="#FFF38EB3"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignIconButton}"
-  ToolTip="MaterialDesignIconButton" Width="60" Height="60" Foreground="{x:Null}"
+  ToolTip="Item" Width="60" Height="60" Foreground="{x:Null}"
                         Command="{Binding ShowItemListViewCommand}" Click="ItemButton_Click">
                         <Image Source="\Assets\Icon\icon_storage.png" Height="24" Width="23"></Image>
                     </Button>
@@ -49,7 +49,7 @@
   Background="#FFF3C186"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignIconButton}"
-  ToolTip="MaterialDesignIconButton" Width="60" Height="60" Foreground="{x:Null}"
+  ToolTip="Promo" Width="60" Height="60" Foreground="{x:Null}"
                         Command="{Binding ShowPromoListViewCommand}" Click="PromoButton_Click">
                         <Image Source="\Assets\Icon\icon_percentoutline.png" Height="39" Width="34"></Image>
                     </Button>
@@ -59,7 +59,7 @@
   Background="#FFF3C186"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
   Style="{StaticResource MaterialDesignIconButton}"
-  ToolTip="MaterialDesignIconButton" Width="60" Height="60" Foreground="{x:Null}"
+  ToolTip="Category" Width="60" Height="60" Foreground="{x:Null}"
                         Command="{Binding ShowCategoryListViewCommand}" Click="CategoryButton_Click">
                         <Grid>
                             <Image Source="\Assets\Icon\icon_burger.png" Margin="13,23,34,12"/>
@@ -72,7 +72,7 @@
   Background="#FFF3C186"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
   Style="{StaticResource MaterialDesignIconButton}"
-  ToolTip="MaterialDesignIconButton" Width="60" Height="60" Foreground="{x:Null}"
+  ToolTip="Unit" Width="60" Height="60" Foreground="{x:Null}"
                         Command="{Binding ShowUnitListViewCommand}" Click="UnitButton_Click">
                         <Image Source="\Assets\Icon\icon_barchart.png" Height="33" Width="24"></Image>
                     </Button>
