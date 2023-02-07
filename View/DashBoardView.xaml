@@ -22,7 +22,7 @@
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF">
     <i:Interaction.Triggers>
         <ei:PropertyChangedTrigger Binding="{Binding IsVisible, ElementName=Dashboard}">
-            <ei:InvokeCommandAction  Command="{Binding visibleTriggerCommand}" PassEventArgsToCommand="True"/>
+            <ei:InvokeCommandAction  Command="{Binding visibleTriggerActionCommand}" PassEventArgsToCommand="True"/>
         </ei:PropertyChangedTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -38,7 +38,7 @@
                 VerticalAlignment="Top"
                 />
             <lvc:CartesianChart 
-            x:Name="LargeCartesianChart" 
+            x:Name="MonthlyRevenue" 
             Series="{Binding Path=monthlyRevenueChartControl.seriesProperty}" 
             XAxes="{Binding Path=monthlyRevenueChartControl.HorizontalAxis}" 
             YAxes="{Binding Path=monthlyRevenueChartControl.VerticalAxis}"
@@ -67,7 +67,7 @@
                     Content="Production By Revenue"/>
                 <Grid Grid.Row="0">
                     <lvc:PieChart 
-                    x:Name="productSalesRevenueChart"
+                    x:Name="ProductSalesRevenue"
                     Series="{Binding productSalesRevenueChartControl.seriesProperty, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     InitialRotation="90"
                     VerticalAlignment="Center"
@@ -87,7 +87,7 @@
                     Content="Production By Quantity"/>
                 <Grid Grid.Row="0">
                     <lvc:PieChart 
-                    x:Name="productSoldQuantityChart"
+                    x:Name="ProductSoldQuantity"
                     Series="{Binding productSoldQuantityChartControl.seriesProperty, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     InitialRotation="90"
                     VerticalAlignment="Center"
@@ -96,7 +96,7 @@
             </Grid>
             <Grid Grid.Column="2">
                 <lvc:CartesianChart
-                    x:Name="dailyTotalCustomerChart"
+                    x:Name="DailyTotalCustomer"
                     XAxes="{Binding dailyTotalCustomerChartControl.HorizontalAxis}"
                     YAxes="{Binding dailyTotalCustomerChartControl.VerticalAxis}"
                     Series="{Binding dailyTotalCustomerChartControl.seriesProperty}"/>

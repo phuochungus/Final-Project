@@ -17,6 +17,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowYourProfiledViewCommand { get; set; }
         public ICommand ShowSettingViewCommand { get; set; }
         public ICommand ShowDashBoardViewCommand { get; set; }
+        public ICommand ShowProductManagementViewCommand { get; set; }
         public ICommand ExitCommand { get; set; }
 
         public ICommand LeftBarColorChange { get; set; }    
@@ -53,6 +54,7 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             ShowSettingViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new SettingViewModel(); });
             ShowYourProfiledViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new YourProfileViewModel(); });
             ShowDashBoardViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new DashBoardViewModel(); });
+            ShowProductManagementViewCommand = new RelayCommand<object>((p) => true, (p) => { CurrentView = new ProductManagementViewModel(); });
 
             ExitCommand = new RelayCommand<UserControl>((p) => { return true; }, (p) =>
             {
