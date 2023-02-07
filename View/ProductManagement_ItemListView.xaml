@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_4NH_HAO_Coffee_Shop.View"
+             xmlns:utils="clr-namespace:_4NH_HAO_Coffee_Shop.Utils"
              xmlns:vm="clr-namespace:_4NH_HAO_Coffee_Shop.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="555.2" d:DesignWidth="658.15"
@@ -53,7 +54,7 @@
                                     <GridViewColumn Width="{Binding ElementName=ImageURL, Path=ActualWidth}">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Image Source="{Binding ImageURL}" Width="50" Height="50" VerticalAlignment="Center" />
+                                                <Image utils:AlterSourceExtention.RegisterAlterSource="{Binding ImageURL}" Width="50" Height="50" VerticalAlignment="Center" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

@@ -9,10 +9,11 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Windows.Input;
+using System.Security.Cryptography;
 
 namespace _4NH_HAO_Coffee_Shop.ViewModel
 {
-    //abstract class quản lý Chart
+    //Abstract class quản lý biểu đồ 
     public abstract class ChartUIController : BaseViewModel
     {
         protected ObservableCollection<ISeries> series;
@@ -27,19 +28,26 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
         }
 
-        public ChartUIController()
+        protected ChartUIController()
         {
             series = new ObservableCollection<ISeries>();
         }
-    }
+        //setup định dạng
+        protected abstract void setupVisualChartWithDefaulSetting();
+        //setup định dạng hình ảnh dữ liệu 
+        protected abstract void setupDefaultSeries();
+        //setup định dạng hình ảnh biểu đồ
+        protected abstract void setupDefaultAxes();
 
+    }
+    //Interface biến đổi dữ liệu thô sang dữ liệu đồ thị 
     interface TranformDataImp
     {
-        void TranformRawDataToVisualChart();
-
-        void setupUIWithDefaulSetting();
+        //đọc dữ liệu thô và vẽ đồ thị với LiveChart
+        void tranformRawDataToVisualChart();
     }
 
+    //Quản lý biểu đồ DailyTotalCustomer 
     public class DailyTotalCustomerChartControl : ChartUIController, TranformDataImp
     {
         private List<FetchCustomerOfMonth_Result> rawData;
@@ -50,10 +58,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public DailyTotalCustomerChartControl()
         {
-            setupUIWithDefaulSetting();
+            setupVisualChartWithDefaulSetting();
         }
 
-        public void setupUIWithDefaulSetting()
+        protected override void setupVisualChartWithDefaulSetting()
+        {
+            setupDefaultSeries();
+            setupDefaultAxes();
+        }
+
+        protected override void setupDefaultSeries()
         {
             if (seriesProperty == null)
                 seriesProperty = new ObservableCollection<ISeries>();
@@ -62,7 +76,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 Values = new ObservableCollection<int>(),
                 TooltipLabelFormatter = (chartPoint) => $"{chartPoint.PrimaryValue}",
             });
+        }
 
+        protected override void setupDefaultAxes()
+        {
             VerticalAxis = new ObservableCollection<Axis>{new Axis
             {
                 Labels = new ObservableCollection<string>(),
@@ -78,9 +95,14 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }};
         }
 
-        public void TranformRawDataToVisualChart()
+        public void tranformRawDataToVisualChart()
         {
+            var totalCustomerOfEachDate = new ObservableCollection<int>();
+            var Dates = new ObservableCollection<string>();
+            int numberOfColumn = determineNumberOfColumn();
+
             rawData.Sort(new TotalCustumerDescendingComparer());
+
             seriesProperty.Clear();
             seriesProperty.Add(new ColumnSeries<int>
             {
@@ -88,39 +110,37 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 TooltipLabelFormatter = (chartPoint) => $"{chartPoint.PrimaryValue}",
             });
 
-            var totalCustomerOfDates = new ObservableCollection<int>();
-            var Dates = new ObservableCollection<string>();
-
-            int maxNumberOfColumn = determineNumberOfColumn();
-
-            for (int i = 0; i < maxNumberOfColumn; i++)
+            for (int i = 0; i < numberOfColumn; i++)
             {
-
-                totalCustomerOfDates.Add(rawData[i].Customer.GetValueOrDefault());
+                totalCustomerOfEachDate.Add(rawData[i].Customer.GetValueOrDefault());
                 Dates.Add(rawData[i].Day.ToString());
             }
-            seriesProperty[0].Values = totalCustomerOfDates;
+            seriesProperty[0].Values = totalCustomerOfEachDate;
             HorizontalAxis[0].Labels = Dates;
         }
 
         private int determineNumberOfColumn()
         {
-            int maxNumberOfColumn;
+            int numberOfCulumn;
+            const int maxNumberOfColumn = 5;
 
-            if (rawData.Count > 5)
-                maxNumberOfColumn = 5;
+            if (rawData.Count > maxNumberOfColumn)
+                numberOfCulumn = maxNumberOfColumn;
             else
-                maxNumberOfColumn = rawData.Count;
+                numberOfCulumn = rawData.Count;
 
-            return maxNumberOfColumn;
+            return numberOfCulumn;
         }
 
         public void setRawData(List<FetchCustomerOfMonth_Result> rawData)
         {
             this.rawData = rawData;
         }
+
+
     }
 
+    //Quản lý biểu đồ MonthlyRevenue 
     public class MonthlyRevenueChartControl : ChartUIController, TranformDataImp
     {
         private List<MonthlyRevenue> rawData;
@@ -131,10 +151,16 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
 
         public MonthlyRevenueChartControl()
         {
-            setupUIWithDefaulSetting();
+            setupVisualChartWithDefaulSetting();
         }
 
-        public void setupUIWithDefaulSetting()
+        protected override void setupVisualChartWithDefaulSetting()
+        {
+            setupDefaultSeries();
+            setupDefaultAxes();
+        }
+
+        protected override void setupDefaultSeries()
         {
             if (seriesProperty == null)
                 seriesProperty = new ObservableCollection<ISeries>();
@@ -147,7 +173,10 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 GeometryStroke = null,
                 TooltipLabelFormatter = (chartPoint) => $"{chartPoint.PrimaryValue.ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN"))}",
             });
+        }
 
+        protected override void setupDefaultAxes()
+        {
             HorizontalAxis = new ObservableCollection<Axis>{new Axis
             {
                 Labels = new List<string> {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" }
@@ -158,12 +187,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }};
         }
 
-        public void setRawData(List<MonthlyRevenue> rawData)
-        {
-            this.rawData = rawData;
-        }
 
-        public void TranformRawDataToVisualChart()
+        public void tranformRawDataToVisualChart()
         {
             ObservableCollection<long> dummy = new ObservableCollection<long>(new long[12]);
             foreach (MonthlyRevenue monthRevenue in rawData)
@@ -172,28 +197,40 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             }
             seriesProperty[0].Values = dummy;
         }
+
+        public void setRawData(List<MonthlyRevenue> rawData)
+        {
+            this.rawData = rawData;
+        }
+
     }
 
+    //Quản lý biểu đồ ProductSalesRevenue
     public class ProductSalesRevenueChartControl : ChartUIController, TranformDataImp
     {
         private List<FetchDataOfMonth_Result> rawData;
 
         public ProductSalesRevenueChartControl()
         {
-            setupUIWithDefaulSetting();
+            setupVisualChartWithDefaulSetting();
         }
 
-        public void setupUIWithDefaulSetting()
+        protected override void setupVisualChartWithDefaulSetting()
         {
             //method intentionally left empty
         }
 
-        public void setRawData(List<FetchDataOfMonth_Result> rawData)
+        protected override void setupDefaultSeries()
         {
-            this.rawData = rawData;
+            //method intentionally left empty
         }
 
-        public void TranformRawDataToVisualChart()
+        protected override void setupDefaultAxes()
+        {
+            //method intentionally left empty
+        }
+
+        public void tranformRawDataToVisualChart()
         {
             rawData.Sort(new PriceDescendingComparer());
             seriesProperty.Clear();
@@ -209,23 +246,35 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 });
             }
         }
-    }
-
-    public class ProductSoldQuantityChartControl : ChartUIController, TranformDataImp
-    {
-        private List<FetchDataOfMonth_Result> rawData;
 
         public void setRawData(List<FetchDataOfMonth_Result> rawData)
         {
             this.rawData = rawData;
         }
 
-        public void setupUIWithDefaulSetting()
+    }
+
+    //Quản lý biểu đồ ProductSoldQuantity
+    public class ProductSoldQuantityChartControl : ChartUIController, TranformDataImp
+    {
+        private List<FetchDataOfMonth_Result> rawData;
+
+        protected override void setupVisualChartWithDefaulSetting()
         {
             //this method intentionally left empty
         }
 
-        public void TranformRawDataToVisualChart()
+        protected override void setupDefaultAxes()
+        {
+            //this method intentionally left empty
+        }
+
+        protected override void setupDefaultSeries()
+        {
+            //this method intentionally left empty
+        }
+
+        public void tranformRawDataToVisualChart()
         {
             rawData.Sort(new QuantityDescendingComparer());
             seriesProperty.Clear();
@@ -241,27 +290,34 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 });
             }
         }
+
+        public void setRawData(List<FetchDataOfMonth_Result> rawData)
+        {
+            this.rawData = rawData;
+        }
     }
 
 
     public class DashBoardViewModel : BaseViewModel
     {
-
+        // 4 object quản lý 4 biểu đồ khác nhau 
         public MonthlyRevenueChartControl monthlyRevenueChartControl { get; set; } = new MonthlyRevenueChartControl();
         public ProductSalesRevenueChartControl productSalesRevenueChartControl { get; set; } = new ProductSalesRevenueChartControl();
         public ProductSoldQuantityChartControl productSoldQuantityChartControl { get; set; } = new ProductSoldQuantityChartControl();
         public DailyTotalCustomerChartControl dailyTotalCustomerChartControl { get; set; } = new DailyTotalCustomerChartControl();
 
-        public ICommand visibleTriggerCommand { get; set; }
+        // Command sẽ thực hiện Action khi người dùng chọn menu Dashboad từ ứng dụng 
+        public ICommand visibleTriggerActionCommand { get; set; }
 
         public DashBoardViewModel()
         {
-            visibleTriggerCommand = new RelayCommand<System.Windows.DependencyPropertyChangedEventArgs>(p => true, p =>
+            visibleTriggerActionCommand = new RelayCommand<System.Windows.DependencyPropertyChangedEventArgs>(p => true, p =>
             {
+                //nếu EventArgs.NewValue == true tức là Visible có giá trị mới là true
                 if (p.NewValue as bool? == true)
+                    //fetch dữ liệu và vẽ lại biểu đồ MonthlyRevenue
                     fetchAndTranformMonthlyRevenueDataOfCurrentYear();
             });
-
         }
 
         private void fetchAndTranformMonthlyRevenueDataOfCurrentYear()
@@ -269,36 +325,49 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
             var rawFetchedData = getRawMonthlyRevenuesDataFromDatabase();
 
             monthlyRevenueChartControl.setRawData(rawFetchedData);
-            monthlyRevenueChartControl.TranformRawDataToVisualChart();
+            monthlyRevenueChartControl.tranformRawDataToVisualChart();
         }
 
-        private void fetchAndTranformDataOfMonth(int selectedMonth)
-        {
-            var rawProductDataFromSelectedMonth = getRawProductDataFromDatabase(selectedMonth);
-
-            productSalesRevenueChartControl.setRawData(rawProductDataFromSelectedMonth);
-            productSalesRevenueChartControl.TranformRawDataToVisualChart();
-
-            productSoldQuantityChartControl.setRawData(rawProductDataFromSelectedMonth);
-            productSoldQuantityChartControl.TranformRawDataToVisualChart();
-
-
-            var rawFetchedTotalCustomerData = getRawTotalCustomerDataFromDatabase(selectedMonth);
-            dailyTotalCustomerChartControl.setRawData(rawFetchedTotalCustomerData);
-            dailyTotalCustomerChartControl.TranformRawDataToVisualChart();
-        }
 
         private List<MonthlyRevenue> getRawMonthlyRevenuesDataFromDatabase()
         {
             using (var DB = new TAHCoffeeEntities())
             {
+                //Stored Procedure
                 return DB.MonthlyRevenues.ToList();
             }
         }
+
+        //Hiễn thị dữ liệu các biểu đồ con khi nhấn vào biểu đồ lớn
+        public void handleBigChartMouseDownEvent(IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
+        {
+            int SelectedMonth = (int)point.SecondaryValue + 1;
+            fetchAndTranformDataOfMonth(SelectedMonth);
+        }
+
+        private void fetchAndTranformDataOfMonth(int selectedMonth)
+        {                       
+            //fetch dữ liệu và vẽ lại biểu đồ cho 2 biểu đồ tròn
+            var rawProductDataFromSelectedMonth = getRawProductDataFromDatabase(selectedMonth);
+
+            productSalesRevenueChartControl.setRawData(rawProductDataFromSelectedMonth);
+            productSalesRevenueChartControl.tranformRawDataToVisualChart();
+
+            productSoldQuantityChartControl.setRawData(rawProductDataFromSelectedMonth);
+            productSoldQuantityChartControl.tranformRawDataToVisualChart();
+
+            //fetch dữ liệu cho biểu đồ cột
+            var rawFetchedTotalCustomerData = getRawTotalCustomerDataFromDatabase(selectedMonth);
+
+            dailyTotalCustomerChartControl.setRawData(rawFetchedTotalCustomerData);
+            dailyTotalCustomerChartControl.tranformRawDataToVisualChart();
+        }
+
         private List<FetchDataOfMonth_Result> getRawProductDataFromDatabase(int selectedMonth)
         {
             using (var DB = new TAHCoffeeEntities())
             {
+                //Stored Procedure
                 return DB.FetchDataOfMonth(selectedMonth).ToList();
             }
         }
@@ -307,15 +376,9 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         {
             using (var DB = new TAHCoffeeEntities())
             {
+                //Stored Procedure
                 return DB.FetchCustomerOfMonth(selectedMonth).ToList();
             }
         }
-
-        public void handlCartesianChartMouseDownEvent(IChartView chart, LiveChartsCore.Kernel.ChartPoint point)
-        {
-            int SelectedMonth = (int)point.SecondaryValue + 1;
-            fetchAndTranformDataOfMonth(SelectedMonth);
-        }
-
     }
 }
