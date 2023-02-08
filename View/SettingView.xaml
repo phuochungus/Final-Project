@@ -127,34 +127,7 @@
                     <!--background color change-->
                     <Grid Grid.Row="3" Margin="0 5 0 5">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0">
-
-                            <TextBlock 
-                                Text="Change the color of the background ♥"
-                                Margin="20 0 0 0"
-                                VerticalAlignment="Center"/>
-
-                        </Grid>
-
-                        <Grid Grid.Column="1">
-
-                            <hw:ColorPickerButton>
-
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseDown">
-                                        <i:InvokeCommandAction 
-                                            />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-
-                            </hw:ColorPickerButton>
-
-                        </Grid>
+                        
 
                     </Grid>
 
