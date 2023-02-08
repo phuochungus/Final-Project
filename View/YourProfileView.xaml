@@ -61,7 +61,7 @@
                     </Ellipse>
 
                     <Button Command="{Binding AvatarCommand}" Margin="60,160,60,100" Content="Choose a photo" Background="#FFB01B0F"></Button>
-                    <TextBlock Margin="95,230,75,80" Style="{StaticResource MaterialDesignBody2TextBlock}" Text="PNG,JPEG format"  />
+                    
                 </Grid>
             </Grid>
             <materialDesign:Card Grid.Row="2" Background="#FFF6FFE2">

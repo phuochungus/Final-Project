@@ -9,8 +9,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
     {
         private static object _currentView;
 
-        private System.Windows.Media.Brush _BGColor;
-        public System.Windows.Media.Brush BGColor { get => _BGColor; set { _BGColor = value; OnPropertyChanged(); } }
         public ICommand ShowHomeViewCommand { get; set; }
         public ICommand ShowHistoryViewCommand { get; set; }
         public ICommand ShowOrderedViewCommand { get; set; }
@@ -20,8 +18,12 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         public ICommand ShowProductManagementViewCommand { get; set; }
         public ICommand ExitCommand { get; set; }
 
-        public ICommand LeftBarColorChange { get; set; }    
+        public ICommand LeftBarColorChange { get; set; }
 
+
+
+        private System.Windows.Media.Brush _BGColor;
+        public System.Windows.Media.Brush BGColor { get => _BGColor; set { _BGColor = value; OnPropertyChanged(); } }
         public object CurrentView
         {
             get => _currentView;
@@ -45,7 +47,6 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
         }
         public MainControlBarViewModel()
         {
-            BGColor = new SolidColorBrush(Colors.DarkOrange);
 
             _currentView = new HomeViewModel();
             ShowHistoryViewCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CurrentView = new HistoryViewModel(); });
@@ -66,6 +67,8 @@ namespace _4NH_HAO_Coffee_Shop.ViewModel
                 }
             });
 
+
+            BGColor = new SolidColorBrush(Colors.DarkOrange);
             LeftBarColorChange = new RelayCommand<Haley.WPF.Controls.ColorPickerButton>((p) => { return true; }, (p) =>
             {
                 BGColor = new SolidColorBrush(p.SelectedColor);
