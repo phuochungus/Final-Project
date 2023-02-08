@@ -222,12 +222,14 @@
     <Compile Include="Model\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\AccountWrapper.cs" />
     <Compile Include="Model\Bill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BillInfor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BillWrapper.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -294,6 +296,15 @@
     <Compile Include="ViewModel\OrderedViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\YourProfileViewModel.cs" />
+    <Compile Include="Model\CategoryWrapper.cs" />
+    <Compile Include="ViewModel\CategoryListViewModel.cs" />
+    <Compile Include="Model\ItemWrapper.cs" />
+    <Compile Include="Model\PromoWrapper.cs" />
+    <Compile Include="ViewModel\UnitListViewModel.cs" />
+    <Compile Include="ViewModel\PromoListViewModel.cs" />
+    <Compile Include="ViewModel\ItemListViewModel.cs" />
+    <Compile Include="ViewModel\ProductManagementViewModel.cs" />
+    <Compile Include="Model\UnitWrapper.cs" />
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
     </Compile>
@@ -317,6 +328,33 @@
     </Compile>
     <Compile Include="View\YourProfileView.xaml.cs">
       <DependentUpon>YourProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagementScreen_Catelogry.xaml.cs">
+      <DependentUpon>ProductManagementScreen_Catelogry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagementScreen_Item.xaml.cs">
+      <DependentUpon>ProductManagementScreen_Item.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagementScreen_Promo.xaml.cs">
+      <DependentUpon>ProductManagementScreen_Promo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagementScreen_Unit.xaml.cs">
+      <DependentUpon>ProductManagementScreen_Unit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagement_PromoListView.xaml.cs">
+      <DependentUpon>ProductManagement_PromoListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagement_ItemListView.xaml.cs">
+      <DependentUpon>ProductManagement_ItemListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagement_UnitListView.xaml.cs">
+      <DependentUpon>ProductManagement_UnitListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagement_CategoryListView.xaml.cs">
+      <DependentUpon>ProductManagement_CategoryListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductManagementView.xaml.cs">
+      <DependentUpon>ProductManagementView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +454,42 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProductManagementScreen_Catelogry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagementScreen_Item.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagementScreen_Promo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagementScreen_Unit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagement_PromoListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagement_ItemListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagement_UnitListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagement_CategoryListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProductManagementView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -478,6 +552,11 @@
     <Resource Include="Assets\Image\4nhHaoLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Icon\icon_barchart.png" />
+    <Resource Include="Assets\Icon\icon_burger.png" />
+    <Resource Include="Assets\Icon\icon_buymeacoffee.png" />
+    <Resource Include="Assets\Icon\icon_percentoutline.png" />
+    <Resource Include="Assets\Icon\icon_storage.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
